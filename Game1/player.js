@@ -69,7 +69,7 @@ class player {
     reset() {
         this.health = 100;
         this.energy = 100;
-        this.bag = {bomb: 10};
+        this.bag = {bomb: 0};
     }
     isAlive() {
         return this.health > 0;
