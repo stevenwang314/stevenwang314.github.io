@@ -8,7 +8,7 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 0};
+     this.bag = {bomb: 10};
     }
     getEnergyRatio() {
          return this.energy/this.maxEnergy;
@@ -69,7 +69,7 @@ class player {
     reset() {
         this.health = 100;
         this.energy = 100;
-        this.bag = {bomb: 0};
+        this.bag = {bomb: 10};
     }
     isAlive() {
         return this.health > 0;

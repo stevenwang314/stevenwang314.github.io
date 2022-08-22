@@ -317,6 +317,86 @@ function revealNeighbors(startX, startY, range, func) {
         }
     }
 }
+function moveUp() {
+    if (getplayer.y > 0) {
+        if (isNothingAhead(getplayer.x, getplayer.y - 1)) {
+            getplayer.movePlayer(0, -1);
+            interactX = -1;
+            interactY = -1;
+            revealNearby();
+            if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
+                getplayer.health -= 3;
+                terrainArray[getplayer.x][getplayer.y].removeHazard();
+            }
+        } else {
+            interactObject(getplayer.x, getplayer.y - 1);
+        }
+
+    }
+}
+function moveDown() {
+    if (getplayer.y < boardSize.height - 1) {
+        if (isNothingAhead(getplayer.x, getplayer.y + 1)) {
+            getplayer.movePlayer(0, 1);
+            interactX = -1;
+            interactY = -1;
+            revealNearby();
+            if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
+                getplayer.health -= 3;
+                terrainArray[getplayer.x][getplayer.y].removeHazard();
+            }
+        } else {
+            interactObject(getplayer.x, getplayer.y + 1);
+        }
+    }
+}
+function moveLeft() {
+    if (getplayer.x > 0) {
+        if (isNothingAhead(getplayer.x - 1, getplayer.y)) {
+            getplayer.movePlayer(-1, 0);
+            interactX = -1;
+            interactY = -1;
+            revealNearby();
+            if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
+                getplayer.health -= 3;
+                 terrainArray[getplayer.x][getplayer.y].removeHazard();
+            }
+        } else {
+            interactObject(getplayer.x - 1, getplayer.y);
+        }
+    }
+}
+function moveRight() {
+    if (getplayer.x < boardSize.width - 1) {
+        if (isNothingAhead(getplayer.x + 1, getplayer.y)) {
+            getplayer.movePlayer(1, 0);
+            interactX = -1;
+            interactY = -1;
+            revealNearby();
+            if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
+                getplayer.health -= 3;
+                terrainArray[getplayer.x][getplayer.y].removeHazard();
+            }
+        } else {
+            interactObject(getplayer.x + 1, getplayer.y);
+        }
+    }
+}
+function activateBomb() {
+    if (terrainArray[castMode["usingBomb"].x][castMode["usingBomb"].y].isRevealed())
+    {
+        revealNeighbors(castMode["usingBomb"].x,castMode["usingBomb"].y,2,
+        (x,y)=> {
+            if (terrainArray[x][y].isObstacle() || terrainArray[x][y].isSpike()) {
+                addScore(5);
+            }
+            terrainArray[x][y].removeTerrain();
+            revealLocation(x,y);
+        });
+        delete castMode.usingBomb;
+        getplayer.bag.bomb -= 1;
+    }
+}
 function keyPressed(key) {
     if (getplayer.isAlive() === true) {
     if (key == "Q" || key == "q") {
@@ -325,74 +405,18 @@ function keyPressed(key) {
     }
     if (castMode.hasOwnProperty('usingBomb') == false) {
         if (key == "ArrowUp") {
-
-            if (getplayer.y > 0) {
-                if (isNothingAhead(getplayer.x, getplayer.y - 1)) {
-                    getplayer.movePlayer(0, -1);
-                    interactX = -1;
-                    interactY = -1;
-                    revealNearby();
-                    if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
-                        getplayer.health -= 3;
-                        terrainArray[getplayer.x][getplayer.y].removeHazard();
-                    }
-                } else {
-                    interactObject(getplayer.x, getplayer.y - 1);
-                }
-
-            }
-
+            moveUp();
         } else if (key == "ArrowDown") {
-            if (getplayer.y < boardSize.height - 1) {
-                if (isNothingAhead(getplayer.x, getplayer.y + 1)) {
-                    getplayer.movePlayer(0, 1);
-                    interactX = -1;
-                    interactY = -1;
-                    revealNearby();
-                    if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
-                        getplayer.health -= 3;
-                        terrainArray[getplayer.x][getplayer.y].removeHazard();
-                    }
-                } else {
-                    interactObject(getplayer.x, getplayer.y + 1);
-                }
-            }
+           moveDown();
         }
         else if (key == "ArrowLeft") {
-            if (getplayer.x > 0) {
-                if (isNothingAhead(getplayer.x - 1, getplayer.y)) {
-                    getplayer.movePlayer(-1, 0);
-                    interactX = -1;
-                    interactY = -1;
-                    revealNearby();
-                    if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
-                        getplayer.health -= 3;
-                         terrainArray[getplayer.x][getplayer.y].removeHazard();
-                    }
-                } else {
-                    interactObject(getplayer.x - 1, getplayer.y);
-                }
-            }
+         moveLeft();
         }
         else if (key == "ArrowRight") {
-            if (getplayer.x < boardSize.width - 1) {
-                if (isNothingAhead(getplayer.x + 1, getplayer.y)) {
-                    getplayer.movePlayer(1, 0);
-                    interactX = -1;
-                    interactY = -1;
-                    revealNearby();
-                    if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
-                        getplayer.health -= 3;
-                        terrainArray[getplayer.x][getplayer.y].removeHazard();
-                    }
-                } else {
-                    interactObject(getplayer.x + 1, getplayer.y);
-                }
-            }
+          moveRight();
         }
     }  
     else if (castMode.hasOwnProperty('usingBomb') == true)  {
-        console.log(key);
         if (key == "ArrowUp") {
             if ( castMode["usingBomb"].y > 0) 
                 castMode["usingBomb"].y -= 1;
@@ -411,19 +435,7 @@ function keyPressed(key) {
         }
         else if (key == "Enter") {
             //Explode in a 5x5 radius.
-            if (terrainArray[castMode["usingBomb"].x][castMode["usingBomb"].y].isRevealed())
-            {
-                revealNeighbors(castMode["usingBomb"].x,castMode["usingBomb"].y,2,
-                (x,y)=> {
-                    if (terrainArray[x][y].isObstacle() || terrainArray[x][y].isSpike()) {
-                        addScore(5);
-                    }
-                    terrainArray[x][y].removeTerrain();
-                    revealLocation(x,y);
-                });
-                delete castMode.usingBomb;
-                getplayer.bag.bomb -= 1;
-            }
+          activateBomb();
         } else if (key=="Escape") {
             delete castMode.usingBomb;
         }
@@ -445,6 +457,7 @@ const getMousePos = (canvas, evt) => {
 };
 
 function leftClickEvent() {
+
     if (getplayer.isAlive() === false) {
      
         if (mousePos.x>= replay_button.x && mousePos.x<= replay_button.x + replay_button.width && mousePos.y >= replay_button.y && mousePos.y <= replay_button.y + replay_button.height) {
@@ -452,6 +465,37 @@ function leftClickEvent() {
             currentStage = 1;
                     score = 0;
             getplayer.reset();       
+        }
+    } else {
+        if (castMode.hasOwnProperty('usingBomb') == false) {
+        let tileX = Math.floor(mousePos.x/32) ;
+        let tileY = Math.floor(mousePos.y/32) ;
+ 
+        if (getplayer.x - tileX == 1 && getplayer.y - tileY == 0) { //Move Left
+           moveLeft();
+        }
+        else if (getplayer.x - tileX == -1 && getplayer.y - tileY == 0) { //Move Right
+           moveRight();
+        }
+        else if (getplayer.y - tileY == 1 && getplayer.x - tileX == 0) { //Move Up
+            moveUp();
+         }
+         else  if (getplayer.y - tileY == -1 && getplayer.x - tileX == 0) { //Move Down
+            moveDown();
+         }
+        
+        } else {
+            castMode["usingBomb"] = { x: Math.floor(mousePos.x/32), y: Math.floor(mousePos.y/32) };
+            activateBomb();
+        }
+         let r = { x:boardSize.width * 32, y:224, width: uiWidth, height: 32};
+         if (mousePos.x>= r.x && mousePos.x<= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+            if (!castMode.hasOwnProperty("usingBomb")) {
+                if (getplayer.bag.bomb > 0)
+                    castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
+            } else {
+                delete castMode.usingBomb;
+            }
         }
     }
 }
@@ -474,13 +518,18 @@ document.addEventListener('mousemove', function(event) {
   page.y = event.pageY;
   client.x = event.clientX;
   client.y = event.clientY;
-mousePos = getMousePos(getCanvas, event);
-console.log(mousePos);
+  mousePos = getMousePos(getCanvas, event);
+
 });
-document.addEventListener('click', function (event) {
-    if (event.button == 0)
-    leftClickEvent();
-});
+function Input(event) {
+    mousePos = getMousePos(getCanvas, event);
+    if (event.button == 0) {
+        leftClickEvent();
+    }
+}
+document.addEventListener('click',Input);
+//for mobile users
+document.addEventListener('touchstart', Input);
 setup();
 generateMap();
 update();
