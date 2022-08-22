@@ -19,11 +19,11 @@ let keyState = {};
 let grassArray = [];
 let terrainArray = [];
 let goalPoint = { x: 0, y: 0 };
-let page  = {x: 0, y:0 };
-let client = {x: 0, y:0};
-let mousePos = {x: 0, y: 0};
+let page = { x: 0, y: 0 };
+let client = { x: 0, y: 0 };
+let mousePos = { x: 0, y: 0 };
 let score = 0;
-let replay_button = {x:400,y:496,width:160,height:64};
+let replay_button = { x: 400, y: 496, width: 160, height: 64 };
 let getplayer = new player(playerImg);
 let castMode = {};
 var isBuilding = true;
@@ -101,10 +101,10 @@ function generateMap() {
                     terrainArray[i][j].assignBag();
                 }
                 if (currentStage > 3) {
-                    if (randomDecimal(0, 100) < (clamp(spikeChance * (1 + 0.25 * (Math.max(currentStage-3,0)/2))), spikeChance, 10)) {
+                    if (randomDecimal(0, 100) < (clamp(spikeChance * (1 + 0.25 * (Math.max(currentStage - 3, 0) / 2))), spikeChance, 10)) {
                         terrainArray[i][j].assignSpikes();
                     }
-                 }
+                }
             }
             /*else { //Higher chance if behind a rock.
                 if (randomInteger(0,100) < bagChance * 2) {
@@ -150,11 +150,11 @@ function revealLocation(x, y) {
     }
 }
 function revealNearby() {
-   
 
-   revealNeighbors(getplayer.x,getplayer.y,1, (x,y)=> {
-        revealLocation(x,y);
-   });
+
+    revealNeighbors(getplayer.x, getplayer.y, 1, (x, y) => {
+        revealLocation(x, y);
+    });
 
 
 }
@@ -203,14 +203,14 @@ function interactObject(x, y) {
 }
 
 function update() {
-    
-   
+
+
     setTimeout(update, 10);
 }
 function draw() {
     //Request the browesr to draw the animation once again. This will only call once. To make it a infinite loop, we call the same function again.
     requestAnimationFrame(draw);
-    fillRectangle(0,0,getCanvas.width,getCanvas.height,"white");
+    fillRectangle(0, 0, getCanvas.width, getCanvas.height, "white");
     for (let y = 0; y < boardSize.height; y++) {
         for (let x = 0; x < boardSize.width; x++) {
             if (terrainArray[x][y].explore) {
@@ -298,21 +298,21 @@ function draw() {
     }
 
     if (getplayer.isAlive() === false) {
-        fillRectangle(240,240,400,320,"orange",0.5);
-        drawText(240,240, "Game Over", "Verdana", 36, "black");
-        drawText(240,304, "Stage: " + currentStage, "Verdana", 24, "black");
-        drawText(240,336, "Score: " + score, "Verdana", 24, "black");
+        fillRectangle(240, 240, 400, 320, "orange", 0.5);
+        drawText(240, 240, "Game Over", "Verdana", 36, "black");
+        drawText(240, 304, "Stage: " + currentStage, "Verdana", 24, "black");
+        drawText(240, 336, "Score: " + score, "Verdana", 24, "black");
 
-        fillRectangle(400,496,160,64,"red",0.5);
-        drawRectangle(400,496,160,64,"black",2);
-        drawText(400,496, "Play Again!", "Verdana", 24, "black");
+        fillRectangle(400, 496, 160, 64, "red", 0.5);
+        drawRectangle(400, 496, 160, 64, "black", 2);
+        drawText(400, 496, "Play Again!", "Verdana", 24, "black");
     }
 }
 function revealNeighbors(startX, startY, range, func) {
     for (let x = -range; x <= range; x++) {
         for (let y = -range; y <= range; y++) {
             //Reveal all items at location
-            if (startX +x >= 0 && startX + x <= boardSize.width - 1 && startY + y >= 0 && startY + y <= boardSize.height - 1)
+            if (startX + x >= 0 && startX + x <= boardSize.width - 1 && startY + y >= 0 && startY + y <= boardSize.height - 1)
                 func(startX + x, startY + y);
         }
     }
@@ -359,7 +359,7 @@ function moveLeft() {
             revealNearby();
             if (terrainArray[getplayer.x][getplayer.y].isSpike()) {
                 getplayer.health -= 3;
-                 terrainArray[getplayer.x][getplayer.y].removeHazard();
+                terrainArray[getplayer.x][getplayer.y].removeHazard();
             }
         } else {
             interactObject(getplayer.x - 1, getplayer.y);
@@ -383,113 +383,114 @@ function moveRight() {
     }
 }
 function activateBomb() {
-    if (terrainArray[castMode["usingBomb"].x][castMode["usingBomb"].y].isRevealed())
-    {
-        revealNeighbors(castMode["usingBomb"].x,castMode["usingBomb"].y,2,
-        (x,y)=> {
-            if (terrainArray[x][y].isObstacle() || terrainArray[x][y].isSpike()) {
-                addScore(5);
-            }
-            terrainArray[x][y].removeTerrain();
-            revealLocation(x,y);
-        });
-        delete castMode.usingBomb;
-        getplayer.bag.bomb -= 1;
+    if (castMode["usingBomb"].x > 0 && castMode["usingBomb"].x < boardSize.width - 1 && castMode["usingBomb"].y > 0 && castMode["usingBomb"].y < boardSize.height - 1) {
+        if (terrainArray[castMode["usingBomb"].x][castMode["usingBomb"].y].isRevealed()) {
+            revealNeighbors(castMode["usingBomb"].x, castMode["usingBomb"].y, 2,
+                (x, y) => {
+                    if (terrainArray[x][y].isObstacle() || terrainArray[x][y].isSpike()) {
+                        addScore(5);
+                    }
+                    terrainArray[x][y].removeTerrain();
+                    revealLocation(x, y);
+                });
+            delete castMode.usingBomb;
+            getplayer.bag.bomb -= 1;
+        }
     }
 }
 function keyPressed(key) {
     if (getplayer.isAlive() === true) {
-    if (key == "Q" || key == "q") {
-        if (getplayer.bag.bomb > 0)
-            castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
-    }
-    if (castMode.hasOwnProperty('usingBomb') == false) {
-        if (key == "ArrowUp") {
-            moveUp();
-        } else if (key == "ArrowDown") {
-           moveDown();
+        if (key == "Q" || key == "q") {
+            if (getplayer.bag.bomb > 0)
+                castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
         }
-        else if (key == "ArrowLeft") {
-         moveLeft();
+        if (castMode.hasOwnProperty('usingBomb') == false) {
+            if (key == "ArrowUp") {
+                moveUp();
+            } else if (key == "ArrowDown") {
+                moveDown();
+            }
+            else if (key == "ArrowLeft") {
+                moveLeft();
+            }
+            else if (key == "ArrowRight") {
+                moveRight();
+            }
         }
-        else if (key == "ArrowRight") {
-          moveRight();
-        }
-    }  
-    else if (castMode.hasOwnProperty('usingBomb') == true)  {
-        if (key == "ArrowUp") {
-            if ( castMode["usingBomb"].y > 0) 
-                castMode["usingBomb"].y -= 1;
+        else if (castMode.hasOwnProperty('usingBomb') == true) {
+            if (key == "ArrowUp") {
+                if (castMode["usingBomb"].y > 0)
+                    castMode["usingBomb"].y -= 1;
 
-        } else if (key == "ArrowDown") {
-            if ( castMode["usingBomb"].y < boardSize.height - 1)
-                castMode["usingBomb"].y += 1;
+            } else if (key == "ArrowDown") {
+                if (castMode["usingBomb"].y < boardSize.height - 1)
+                    castMode["usingBomb"].y += 1;
+            }
+            else if (key == "ArrowLeft") {
+                if (castMode["usingBomb"].x > 0)
+                    castMode["usingBomb"].x -= 1;
+            }
+            else if (key == "ArrowRight") {
+                if (castMode["usingBomb"].x < boardSize.width - 1)
+                    castMode["usingBomb"].x += 1;
+            }
+            else if (key == "Enter") {
+                //Explode in a 5x5 radius.
+                activateBomb();
+            } else if (key == "Escape") {
+                delete castMode.usingBomb;
+            }
         }
-        else if (key == "ArrowLeft") {
-            if ( castMode["usingBomb"].x > 0) 
-                castMode["usingBomb"].x -= 1;
-        }
-        else if (key == "ArrowRight") {
-            if ( castMode["usingBomb"].x < boardSize.width - 1) 
-                castMode["usingBomb"].x += 1;
-        }
-        else if (key == "Enter") {
-            //Explode in a 5x5 radius.
-          activateBomb();
-        } else if (key=="Escape") {
-            delete castMode.usingBomb;
+        if (key == "r" || key == "R") {
+            generateMap();
+            currentStage = 1;
+            score = 0;
+            getplayer.reset();
         }
     }
-    if (key == "r" || key == "R") {
-        generateMap();
-        currentStage = 1;
-        score = 0;
-        getplayer.reset();  
-    }
-}
 }
 const getMousePos = (canvas, evt) => {
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x: ((evt.clientX - rect.left) / (rect.right - rect.left)) * canvas.width,
-    y: ((evt.clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height,
-  };
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: ((evt.clientX - rect.left) / (rect.right - rect.left)) * canvas.width,
+        y: ((evt.clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height,
+    };
 };
 
 function leftClickEvent() {
 
     if (getplayer.isAlive() === false) {
-     
-        if (mousePos.x>= replay_button.x && mousePos.x<= replay_button.x + replay_button.width && mousePos.y >= replay_button.y && mousePos.y <= replay_button.y + replay_button.height) {
-            generateMap(); 
+
+        if (mousePos.x >= replay_button.x && mousePos.x <= replay_button.x + replay_button.width && mousePos.y >= replay_button.y && mousePos.y <= replay_button.y + replay_button.height) {
+            generateMap();
             currentStage = 1;
-                    score = 0;
-            getplayer.reset();       
+            score = 0;
+            getplayer.reset();
         }
     } else {
         if (castMode.hasOwnProperty('usingBomb') == false) {
-        let tileX = Math.floor(mousePos.x/32) ;
-        let tileY = Math.floor(mousePos.y/32) ;
- 
-        if (getplayer.x - tileX == 1 && getplayer.y - tileY == 0) { //Move Left
-           moveLeft();
-        }
-        else if (getplayer.x - tileX == -1 && getplayer.y - tileY == 0) { //Move Right
-           moveRight();
-        }
-        else if (getplayer.y - tileY == 1 && getplayer.x - tileX == 0) { //Move Up
-            moveUp();
-         }
-         else  if (getplayer.y - tileY == -1 && getplayer.x - tileX == 0) { //Move Down
-            moveDown();
-         }
-        
+            let tileX = Math.floor(mousePos.x / 32);
+            let tileY = Math.floor(mousePos.y / 32);
+
+            if (getplayer.x - tileX == 1 && getplayer.y - tileY == 0) { //Move Left
+                moveLeft();
+            }
+            else if (getplayer.x - tileX == -1 && getplayer.y - tileY == 0) { //Move Right
+                moveRight();
+            }
+            else if (getplayer.y - tileY == 1 && getplayer.x - tileX == 0) { //Move Up
+                moveUp();
+            }
+            else if (getplayer.y - tileY == -1 && getplayer.x - tileX == 0) { //Move Down
+                moveDown();
+            }
+
         } else {
-            castMode["usingBomb"] = { x: Math.floor(mousePos.x/32), y: Math.floor(mousePos.y/32) };
+            castMode["usingBomb"] = { x: Math.floor(mousePos.x / 32), y: Math.floor(mousePos.y / 32) };
             activateBomb();
         }
-         let r = { x:boardSize.width * 32, y:224, width: uiWidth, height: 32};
-         if (mousePos.x>= r.x && mousePos.x<= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        let r = { x: boardSize.width * 32, y: 224, width: uiWidth, height: 32 };
+        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
             if (!castMode.hasOwnProperty("usingBomb")) {
                 if (getplayer.bag.bomb > 0)
                     castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
@@ -513,12 +514,12 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keyup', function (event) {
     keyState[event.key] = false;
 });
-document.addEventListener('mousemove', function(event) {
-  page.x = event.pageX;
-  page.y = event.pageY;
-  client.x = event.clientX;
-  client.y = event.clientY;
-  mousePos = getMousePos(getCanvas, event);
+document.addEventListener('mousemove', function (event) {
+    page.x = event.pageX;
+    page.y = event.pageY;
+    client.x = event.clientX;
+    client.y = event.clientY;
+    mousePos = getMousePos(getCanvas, event);
 
 });
 function Input(event) {
@@ -527,7 +528,7 @@ function Input(event) {
         leftClickEvent();
     }
 }
-document.addEventListener('click',Input);
+document.addEventListener('click', Input);
 //for mobile users
 document.addEventListener('touchstart', Input);
 setup();
