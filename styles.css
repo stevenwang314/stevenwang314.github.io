@@ -1,0 +1,61 @@
+.font {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 24px;  
+}
+.small-font {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px; 
+}
+.topBorder {
+    border-top: 1px solid black;
+}
+.bottomBorder {
+    border-bottom: 1px solid black;
+}
+.fillColor {
+  background-color: darkseagreen;
+  /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+  overflow: hidden;
+}
+.fillColor#project1{
+    background-color: crimson;
+    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+    overflow: hidden;
+  }
+  .fillColor#project2{
+    background-color: yellowgreen;
+    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+    overflow: hidden;
+  }
+  .fillColor#project3{
+    background-color: rgb(50, 195, 205);
+    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+    overflow: hidden;
+  }
+  .fillColor#project4{
+    background-color: rgb(204, 160, 38);
+    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+    overflow: hidden;
+  }
+  .fillColor#project5{
+    background-color: rgb(140, 34, 117);
+    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
+    overflow: hidden;
+  }
+.no-spacing {
+    margin: 0 0;
+}
+.leftSection {
+    width: 50%;
+    float: left;
+}
+.rightSection {
+    width: 50%;
+    float: right;
+}
+.main {
+    display: flex;
+
+  justify-content: center;
+  align-items: center;
+}

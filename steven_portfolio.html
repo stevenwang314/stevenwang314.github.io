@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--Head is the first part of the HTML document that is used to add additional information to the HTML document.
+Head contains meta information, the title of the page, internal style, external stylesheet link, internal javascript, 
+external JavaScript file linking, etc. The head is not required to be present in the document, but it is recommended to be present.
+There should only be one head in an HTML document.
+
+The Head is a block of information that is placed at the top of the document. The head is the first section of the document 
+and contains information that is shared by all the pages in the document. Head is not used to add information to 
+the body of the HTML document. This is because the body is the second part of the HTML document and is used to add content 
+to the HTML document.
+
+Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script>-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="navStyle.css">
+        <link rel="icon" href="webIcon.ico">
+        <title>Steven's Webpage</title>
+        
+    </head>
+    <!--Body is the part of HTML that contains the content of the page. The body section is the second section of the HTML 
+        document where the first section is head.
+Everything that you see, read or hear on a browser lies in the body of HTML, like text, images, GIFs, videos, audios, etc.
+
+All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <img>, <table>, etc all lies in the body section.-->
+    <body>
+        <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
+        <nav id="navigational" class= "skip">
+            <a class="links" href="index.html">Home</a>
+             <a class="links" href="steven_about.html">About</a>
+            <a class="links" href="steven_portfolio.html">Projects</a>
+            <a class="links" href="steven_demo.html">Demo Game</a>
+          </nav>
+        <div class="skip"></div>
+        <main class="main">
+            <div class="container">
+                <div class="fillColor">
+                    <h1 class="topBorder font no-spacing">My Projects</h1>
+                    <p class="bottomBorder small-font no-spacing">Here are the list of projects I have done before. Some of the projects have a demonstration to see how it works!!</p>
+                </div>
+                <div id="project3" class="fillColor">
+                    <div class="leftSection">
+                        <h1 class="topBorder font no-spacing">Sudoku</h1>
+                        <p class="small-font no-spacing">A numbers puzzle game that the goal is to fill the entire puzzles with numbers from 1 to 9 to finish the puzzle. Each number can only appear once from 1-9 at row, column, and region for each cell.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">It uses the Backtrack Algorithm (optimized) to solve any Sudoku puzzle. It will automatically first handle Naked/Hidden Singles, and Intersection Row/Column first significantly improving the algorithm speed. </li>
+                            <li class="small-font">New Puzzles can be generated using Backtrack Algorithm with a variety of difficulty.</li>
+                            <li class="small-font">Built in hint that uses human technique logics that can solve all but the hardest Sudoku Problems out there</li>
+                            <li class="small-font">Allows the player to input cell numbers or candidate numbers</li>
+                            <li class="small-font">Pre-made puzzles that can be loaded from a xml file containing multiple sudoku puzzles, use the arrow keys to select a different type of puzzles.</li>
+                        </ul>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="500" height="300" src="https://www.youtube.com/embed/X8aiZYdBZJQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div id="project5" class="fillColor">
+                    <div class="leftSection">
+                        <h1 class="topBorder font no-spacing">Auto Battle Simulator v2</h1>
+                        <p class="small-font no-spacing">The enhanced and refactored version of the previous. It has many type of modes that the units can go through.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">There are 50 different units to choose from with different abilities</li>
+                            <li class="small-font">Each unit can evolve up to 7 times to gain more strength</li>
+                            <li class="small-font">Each unit can equip gear to also get stronger.</li>
+                            <li class="small-font">Different sets of modes</li>
+                            <ul class="no-spacing">
+                                <li class="small-font">Arena - A group of 10 heroes attempt to fight another group of 10 heroes.</li>
+                                <li class="small-font">Boss Fight - Fights a boss. The main goal is to deal as much damage as possible. But the more damage it takes, the stronger it becomes</li>
+                                <li class="small-font">Dungeon - Battle against 10 floors worth of enemies and reach to the very end.</li>
+                                <li class="small-font">Adventure - A endless battle that helps units get stronger by defeating endless amount of enemies.</li>
+                                <li class="small-font">The player can also get experience and gold by not leaving the program on.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="500" height="300" src="https://www.youtube.com/embed/bxLWzU9j9YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div id="project4" class="fillColor">
+                    <div class="leftSection">
+                        <h1 class="topBorder font no-spacing">Auto Battle Simulator</h1>
+                        <p class="small-font no-spacing">A Simulation that features two sides fighting against each other except no user input is involved. All units are automatically controlled by the game resulting in relax-free gameplay.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">By default, units will automatically head to the opposing side walking normally.</li>
+                            <li class="small-font">Units engage with enemy units when it reaches a specific distance, units that can attack from afar will engage further than units that can hit up close.</li>
+                            <li class="small-font">There are 20 different type of units, each unit contains specific ability exclusive to that particular unit.</li>
+                        </ul>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="500" height="300" src="https://www.youtube.com/embed/0h9i7NL7ojw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div id="project1" class="fillColor">
+                    <div class="leftSection">
+                        <h1 class="topBorder font no-spacing">Tower Defense</h1>
+                        <p class="small-font no-spacing">A tower defense game made from scratch using C++ programming language. It uses windows32 Operating System API to handle opening a window and Direct2D API to render graphics onto the window.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">Just like other Tower Defense games, the goal is to not let enemies reach to the end of the path</li>
+                            <li class="small-font">There is no end to the game, the game ends when all Health has been depleted. Each enemy that reaches the end of the path which is on the other side reduces Health by 1.</li>
+                            <li class="small-font">Players build turrets by using gold, which is obtained by defeating enemies. Gold can also be used to upgrade towers by up to 10 times.</li>
+                            <li class="small-font">20 different kinds of towers to use</li>
+                            <li class="small-font">18 different enemies to encounter and to beat</li>
+                        </ul>
+                    </div>     
+                    <div class="rightSection">
+                        <iframe width="500" height="300" src="https://www.youtube.com/embed/yedSG0wUD04" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+          
+                </div>
+                <div id="project2" class="fillColor">
+                    <div class="rightSection">
+                        <iframe width="500" height="300" src="https://www.youtube.com/embed/N8JAszDYEo8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="leftSection">
+                        <h1 class="topBorder font no-spacing">2d Platformer RPG</h1>
+                        <p class="small-font no-spacing">A 2D platformer with RPG elements. It uses windows32 Operating System API to handle opening a window and Direct2D API to render graphics onto the window.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">A built-in Inventory support. The player can equip items and use potions</li>
+                            <li class="small-font">A shop that allows the player to buy and sell items.</li>
+                            <li class="small-font">Many different areas to explore with a variety of enemies. And even 1 big enemy.</li>
+                            <li class="small-font">4 different skills the player can use to tackle enemies.</li>
+                            <li class="small-font">Breakable boxes that the player can destroy in the beginning </li>
+                            <li class="small-font">The game is saved when the game closes. The file will be saved in a XML file. It uses MSXML API from microsoft to write and read XML files.</li>
+                        </ul>
+                    </div>
+                
+                </div>
+                <div id="project6" class="fillColor">
+                    <div class="">
+                        <h1 class="topBorder font no-spacing">Grid Adventurer</h1>
+                        <p class="small-font no-spacing">First program made with Javascript using &lt;canvas&gt; element in HTML as a Arcade game</p>
+                        <ul class="no-spacing">
+                            <li class="small-font">The goal of the game is to get as far as possible while collecting loads of loot along the way</li>
+                            <li class="small-font">The player can move with arrow keys and can interact with other objects with arrow keys </li>
+                            <li class="small-font">Each action consumes energy. Using all energy will result in fatigue which will rapidly consume health</li>
+                            <li class="small-font">The main goal of each stage is to find the flag, which proceeds to the next stage. To help out with that, there are arrow signs that point to (but not exactly) the  red flag to make it easier</li>
+                            <li class="small-font">The player can collect gold and chests to gain more points during the stage.</li>
+                            <li class="small-font">As the player reaches higher stages, there will be more obstacles, hazards, and less likely to find any arrows and supporting items. However, the player gains more points at higher stages as a result.</li>
+                            <li class="small-font">The game is over when the player loses all of their health</li>
+                            <li class="small-font">The demo of this game can be accessed <a href="steven_demo.html">here</a> or on the Demo Game link!</li>
+                        </ul>
+                    </div>
+                
+                </div>
+                <script src="mainScript.js"></script>
+            </div>
+          
+        </main>
+        <br><br>
+        <div class="container">
+            <div class="fillColor">
+                <h1 class="topBorder font no-spacing">Other Projects</h1>
+            </div>
+            <div id="project3" class="fillColor">
+                <div>
+                    <h1 class="topBorder font no-spacing">Accessing Spotify API</h1>
+                    <p class="small-font no-spacing">Usually Spotify API is documented mainly for webpages like Javascript but the challenge is accesing Spotify API with C++</p>
+                    <ul class="no-spacing">
+                        <li class="small-font">Used WinHTTP API from Windows OS to be able to send HTTPS requests to the Spotify Server</li>
+                        <li class="small-font">Used Various request types such as GET, POST, REQUEST, ADD, DELETE.</li>
+                        <li class="small-font">Created access token each time whenever it is needed to access API calls</li>
+                        <li class="small-font">Created a JSON Parser that parsed returned JSON objects into objects using std::map and std::variant (any data types)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 class="topBorder font no-spacing">A* Algorithm</h1>
+                    <p class="small-font no-spacing">A* algorithm is a pathfinding algorithm that helps path from start to end with the least distance while navigating through obstacles.</p>
+                  
+                </div>
+                <div>
+                    <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
+                    <p class="small-font no-spacing">Made in Hackathon of fall 2018, the goal of the project is to replace quick flashing strobe of lights in certain videos into a static color to protect the viewer from collapsing from a seizure </p>
+                    <p class="small-font no-spacing">Devpost Link: <a href="https://devpost.com/software/seizure-flash-blocker#updates">Here</a></p>
+                    <p class="small-font no-spacing">Github Link: <a href="https://devpost.com/software/seizure-flash-blocker#updates">Here</a></p>
+                </div>
+                <div>
+                    <h1 class="topBorder font no-spacing">Tramel Blaze</h1>
+                    <p class="small-font no-spacing">Tramel Blaze is a modified version of PicoBlaze architecture where it is able to execute 16bits of code instructors. It contains a register, memory, RAM, and UART modules that help store data, receive/transfer data to another device. This is made using Xilinx ISE with Verilog as the language.
+                        It is then programmed onto a Nexys4 Board. It is done by feeding it lines of instructions and its output appears on the 8 digit LED. The buttons go through each register and also traversing through instructions </p>
+                    <p class="small-font no-spacing">Github Link: <a href="https://github.com/steveWin32/CECS-460-System-on-Chip">Here</a></p>
+                    <p class="small-font no-spacing">Project Report: <a href="https://docs.google.com/document/d/1JGmJLKne5rPiH2OZx7kq2lr54sazw6H2n48khWa2GSg/edit?usp=sharing">Here</a></p>
+                </div>
+                <div>
+                    <h1 class="topBorder font no-spacing">Guitar Chord Detector</h1>
+                    <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the user plucks a chord from the guitar. The results appears on a Android Application through Bluetooth where it determines which type of chord has been struck.</p>
+                    <p class="small-font no-spacing">Project Report: <a href="https://docs.google.com/document/d/1o71Ndzlr69LEn1RCC9DgA81pbTitjfprwaINLa1CvT0/edit?usp=sharing">Here</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

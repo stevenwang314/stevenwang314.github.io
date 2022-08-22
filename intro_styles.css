@@ -1,0 +1,148 @@
+#title {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 48px;
+ 
+}
+#nameFont {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: oblique;
+    font-size: 72px;
+
+    text-align: center;
+  
+}
+#aboutFont {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style:italic;
+    font-size: 24px;
+    color:rgb(189, 33, 181);
+    display: block;
+    text-align: center;
+}
+#body1 {
+    border: 20px 20px;
+    background: linear-gradient(red,green,blue);
+    border-style: solid;
+    border-color: red;
+    animation-name: backgroundColor;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+#animatedText::after {
+    animation-name: HelloWorld;
+    content: "std::cout < ";
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+ 
+}
+#image {
+
+    opacity: 75%;
+}
+
+@keyframes HelloWorld {
+    0% {        
+        content: 'std::cout << ';
+     }
+    4% {   
+        content: "std::cout << H";
+    }
+   8% {    
+        content: "std::cout << He";
+    }
+    12% { 
+        content: "std::cout << Hel";
+    }
+    16% { 
+        content: "std::cout << Hell";
+    }
+    20% { 
+        content: "std::cout << Hello";
+    }
+    24% { 
+        content: "std::cout << Hello W";
+    }
+    28% { 
+        content: "std::cout << Hello Wo";
+    }
+   32% { 
+        content: "std::cout << Hello Wor";
+    }
+    36% { 
+        content: "std::cout << Hello Worl";
+    }
+   40% { 
+        content: "std::cout << Hello World";
+    }
+    44% { 
+        content: "std::cout << Hello World!";
+    }
+    48% { 
+        content: "std::cout << Hello World! <";
+    }
+   52% { 
+        content: "std::cout << Hello World! <<";
+    }
+   56% { 
+        content: "std::cout << Hello World! << s";
+    }
+    60% { 
+        content: "std::cout << Hello World! << st";
+    }
+    64% { 
+        content: "std::cout << Hello World! << std";
+    }
+    68% { 
+        content: "std::cout << Hello World! << std:";
+    }
+   72% { 
+        content: "std::cout << Hello World! << std::";
+    }
+    76% { 
+        content: "std::cout << Hello World! << std::e";
+    }
+   80% { 
+        content: "std::cout << Hello World! << std::en";
+    }
+    84% { 
+        content: "std::cout << Hello World! << std::end";
+    }
+    88% { 
+        content: "std::cout << Hello World! << std::endl";
+    }
+    92% { 
+        content: "std::cout << Hello World! << std::endl;";
+    }
+}
+
+@keyframes backgroundColor {
+    0% {        
+        background: linear-gradient(red,green,blue);
+     }
+    17% {   
+        background: linear-gradient(red,orange,blue);
+        text-shadow: 2px 2px #FF0000;
+        color: lightcoral;
+    }
+   34% {    
+    background: linear-gradient(yellow,orange,blue);
+    text-shadow: 4px 4px #FF0000;
+    color: plum;
+    }
+    51% { 
+        background: linear-gradient(yellow,orange,purple);
+        text-shadow: 6px 6px #FF0000;
+        color:darkkhaki;
+    }
+    68% { 
+        background: linear-gradient(yellow,green,purple);
+          text-shadow: -6px -6px #008cff;
+          color:antiquewhite;
+    }
+    85% { 
+        background: linear-gradient(red,green,purple);
+        text-shadow: -4px -4px #008cff;
+        color:darkviolet;
+    }
+
+}

@@ -1,0 +1,34 @@
+/*Common Navigational tools*/
+.links {
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 0px 16px;
+}
+#navigational {
+    /*Fixed position*/
+    background-color: black;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    right: 0;
+}
+
+#navigational > a:hover {
+    /*Fixed position*/
+    background: gray;
+}
+
+.skip {
+    margin-bottom: 50px;
+}
+
+#image {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 30%;
+}
