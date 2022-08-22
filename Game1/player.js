@@ -8,7 +8,7 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 10};
+     this.bag = {bomb: 0};
     }
     getEnergyRatio() {
          return this.energy/this.maxEnergy;
