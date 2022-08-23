@@ -25,7 +25,7 @@
     border-style: solid;
     border-color: red;
     animation-name: backgroundColor;
-    animation-duration: 1s;
+    animation-duration: 0.75s;
     animation-iteration-count: infinite;
 }
 #animatedText::after {
@@ -120,29 +120,44 @@
         background: linear-gradient(red,green,blue);
      }
     17% {   
-        background: linear-gradient(red,orange,blue);
+        background: linear-gradient(red,rgb(25, 204, 49),blue);
         text-shadow: 2px 2px #FF0000;
         color: lightcoral;
     }
    34% {    
-    background: linear-gradient(yellow,orange,blue);
+    background: linear-gradient(rgb(243, 66, 12),rgb(25, 204, 49),blue);
     text-shadow: 4px 4px #FF0000;
     color: plum;
     }
     51% { 
-        background: linear-gradient(yellow,orange,purple);
+        background: linear-gradient(rgb(243, 66, 12),rgb(25, 204, 49),rgb(49, 35, 177));
         text-shadow: 6px 6px #FF0000;
         color:darkkhaki;
     }
     68% { 
-        background: linear-gradient(yellow,green,purple);
+        background: linear-gradient(rgb(243, 66, 12),green,rgb(49, 35, 177));
           text-shadow: -6px -6px #008cff;
           color:antiquewhite;
     }
     85% { 
-        background: linear-gradient(red,green,purple);
+        background: linear-gradient(red,green,rgb(49, 35, 177));
         text-shadow: -4px -4px #008cff;
         color:darkviolet;
     }
 
+}
+#footer {
+    font-size: 18px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+   width: 150px;
+}
+#footer > p {
+    color: rgb(49, 202, 87);
+    
 }

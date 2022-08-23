@@ -13,32 +13,32 @@
     border-bottom: 1px solid black;
 }
 .fillColor {
-  background-color: darkseagreen;
+  background-color:rgba(143,183,143,40%);
   /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
   overflow: hidden;
 }
 .fillColor#project1{
-    background-color: crimson;
+    background-color: rgba(220,20,60,40%);
     /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
     overflow: hidden;
   }
   .fillColor#project2{
-    background-color: yellowgreen;
+    background-color: rgba(154,205,50,40%);
     /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
     overflow: hidden;
   }
   .fillColor#project3{
-    background-color: rgb(50, 195, 205);
+    background-color: rgba(50, 195, 205, 40%);
     /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
     overflow: hidden;
   }
   .fillColor#project4{
-    background-color: rgb(204, 160, 38);
+    background-color: rgba(204, 160, 38, 40%);
     /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
     overflow: hidden;
   }
   .fillColor#project5{
-    background-color: rgb(140, 34, 117);
+    background-color: rgba(140, 34, 117, 40%);
     /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
     overflow: hidden;
   }

@@ -1,3 +1,16 @@
 .about, .contacts, .demo {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+#personalPicture {
+    border-color: black;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 50px;
+    /*Center the image, set margins left and right to auto and put display: block.*/
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+

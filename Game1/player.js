@@ -8,7 +8,7 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 0};
+     this.bag = {bomb: 0, firecracker: 0};
     }
     getEnergyRatio() {
          return this.energy/this.maxEnergy;
@@ -66,10 +66,14 @@ class player {
     addBomb(amount) {
         this.bag.bomb += amount;
     }
+    addFirecracker(amount) {
+        this.bag.firecracker += amount;
+    }
+    
     reset() {
         this.health = 100;
         this.energy = 100;
-        this.bag = {bomb: 0};
+        this.bag = {bomb: 0, firecracker: 0};
     }
     isAlive() {
         return this.health > 0;

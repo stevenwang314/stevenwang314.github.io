@@ -1,12 +1,16 @@
 class terrainCell {
     constructor() {
         this.explore = false;
-        this.hasObstacle = false;
+        this.hasObstacle ={ enabled: false, type: 0};
         this.unbreakable = false;
         this.isGoal = false;
         this.directional = {enabled: false, typeOfDirection: 0};
-        this.object= {enabled: false, type: "Bag"};
+        this.object= {enabled: false, type: ""};
         this.isHazard = false;
+        this.portal = {enabled : false, linkedPortal : {x : 0, y: 0 }, id: 0};
+    }
+    assignRock(index) {
+        this.hasObstacle = { enabled: true, type: index };
     }
     assignGoal() {
         this.isGoal = true;
@@ -15,6 +19,7 @@ class terrainCell {
     assignBag() {
         this.object.type = "Bag";
         this.object.enabled =  true;
+
     }
     assignChest() {
         this.object.type = "Chest";
@@ -24,30 +29,59 @@ class terrainCell {
         this.object.type = "Potion";
         this.object.enabled = true;
     }
+    assignPotionHP() {
+        this.object.type = "PotionHP";
+        this.object.enabled = true;
+    }
     assignBomb() {
-        this.object.type = "Bomb";
+        if (this.object.hasOwnProperty("item")) {
+            this.object.item.push("Bomb");
+        }
+         else {
+            this.object.item = ["Bomb"];
+        }
+        this.object.enabled = true;
+    }
+    assignFirecracker() {
+        if (this.object.hasOwnProperty("item")) {
+            this.object.item.push("Firecracker");
+        }
+         else {
+            this.object.item = ["Firecracker"];
+        }
         this.object.enabled = true;
     }
     assignSpikes() {
         this.isHazard = true;
     }
-    isObstacle() {
-        return this.hasObstacle === true;
+    assignPortal(id) {
+        this.portal.enabled = true;
+        this.portal.id = id;
     }
+    isObstacle() {
+        return this.hasObstacle.enabled === true;
+    }
+
     isWall() {
-        return this.hasObstacle === true && this.unbreakable === true;
+        return this.hasObstacle.enabled === true && this.unbreakable === true;
     }
     isBag() {
-        return this.object.enabled && (this.object.type == "Bag");
+        return this.object.enabled === true && (this.object.type == "Bag");
     }
     isChest() {
-        return this.object.enabled && (this.object.type =="Chest");
+        return this.object.enabled === true && (this.object.type =="Chest");
     }
     isPotion() {
-        return this.object.enabled && this.object.type == "Potion";
+        return this.object.enabled === true && this.object.type == "Potion";
+    }
+    isPotionHP() {
+        return this.object.enabled === true && this.object.type == "PotionHP";
     }
     isBomb() {
-        return this.object.enabled && this.object.type == "Bomb";
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") && this.object.item.includes("Bomb");
+    }
+    isFirecracker() {
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes("Firecracker");
     }
     isSpike() {
         return this.isHazard;
@@ -55,17 +89,21 @@ class terrainCell {
     isRevealed() {
         return this.explore === true;
     }
+    isPortal() {
+        return   this.portal.enabled=== true;
+    }
     removeHazard() {
         this.isHazard = false;
     }
     removeTerrain() {
-        this.hasObstacle = false;
+        this.hasObstacle.enabled = false;
         this.unbreakable = false;
         this.isHazard = false;
     }
     removeObject() {
         this.object.enabled = false;
         this.object.type = "";
+        delete this.object.item;
     }
     revealLocation() {
         this.explore = true;

@@ -14,7 +14,7 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="navStyle.css">
+        <link rel="stylesheet" href="css/navStyle.css">
         <link rel="stylesheet" href="css/demo.css">
         <link rel="icon" href="webIcon.ico">
         <title>Steven's Webpage</title>
@@ -39,9 +39,14 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <img id="bag" hidden src="Game1/money.png"></img>
         <img id="chest" hidden src="Game1/treasurechest.png"></img>
         <img id="potionEnergy" hidden src="Game1/energyPotion.png"></img>
+        <img id="potionHealth" hidden src="Game1/healthPotion.png"></img>
         <img id="spikes" hidden src="Game1/spikes.png"></img>
         <img id="bomb" hidden src="Game1/bomb.png"></img>
-      
+        <img id="rock2" hidden src="Game1/steelrock.png"></img>
+        <img id="firecracker" hidden src="Game1/firecracker.png"></img>
+        <img id="portal" hidden src="Game1/portal.png"></img>
+        <img id="portal2" hidden src="Game1/portal2.png"></img>
+
         <canvas id="gameplay" width="800" height="640">Your browser does not support the HTML5 canvas tag.</canvas>
         <!--Script is called last, elements above must be instantiated first then script element.-->
         <script src="Game1/helpfulFunc.js"></script>
@@ -49,6 +54,32 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <script src="Game1/drawing.js"></script>
         <script src="Game1/player.js"></script>
         <script src="Game1/mainScript.js"></script>
-
+        
+        <div id="tutorial">
+            <p id="demoTitle">About</p>
+            <p id="demoInfo">Grid Adventurer is an arcade game made with pure Javascript followed by HTML and CSS. The goal of this game is for the player to explore a 25x25 grid area and find the red flag in each stage within a limited amount of energy and health. You also can collect loot such as money to get more points.</p>
+            <p id="demoInfo">Each action consumes stamina such as moving and breaking obstacles. Running out of stamina will use your health which depletes much faster. Hazards will harm the player reducing health directly.</p>
+            <p id="demoInfo">Getting the red flag takes you to the next stage where you repeat the same objective. Though it becomes slightly harder.</p>
+            <p id="demoInfo">The player plays the game until they lose. The game is over when the player loses all of their health. </p>
+            <p id="demoInfo">Have fun and hope you enjoy my first javascript program!</p>
+            <p id="demoTitle">Instructions</p>
+            <p id="demoInfoHeader">Keyboard</p>
+            <ul id="demoInfoList">
+                <li id="demoInfo">Arrow keys to move around. It can also be used to interact with objects by first marking it and then interacting with it</li>
+                <li id="demoInfo">Q to use a bomb. Arrow keys to control where the bomb goes</li>
+                <li id="demoInfo">W to use a firecracker. Up/Down for vertical, Left/Right for horizontal.</li>
+                <li id="demoInfo">R to reset the game.</li>
+                <li id="demoInfo">Escape to cancel the use of Bomb/Firecracker.</li>
+                <li id="demoInfo">Enter to use the Bomb/Firecracker.</li>       
+            </ul>
+            <p id="demoInfoHeader">Mouse/Phone</p>
+            <ul id="demoInfoList">
+                <li id="demoInfo">Tap on the cell near the player to move the character. Interaction can be done by clicking on the object twice.</li>
+                <li id="demoInfo">Click the Bomb/Firecracker to use them. For bombs, click at a cell on where to use it. For firecracker, click a cell where it is either vertically or horizontally towards the player to use it.</li>
+                <li id="demoInfo">To cancel, click the Bomb/Firecracker text again.</li>
+            </ul>
+            <p id="demoTitle">What next?</p>
+            <p id="demoInfo">I maybe adding more tile features as well as modifying the characters feelings based on certain environment. Stay tuned!</p>
+        </div>
     </body>
 </html>
