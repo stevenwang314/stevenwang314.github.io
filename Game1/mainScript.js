@@ -732,7 +732,7 @@ function activateFirecracker() {
     else if (castMode["usingFirecracker"].direction === "vertical") {
         for (let i = 0; i < boardSize.height; i++) {
 
-            destroyObstacles(getplayer.x, i);
+            destroyObstacles(getplayer.x, i, false);
             revealLocation(getplayer.x, i);
         }
         delete castMode.usingFirecracker;
