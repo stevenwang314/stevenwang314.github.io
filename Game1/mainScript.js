@@ -360,33 +360,50 @@ function activateObject(x, y) {
         terrainArray[x][y].removeObject();
     }
     //Collect firecracker.
-    else if (terrainArray[x][y].isFirecracker()) {
+    if (terrainArray[x][y].isFirecracker()) {
         addScore(3);
         getplayer.addFirecracker(1);
         terrainArray[x][y].removeObject();
     }
     //Collect drone.
-    else if (terrainArray[x][y].isDrone()) {
+    if (terrainArray[x][y].isDrone()) {
         addScore(3);
         getplayer.addDrone(1);
         terrainArray[x][y].removeObject();
     }
-    else if (terrainArray[x][y].isBag()) {
+    if (terrainArray[x][y].isBag()) {
         addScore(10);
         getplayer.stats.bag += 1;
         terrainArray[x][y].removeObject();
     }
-    else if (terrainArray[x][y].isDollar()) {
+    if (terrainArray[x][y].isDollar()) {
         addScore(30);
         getplayer.stats.dollar += 1;
         terrainArray[x][y].removeObject();
     }
-    else if (terrainArray[x][y].isChest()) {
+    if (terrainArray[x][y].isChest()) {
         addScore(100);
         getplayer.stats.chest += 1;
         terrainArray[x][y].removeObject();
     }
-    else if (terrainArray[x][y].isPortal()) {
+    
+    if (terrainArray[x][y].isPotion()) {
+        addScore(3);
+        getplayer.restoreEnergy(25);
+        terrainArray[x][y].removeObject();
+    }
+    if (terrainArray[x][y].isPotionHP()) {
+        addScore(3);
+        getplayer.restoreHealth(20);
+        terrainArray[x][y].removeObject();
+    }
+    if (isAtGoal(x, y)) {
+        generateMap();
+        getplayer.restoreEnergy(clamp(10 - Math.floor(currentStage / 3), 1, 10));
+        getplayer.restoreHealth(clamp(5 - Math.floor(currentStage / 3), 0.5, 10));
+        addScore(100);
+        currentStage += 1;
+    }else if (terrainArray[x][y].isPortal()) {
         //Move to the other portal.
         getplayer.x = terrainArray[x][y].portal.linkedPortal.x;
         getplayer.y = terrainArray[x][y].portal.linkedPortal.y;
@@ -395,23 +412,6 @@ function activateObject(x, y) {
             revealLocation(x, y);
         });
         getplayer.performCost(0.2);
-    }
-    else if (terrainArray[x][y].isPotion()) {
-        addScore(3);
-        getplayer.restoreEnergy(25);
-        terrainArray[x][y].removeObject();
-    }
-    else if (terrainArray[x][y].isPotionHP()) {
-        addScore(3);
-        getplayer.restoreHealth(20);
-        terrainArray[x][y].removeObject();
-    }
-    else if (isAtGoal(x, y)) {
-        generateMap();
-        getplayer.restoreEnergy(clamp(10 - Math.floor(currentStage / 3), 1, 10));
-        getplayer.restoreHealth(clamp(5 - Math.floor(currentStage / 3), 0.5, 10));
-        addScore(100);
-        currentStage += 1;
     }
 
 }
