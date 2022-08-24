@@ -317,6 +317,7 @@ function destroyObstacles(x, y, hasCost = true) {
                     getplayer.reduceHealth(2);
                 }
                 addScore(10);
+                getplayer.stats.enemies[0] += 1;
             }
             else if (terrainArray[x][y].getEnemy() === 2) {
                 if (hasCost) {
