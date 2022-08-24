@@ -699,6 +699,7 @@ function activateBomb() {
                 (x, y) => {
                     destroyObstacles(x, y, false);
                     revealLocation(x, y);
+                    terrainArray[x][y].removeHazard();
                 });
             delete castMode.usingBomb;
             getplayer.bag.bomb -= 1;
@@ -723,7 +724,7 @@ function activateFirecracker() {
         for (let i = 0; i < boardSize.width; i++) {
             destroyObstacles(i, getplayer.y, false);
             revealLocation(i, getplayer.y);
-
+terrainArray[i][getplayer.y].removeHazard()
         }
         delete castMode.usingFirecracker;
         getplayer.bag.firecracker -= 1;
@@ -734,6 +735,7 @@ function activateFirecracker() {
 
             destroyObstacles(getplayer.x, i, false);
             revealLocation(getplayer.x, i);
+terrainArray[getplayer.x][i].removeHazard()
         }
         delete castMode.usingFirecracker;
         getplayer.bag.firecracker -= 1;
