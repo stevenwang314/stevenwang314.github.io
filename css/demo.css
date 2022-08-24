@@ -10,11 +10,11 @@
     font-style: bold;
     font-size: 36px;
     margin: 0 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'DynaPuff', sans-serif;
     color: lightsalmon;
 }
 #demoInfoHeader {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:"Ubuntu", serif;
     color: lightcoral;
     font-size: 24px;
     text-decoration: underline;
@@ -26,7 +26,7 @@
 }
 #demoInfo {
     font-style: italic;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:"Ubuntu", serif;
     color: black;
     margin-top: 0; 
     font-size: 20px;

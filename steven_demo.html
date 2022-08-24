@@ -12,6 +12,8 @@ to the HTML document.
 
 Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script>-->
     <head>
+        <link href="https://fonts.googleapis.com/css?family=DynaPuff" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/navStyle.css">
@@ -19,16 +21,6 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <link rel="icon" href="webIcon.ico">
         <title>Steven's Webpage</title>
         
-    </head>
-    <body>
-        <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
-        <nav id="navigational" class= "skip">
-            <a class="links" href="index.html">Home</a>
-            <a class="links" href="steven_about.html">About</a>
-           <a class="links" href="steven_portfolio.html">Projects</a>
-           <a class="links" href="steven_demo.html">Demo Game</a>
-          </nav>
-          <div class="skip"></div>
         <img id="grass" hidden src="Game1/tile1.png"></img>
         <img id="player" hidden src="Game1/player.png"></img>
         <img id="playerCry" hidden src="Game1/player_cry.png"></img>
@@ -43,9 +35,28 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <img id="spikes" hidden src="Game1/spikes.png"></img>
         <img id="bomb" hidden src="Game1/bomb.png"></img>
         <img id="rock2" hidden src="Game1/steelrock.png"></img>
+        <img id="rock3" hidden src="Game1/image/rock3.png"></img>
         <img id="firecracker" hidden src="Game1/firecracker.png"></img>
         <img id="portal" hidden src="Game1/portal.png"></img>
         <img id="portal2" hidden src="Game1/portal2.png"></img>
+        <img id="slime" hidden src="Game1/image/slime.png"></img>
+        <img id="bat" hidden src="Game1/image/bat.png"></img>
+        <img id="snake" hidden src="Game1/image/snake.png"></img>
+        <img id="wolf" hidden src="Game1/image/wolf.png"></img>
+        <img id="chainsaw" hidden src="Game1/image/chainSaw.png"></img>
+        <img id="dollarBill" hidden src="Game1/image/dollarBill.png"></img>
+        <img id="drone" hidden src="Game1/image/drone.png"></img>
+    </head>
+    <body>
+        <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
+        <nav id="navigational" class= "skip">
+            <a class="links" href="index.html">Home</a>
+            <a class="links" href="steven_about.html">About</a>
+           <a class="links" href="steven_portfolio.html">Projects</a>
+           <a class="links" href="steven_demo.html">Demo Game</a>
+          </nav>
+          <div class="skip"></div>
+
 
         <canvas id="gameplay" width="800" height="640">Your browser does not support the HTML5 canvas tag.</canvas>
         <!--Script is called last, elements above must be instantiated first then script element.-->
@@ -56,28 +67,34 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <script src="Game1/mainScript.js"></script>
         
         <div id="tutorial">
-            <p id="demoTitle">Grid Adventurer v0.02</p>
+            <p id="demoTitle">Grid Adventurer v0.03</p>
             <p  id="demoTitle">About</p>
             <p id="demoInfo">Grid Adventurer is an arcade game made with pure Javascript followed by HTML and CSS. The goal of this game is for the player to explore a 25x25 grid area and find the red flag in each stage within a limited amount of energy and health. You also can collect loot such as money to get more points.</p>
-            <p id="demoInfo">Each action consumes stamina such as moving and breaking obstacles. Running out of stamina will use your health which depletes much faster. Hazards will harm the player reducing health directly.</p>
+            <p id="demoInfo">Each action consumes stamina such as moving and breaking obstacles. Running out of stamina will use your health which depletes much faster. Hazards will harm the player reducing health directly. Enemies will deplete health more than energy.</p>
+            <p id="demoInfo">Arrows help guide where the red flag are, though higher stages will decrease the occurence of arrows</p>
             <p id="demoInfo">Getting the red flag takes you to the next stage where you repeat the same objective. Though it becomes slightly harder.</p>
             <p id="demoInfo">The player plays the game until they lose. The game is over when the player loses all of their health. </p>
             <p id="demoInfo">Have fun and hope you enjoy my first javascript program!</p>
+            <p  id="demoTitle">Items</p>
+            <p id="demoInfo">Bomb - creates a 5x5 explosion centering around the bomb that wipes obstacles, hazards, and enemies (but not walls). Bombs must be placed at a tile that has already been explored</p>
+            <p id="demoInfo">Firecracker - wipes obstacles, hazards, and enemies (but not walls) vertically or horizontally.</p>
+            <p id="demoInfo">Drone - reveals a 3x3 location at any location of your choice.</p>
             <p id="demoTitle">Instructions</p>
             <p id="demoInfoHeader">Keyboard</p>
             <ul id="demoInfoList">
                 <li id="demoInfo">Arrow keys to move around. It can also be used to interact with objects by first marking it and then interacting with it</li>
-                <li id="demoInfo">Q to use a bomb. Arrow keys to control where the bomb goes</li>
+                <li id="demoInfo">Q to use a bomb. Arrow keys to control where the bomb goes.</li>
                 <li id="demoInfo">W to use a firecracker. Up/Down for vertical, Left/Right for horizontal.</li>
-                <li id="demoInfo">R to reset the game.</li>
+                <li id="demoInfo">E to use a drone. Arrow keys to control where the drone goes.</li>
+                <li id="demoInfo">P resets the game.</li>
                 <li id="demoInfo">Escape to cancel the use of Bomb/Firecracker.</li>
                 <li id="demoInfo">Enter to use the Bomb/Firecracker.</li>       
             </ul>
             <p id="demoInfoHeader">Mouse/Phone</p>
             <ul id="demoInfoList">
                 <li id="demoInfo">Tap on the cell near the player to move the character. Interaction can be done by clicking on the object twice.</li>
-                <li id="demoInfo">Click the Bomb/Firecracker to use them. For bombs, click at a cell on where to use it. For firecracker, click a cell where it is either vertically or horizontally towards the player to use it.</li>
-                <li id="demoInfo">To cancel, click the Bomb/Firecracker text again.</li>
+                <li id="demoInfo">Click the Bomb/Firecracker/Drone text to use them. For bombs and drone, click at a cell on where to use it. For firecracker, click a cell where it is either vertically or horizontally towards the player to use it.</li>
+                <li id="demoInfo">To cancel, click the respective text again.</li>
             </ul>
             <p id="demoTitle">What next?</p>
             <p id="demoInfo">I maybe adding more tile features as well as modifying the characters feelings based on certain environment. Stay tuned!</p>

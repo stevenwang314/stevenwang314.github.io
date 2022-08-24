@@ -7,9 +7,10 @@ const isNothingAhead = (x, y) =>
     !terrainArray[x][y].isBag() &&  //Can't be a bag
     !terrainArray[x][y].isPotion() &&//Can't be a potion
     !terrainArray[x][y].isPotionHP() &&//Can't be a potion (HP)
-    !terrainArray[x][y].isChest() && 
+    !terrainArray[x][y].isChest() &&  !terrainArray[x][y].isDollar() && 
     !terrainArray[x][y].isBomb() &&
     !terrainArray[x][y].isFirecracker() &&
+    !terrainArray[x][y].isDrone() &&
     !terrainArray[x][y].isPortal();
 //Check if the cell is a wall (unpassable)
 const isWall = (x, y) =>  terrainArray[x][y].unbreakable === true;

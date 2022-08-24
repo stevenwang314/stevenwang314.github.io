@@ -8,7 +8,9 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 0, firecracker: 0};
+     this.bag = {bomb: 0, firecracker: 0, drone: 0};
+
+     this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:[0,0,0]};
     }
     getEnergyRatio() {
          return this.energy/this.maxEnergy;
@@ -29,7 +31,7 @@ class player {
     movePlayer(x, y) {
         this.x += x;
         this.y += y;
-        this.performCost(0.2);
+        this.performCost(0.25);
     }
     setRandomPosition() {
         this.x = randomInteger(0, boardSize.width);
@@ -57,7 +59,7 @@ class player {
         this.energy = clamp(this.energy, 0, 100);
     }
     reduceHealth(health) {
-        this.health -= 3;
+        this.health -= health;
     }
     restoreHealth(health) {
         this.health += health;
@@ -69,11 +71,14 @@ class player {
     addFirecracker(amount) {
         this.bag.firecracker += amount;
     }
-    
+    addDrone(amount) {
+        this.bag.drone += amount;
+    }
     reset() {
         this.health = 100;
         this.energy = 100;
-        this.bag = {bomb: 0, firecracker: 0};
+        this.bag = {bomb: 0, firecracker: 0, drone: 0};
+        this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:0};
     }
     isAlive() {
         return this.health > 0;
