@@ -46,6 +46,8 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <img id="chainsaw" hidden src="Game1/image/chainSaw.png"></img>
         <img id="dollarBill" hidden src="Game1/image/dollarBill.png"></img>
         <img id="drone" hidden src="Game1/image/drone.png"></img>
+        <img id="lightning" hidden src="Game1/image/lightning.png"></img>
+        <img id="goggles" hidden src="Game1/image/goggles.png"></img>
     </head>
     <body>
         <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
@@ -64,10 +66,11 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <script src="Game1/terrain.js"></script>
         <script src="Game1/drawing.js"></script>
         <script src="Game1/player.js"></script>
+        <script src="Game1/script/drawHUD.js"></script>
         <script src="Game1/mainScript.js"></script>
         
         <div id="tutorial">
-            <p id="demoTitle">Grid Adventurer v0.03</p>
+            <p id="demoTitle">Grid Adventurer v0.04</p>
             <p  id="demoTitle">About</p>
             <p id="demoInfo">Grid Adventurer is an arcade game made with pure Javascript followed by HTML and CSS. The goal of this game is for the player to explore a 25x25 grid area and find the red flag in each stage within a limited amount of energy and health. You also can collect loot such as money to get more points.</p>
             <p id="demoInfo">Each action consumes stamina such as moving and breaking obstacles. Running out of stamina will use your health which depletes much faster. Hazards will harm the player reducing health directly. Enemies will deplete health more than energy.</p>
@@ -77,8 +80,10 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
             <p id="demoInfo">Have fun and hope you enjoy my first javascript program!</p>
             <p  id="demoTitle">Items</p>
             <p id="demoInfo">Bomb - creates a 5x5 explosion centering around the bomb that wipes obstacles, hazards, and enemies (but not walls). Bombs must be placed at a tile that has already been explored</p>
-            <p id="demoInfo">Firecracker - wipes obstacles, hazards, and enemies (but not walls) vertically or horizontally.</p>
+            <p id="demoInfo">Firecracker - wipes obstacles, hazards, and enemies (but not walls) vertically or horizontally at the player's location.</p>
             <p id="demoInfo">Drone - reveals a 3x3 location at any location of your choice.</p>
+            <p id="demoInfo">Lightning - randomly strikes 20 tiles on either an unseen area, enemy, or hazard. Enemies and Hazards are instantly destroyed.</p>
+            <p id="demoInfo">Goggle - the next 50 moves allows you to navigate through walls and collect items behind obstacles and hazards.</p>
             <p id="demoTitle">Instructions</p>
             <p id="demoInfoHeader">Keyboard</p>
             <ul id="demoInfoList">
@@ -86,14 +91,16 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
                 <li id="demoInfo">Q to use a bomb. Arrow keys to control where the bomb goes.</li>
                 <li id="demoInfo">W to use a firecracker. Up/Down for vertical, Left/Right for horizontal.</li>
                 <li id="demoInfo">E to use a drone. Arrow keys to control where the drone goes.</li>
+                <li id="demoInfo">R to use lightning. Press Enter again to activate it</li>
+                <li id="demoInfo">T to activate goggles. Press Enter again to activate it</li>
                 <li id="demoInfo">P resets the game.</li>
-                <li id="demoInfo">Escape to cancel the use of Bomb/Firecracker.</li>
-                <li id="demoInfo">Enter to use the Bomb/Firecracker.</li>       
+                <li id="demoInfo">Escape to cancel the use of Items.</li>
+                <li id="demoInfo">Enter to use the Items.</li>       
             </ul>
             <p id="demoInfoHeader">Mouse/Phone</p>
             <ul id="demoInfoList">
                 <li id="demoInfo">Tap on the cell near the player to move the character. Interaction can be done by clicking on the object twice.</li>
-                <li id="demoInfo">Click the Bomb/Firecracker/Drone text to use them. For bombs and drone, click at a cell on where to use it. For firecracker, click a cell where it is either vertically or horizontally towards the player to use it.</li>
+                <li id="demoInfo">Click the Item text to use them. For bombs and drone, click at a cell on where to use it. For firecracker, click a cell where it is either vertically or horizontally towards the player to use it.</li>
                 <li id="demoInfo">To cancel, click the respective text again.</li>
             </ul>
             <p id="demoTitle">What next?</p>

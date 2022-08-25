@@ -24,6 +24,8 @@ let img_enemy4 = document.getElementById("wolf");
 let img_chainSaw = document.getElementById("chainsaw");
 let img_dollar = document.getElementById("dollarBill");
 let img_drone = document.getElementById("drone");
+let img_lightning = document.getElementById("lightning");
+let img_goggles = document.getElementById("goggles");
 var ctx = getCanvas.getContext("2d");
 
 
@@ -56,19 +58,21 @@ const bagChance = 5;
 const chestChance = 0.2;
 const dollarChance = 2;
 const potionChance = 1;
-const healthPotionChance = 0.9;
+const healthPotionChance = 0.75;
 
-const bombChance = 1.5;
-const firecrackerChance = 1;
-const droneChance = 1.2;
+const bombChance = 1.1;
+const firecrackerChance = 0.75;
+const droneChance = 1;
+const lightningChance = 0.8;
+const goggleChance = 0.4;
 
 const spikeChance = 2.5;
-const portalChance = 10;
+const portalChance = 7.5;
 const enemyChance = 7.5;
 function setup() {
     getCanvas.width = boardSize.width * 32 + uiWidth;
     getCanvas.height = boardSize.height * 32;
-   
+
 }
 function decideTypeOfRock() {
     if (currentStage > 20) {
@@ -132,29 +136,31 @@ function generateMap() {
         let data = [];
         for (let j = 0; j < boardSize.height; j++) {
             let tc = new terrainCell();
-            //tc.explore = true;
+            // tc.explore = true;
             data.push(tc);
         }
         terrainArray.push(data);
     }
-    //Start with 20% of the obstacles and keep scaling until 60% (Stage 40 - maximum)
+    //Start with 20% of the obstacles and keep scaling until 50% (Stage 40 - maximum)
     let maxAmount = clamp(obstacleAmount + boardSize.width * boardSize.height * 0.01 * (currentStage - 1), 0, boardSize.width * boardSize.height * 0.6);
     for (let i = 0; i < (maxAmount < boardSize.width * boardSize.height - 1 ? maxAmount : boardSize.width * boardSize.height - 1); i++) {
         let terrainPosition = { x: randomInteger(0, boardSize.width), y: randomInteger(0, boardSize.height) };
         //Check if that rock doesn't exist.
         if (terrainArray[terrainPosition.x][terrainPosition.y].isObstacle() === false && (getplayer.x != terrainPosition.x || getplayer.y != terrainPosition.y)) {
-
+            //20% for a wall
             if (randomDecimal(0, 100) < wallChance) {
                 terrainArray[terrainPosition.x][terrainPosition.y].assignWall();
             }
-            else if (randomDecimal(0, 100) < clamp(enemyChance * (1 + 0.075 * (currentStage - 1)), enemyChance, 15)) {
+            //7.5% ~ 30% chance for enemy
+            else if (randomDecimal(0, 100) < clamp(enemyChance * (1 + 0.01 * (currentStage - 1)), enemyChance, 30)) {
 
-                terrainArray[terrainPosition.x][terrainPosition.y].assignEnemy(decideTypeOfEnemy());
+                terrainArray[terrainPosition.x][terrainPosition.y].assignEnemy(decideTypeOfEnemy(), terrainPosition.x, terrainPosition.y);
             }
             else {
 
                 terrainArray[terrainPosition.x][terrainPosition.y].assignRock(decideTypeOfRock());
             }
+
         }
         else {
             i--;
@@ -165,6 +171,8 @@ function generateMap() {
     let decay3 = 0;
     let decay4 = 0;
     let decay5 = 0;
+    let decay6 = 0;
+    let decay7 = 0;
     //Create Portals (Up to 2 maximum)
     for (let i = 0; i < 2; i++) {
         if (randomDecimal(0, 100) < portalChance) {
@@ -204,25 +212,33 @@ function generateMap() {
             }
 
             if (!terrainArray[i][j].unbreakable && !terrainArray[i][j].isPortal()) {
-                if (randomDecimal(0, 100) < (potionChance / (1 + decay2 * clamp(0.35 +currentStage *0.01,0.35,0.7))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (potionChance / (1 + decay2 * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignPotion();
                     decay++;
                 }
-                if (randomDecimal(0, 100) < (healthPotionChance / (1 + decay4 * clamp(0.35 +currentStage *0.01,0.35,0.7))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (healthPotionChance / (1 + decay4 * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignPotionHP();
                     decay4++;
                 }
-                if (randomDecimal(0, 100) < (clamp(bombChance / (1 + 0.1 * (currentStage - 1))), 0.15, bombChance) / (1 + decay2 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(bombChance / (1 + 0.25 * (currentStage - 1))), bombChance / 75, bombChance) / (1 + decay2 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignBomb();
                     decay2++;
                 }
-                if (randomDecimal(0, 100) < (clamp(firecrackerChance / (1 + 0.1 * (currentStage - 1))), 0.01, firecrackerChance) / (1 + decay3 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(firecrackerChance / (1 + 0.25 * (currentStage - 1))), firecrackerChance / 75, firecrackerChance) / (1 + decay3 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignFirecracker();
                     decay3++;
                 }
-                if (randomDecimal(0, 100) < (clamp(droneChance / (1 + 0.1 * (currentStage - 1))), 0.01, droneChance) / (1 + decay5 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(droneChance / (1 + 0.25 * (currentStage - 1))), droneChance / 75, droneChance) / (1 + decay5 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignDrone();
                     decay5++;
+                }
+                if (randomDecimal(0, 100) < (clamp(lightningChance / (1 + 0.25 * (currentStage - 1))), lightningChance / 75, lightningChance) / (1 + decay6 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                    terrainArray[i][j].assignLightning();
+                    decay6++;
+                }
+                if (randomDecimal(0, 100) < (clamp(goggleChance / (1 + 0.25 * (currentStage - 1))), goggleChance / 75, goggleChance) / (1 + decay7 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                    terrainArray[i][j].assignGoggle();
+                    decay7++;
                 }
                 //0.2% ~ 0.4% chest
                 if (randomDecimal(0, 100) < clamp(chestChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), chestChance, 0.4) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
@@ -236,7 +252,8 @@ function generateMap() {
                 else if (randomDecimal(0, 100) < clamp(bagChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), bagChance, 10) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignBag();
                 }
-                //Create new spikes (Between 1.5% to 18%)
+
+                //Create new spikes (Between 2.5% to 18%)
                 if (randomDecimal(0, 100) < clamp(spikeChance * (1 + 0.25 * (Math.max(currentStage - 3, 0) / 2)), spikeChance, 18)) {
                     terrainArray[i][j].assignHazard(decideHazard());
                 }
@@ -288,6 +305,45 @@ function revealNearby() {
 
 
 }
+function destroyEnemy(x, y, hasCost = true) {
+    if (terrainArray[x][y].isEnemy()) {
+        if (terrainArray[x][y].getEnemy() === 1) {
+            if (hasCost) {
+                getplayer.performCost(0.5)
+                getplayer.reduceHealth(2);
+            }
+            addScore(10);
+            getplayer.stats.enemies[0] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 2) {
+            if (hasCost) {
+                getplayer.performCost(0.5);
+                getplayer.reduceHealth(3);
+            }
+            addScore(20);
+            getplayer.stats.enemies[1] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 3) {
+            if (hasCost) {
+                getplayer.performCost(0.5);
+                getplayer.reduceHealth(4);
+            }
+            addScore(30);
+            getplayer.stats.enemies[2] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 4) {
+            if (hasCost) {
+                getplayer.performCost(0.5);
+                getplayer.reduceHealth(6);
+            }
+            addScore(40);
+            getplayer.stats.enemies[3] += 1;
+        }
+        terrainArray[x][y].removeEnemy();
+        return true;
+    }
+    return false;
+}
 function destroyObstacles(x, y, hasCost = true) {
     //Destroy rocks but not brick walls.
     if (terrainArray[x][y].isObstacle() && terrainArray[x][y].unbreakable === false) {
@@ -310,48 +366,22 @@ function destroyObstacles(x, y, hasCost = true) {
             addScore(25);
             getplayer.stats.rocksDestroyed[2] += 1;
         }
-        else if (terrainArray[x][y].isEnemy()) {
-            if (terrainArray[x][y].getEnemy() === 1) {
-                if (hasCost) {
-                    getplayer.performCost(0.5)                   
-                    getplayer.reduceHealth(2);
-                }
-                addScore(10);
-                getplayer.stats.enemies[0] += 1;
-            }
-            else if (terrainArray[x][y].getEnemy() === 2) {
-                if (hasCost) {
-                    getplayer.performCost(0.5);
-                    getplayer.reduceHealth(3);
-                }
-                addScore(20);
-                getplayer.stats.enemies[1] += 1;
-            }
-            else if (terrainArray[x][y].getEnemy() === 3) {
-                if (hasCost) {
-                getplayer.performCost(0.5);
-                getplayer.reduceHealth(4);
-                }
-                addScore(30);
-                getplayer.stats.enemies[2] += 1;
-            }
-            else if (terrainArray[x][y].getEnemy() === 4) {
-                if (hasCost) {
-                getplayer.performCost(0.5);
-                getplayer.reduceHealth(6);
-                }
-                addScore(40);
-                getplayer.stats.enemies[3] += 1;
-            }
-        }
+
         terrainArray[x][y].removeTerrain();
         return true;
     }
     return false;
 }
 function activateObject(x, y) {
-    if (destroyObstacles(x, y) === true) {
-        return;
+    if (getplayer.ghost > 0) {
+        if (destroyEnemy(x, y))
+            return;
+    }
+    else if (getplayer.ghost <= 0) {
+        if (destroyObstacles(x, y) === true)
+            return;
+        if (destroyEnemy(x, y) === true)
+            return;
     }
     //Collect bomb
     if (terrainArray[x][y].isBomb()) {
@@ -371,6 +401,18 @@ function activateObject(x, y) {
         getplayer.addDrone(1);
         terrainArray[x][y].removeObject();
     }
+    //Collect lightning.
+    if (terrainArray[x][y].isLightning()) {
+        addScore(3);
+        getplayer.addLightning(1);
+        terrainArray[x][y].removeObject();
+    }
+    //Collect goggle.
+    if (terrainArray[x][y].isGoggle()) {
+        addScore(3);
+        getplayer.addGoggle(1);
+        terrainArray[x][y].removeObject();
+    }
     if (terrainArray[x][y].isBag()) {
         addScore(10);
         getplayer.stats.bag += 1;
@@ -386,7 +428,7 @@ function activateObject(x, y) {
         getplayer.stats.chest += 1;
         terrainArray[x][y].removeObject();
     }
-    
+
     if (terrainArray[x][y].isPotion()) {
         addScore(3);
         getplayer.restoreEnergy(25);
@@ -403,7 +445,7 @@ function activateObject(x, y) {
         getplayer.restoreHealth(clamp(5 - Math.floor(currentStage / 3), 0.5, 10));
         addScore(100);
         currentStage += 1;
-    }else if (terrainArray[x][y].isPortal()) {
+    } else if (terrainArray[x][y].isPortal()) {
         //Move to the other portal.
         getplayer.x = terrainArray[x][y].portal.linkedPortal.x;
         getplayer.y = terrainArray[x][y].portal.linkedPortal.y;
@@ -437,7 +479,7 @@ function update() {
 function draw() {
     //Request the browesr to draw the animation once again. This will only call once. To make it a infinite loop, we call the same function again.
     requestAnimationFrame(draw);
-   
+
     fillRectangle(0, 0, getCanvas.width, getCanvas.height, "white");
     for (let y = 0; y < boardSize.height; y++) {
         for (let x = 0; x < boardSize.width; x++) {
@@ -460,78 +502,27 @@ function draw() {
                             else if (terrainArray[x][y].hasObstacle.type === 2)
                                 ctx.drawImage(img_rock3, x * 32, y * 32, 32, 32);
                         }
-                        else if (terrainArray[x][y].isEnemy()) {
-                            if (terrainArray[x][y].getEnemy() === 1)
-                                drawImage(x * 32, y * 32, 32, 32, img_enemy, 0);
-                            if (terrainArray[x][y].getEnemy() === 2)
-                                drawImage(x * 32, y * 32, 32, 32, img_enemy2, 0);
-                            if (terrainArray[x][y].getEnemy() === 3)
-                                drawImage(x * 32, y * 32, 32, 32, img_enemy3, 0);
-                            if (terrainArray[x][y].getEnemy() === 4)
-                                drawImage(x * 32, y * 32, 32, 32, img_enemy4, 0);
-                        }
+
                     }
 
                     else if (terrainArray[x][y].isWall())
                         ctx.drawImage(wallImg, x * 32, y * 32, 32, 32);
-
+                    if (getplayer.ghost > 0) { //Reveal items on the inside if truesiht active
+                        drawItems(x, y, 0.5);
+                    }
+                }
+                else if (terrainArray[x][y].isEnemy()) {
+                    if (terrainArray[x][y].getEnemy() === 1)
+                        drawImage(x * 32, y * 32, 32, 32, img_enemy, 0);
+                    if (terrainArray[x][y].getEnemy() === 2)
+                        drawImage(x * 32, y * 32, 32, 32, img_enemy2, 0);
+                    if (terrainArray[x][y].getEnemy() === 3)
+                        drawImage(x * 32, y * 32, 32, 32, img_enemy3, 0);
+                    if (terrainArray[x][y].getEnemy() === 4)
+                        drawImage(x * 32, y * 32, 32, 32, img_enemy4, 0);
                 }
                 else {
-                    if (terrainArray[x][y].directional.enabled === true) {
-                        if (terrainArray[x][y].directional.typeOfDirection === 0) { //Horizontal direction
-                            if (x > goalPoint.x) { //Right
-                                drawImage(x * 32, y * 32, 32, 32, directionImg, 180);
-                            }
-                            else if (x < goalPoint.x) { //Left
-                                drawImage(x * 32, y * 32, 32, 32, directionImg, 0);
-                            }
-                        }
-                        else if (terrainArray[x][y].directional.typeOfDirection === 1) { //Vertical
-                            if (y > goalPoint.y) {
-                                drawImage(x * 32, y * 32, 32, 32, directionImg, 270);
-                            } else if (y < goalPoint.y) {
-                                drawImage(x * 32, y * 32, 32, 32, directionImg, 90);
-                            }
-                        }
-                    }
-                    if (terrainArray[x][y].isBag()) {
-
-                        drawImage(x * 32, y * 32, 32, 32, bagImg, 0);
-                    }
-                    else if (terrainArray[x][y].isChest()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_treasureChest, 0);
-                    }
-                    else if (terrainArray[x][y].isDollar()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_dollar, 0);
-                    }
-                    if (terrainArray[x][y].isPotion()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_potion, 0);
-                    }
-                    if (terrainArray[x][y].isPotionHP()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_potion_hp, 0);
-                    }
-                    if (terrainArray[x][y].isBomb()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_bomb, 0);
-                    }
-                    if (terrainArray[x][y].isFirecracker()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_firecracker, 0);
-                    }
-                    if (terrainArray[x][y].isDrone()) {
-                        drawImage(x * 32, y * 32, 32, 32, img_drone, 0);
-                    }
-                    if (terrainArray[x][y].isHazard()) {
-                        if (terrainArray[x][y].getHazard() === 1)
-                            drawImage(x * 32, y * 32, 32, 32, img_spikes, 0);
-                        if (terrainArray[x][y].getHazard() === 2)
-                            drawImage(x * 32, y * 32, 32, 32, img_chainSaw, 0);
-                    }
-
-                    if (terrainArray[x][y].isPortal()) {
-                        if (terrainArray[x][y].portal.id == 0)
-                            drawImage(x * 32, y * 32, 32, 32, img_portal, 0);
-                        else if (terrainArray[x][y].portal.id == 1)
-                            drawImage(x * 32, y * 32, 32, 32, img_portal2, 0);
-                    }
+                    drawItems(x, y);
                 }
                 //Show the goal object
                 if (terrainArray[x][y].isGoal === true) {
@@ -546,9 +537,9 @@ function draw() {
             if (interactX == x && interactY == y) {
                 fillRectangle(x * 32, y * 32, 32, 32, "#CBCD32", 0.6);
             }
-       
+
         }
-        
+
     }
 
     getplayer.draw(ctx);
@@ -563,11 +554,14 @@ function draw() {
     fillRectangle(boardSize.width * 32, 96, clamp(getplayer.health / getplayer.maxHealth * uiWidth, 0, uiWidth), 32, "red");
     drawRectangle(boardSize.width * 32, 96, uiWidth, 32, "black");
     drawText(boardSize.width * 32, 96, "Health " + pad(getplayer.health) + "/" + getplayer.maxHealth, "Arial Narrow", 16, "black");
-
+    if (getplayer.ghost > 0)
+        drawText(boardSize.width * 32, 128, "Truesight: " + pad(getplayer.ghost) + " turns.", "Arial Narrow", 16, "black");
     drawText(boardSize.width * 32, 160, "Score: " + score.toLocaleString("en-US"), "Trebuchet", 16, "black");
-    drawText(boardSize.width * 32, 224, "Bombs: " + getplayer.bag.bomb.toLocaleString("en-US"), "Trebuchet", 24, "black");
+    drawText(boardSize.width * 32, 224, "Bomb: " + getplayer.bag.bomb.toLocaleString("en-US"), "Trebuchet", 24, "black");
     drawText(boardSize.width * 32, 256, "Firecracker: " + getplayer.bag.firecracker.toLocaleString("en-US"), "Trebuchet", 24, "black");
     drawText(boardSize.width * 32, 288, "Drone: " + getplayer.bag.drone.toLocaleString("en-US"), "Trebuchet", 24, "black");
+    drawText(boardSize.width * 32, 320, "Lightning: " + getplayer.bag.lightning.toLocaleString("en-US"), "Trebuchet", 24, "black");
+    drawText(boardSize.width * 32, 352, "Goggle: " + getplayer.bag.goggle.toLocaleString("en-US"), "Trebuchet", 24, "black");
     if (castMode.hasOwnProperty('usingBomb')) {
         drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Bomb Location", "Trebuchet", 12, "black");
         drawImage(castMode["usingBomb"].x * 32, castMode["usingBomb"].y * 32, 32, 32, img_bomb, 0, 0.4);
@@ -592,42 +586,80 @@ function draw() {
         drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Drone Location", "Trebuchet", 12, "black");
         drawImage(castMode["usingDrone"].x * 32, castMode["usingDrone"].y * 32, 32, 32, img_drone, 0, 0.4);
     }
-    //Game over section.
-    if (getplayer.isAlive() === false) {
-        fillRectangle(240, 240, 400, 320, "orange", 0.5);
-        drawText(240, 240, "Game Over", "Verdana", 36, "black");
-        drawText(240, 304, "Stage: " + currentStage.toLocaleString("en-US"), "Verdana", 24, "black");
-        drawText(240, 336, "Score: " + score.toLocaleString("en-US"), "Verdana", 24, "black");
-        let stringData = "Loot Collected: ";
-        if (getplayer.stats.bag > 0) {
-            stringData += "Bags: " + getplayer.stats.bag.toLocaleString("en-US");
-        }
-        if (getplayer.stats.dollar > 0) {
-            stringData += " Dollars: " + getplayer.stats.dollar.toLocaleString("en-US");
-        }
-        if (getplayer.stats.chest > 0) {
-            stringData += " Chests: " + getplayer.stats.chest.toLocaleString("en-US");
-        }
-        drawText(240, 368, stringData, "Verdana", 14, "black");
-        stringData = "Rocks Destroyed: ";
-        for (let i = 0; i < getplayer.stats.rocksDestroyed.length; i++) {
-            if (getplayer.stats.rocksDestroyed[i] > 0) {
-                stringData += " T" + (i + 1) + ": " + getplayer.stats.rocksDestroyed[i].toLocaleString("en-US");
+    else if (castMode.hasOwnProperty('usingLightning')) {
+        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Press Enter/Click anywhere", "Trebuchet", 12, "black");
+        drawText(boardSize.width * 32, 32 * boardSize.height - 32 + 12, "to cast Lightning", "Trebuchet", 12, "black");
+    }
+    else if (castMode.hasOwnProperty('usingGoggle')) {
+        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Press Enter/Click anywhere", "Trebuchet", 12, "black");
+        drawText(boardSize.width * 32, 32 * boardSize.height - 32 + 12, "to cast Goggles", "Trebuchet", 12, "black");
+
+    }
+    drawGameOverHUD(240, 240, 400, 320);
+
+}
+function drawItems(x, y, opacity = 1.0) {
+    if (terrainArray[x][y].directional.enabled === true) {
+        if (terrainArray[x][y].directional.typeOfDirection === 0) { //Horizontal direction
+            if (x > goalPoint.x) { //Right
+                drawImage(x * 32, y * 32, 32, 32, directionImg, 180, opacity);
+            }
+            else if (x < goalPoint.x) { //Left
+                drawImage(x * 32, y * 32, 32, 32, directionImg, 0, opacity);
             }
         }
-        drawText(240, 382, stringData, "Verdana", 14, "black");
-        stringData = "Enemies Defeated: ";
-        for (let i = 0; i < getplayer.stats.enemies.length; i++) {
-            if (getplayer.stats.enemies[i] > 0) {
-                stringData += " T" + (i + 1) + ": " + getplayer.stats.enemies[i].toLocaleString("en-US");
+        else if (terrainArray[x][y].directional.typeOfDirection === 1) { //Vertical
+            if (y > goalPoint.y) {
+                drawImage(x * 32, y * 32, 32, 32, directionImg, 270, opacity);
+            } else if (y < goalPoint.y) {
+                drawImage(x * 32, y * 32, 32, 32, directionImg, 90, opacity);
             }
         }
-        drawText(240, 396, stringData, "Verdana", 14, "black");
-        fillRectangle(400, 496, 160, 64, "red", 0.5);
-        drawRectangle(400, 496, 160, 64, "black", 2);
-        drawText(400, 496, "Play Again!", "Verdana", 24, "black");
+    }
+    if (terrainArray[x][y].isBag()) {
+
+        drawImage(x * 32, y * 32, 32, 32, bagImg, 0, opacity);
+    }
+    else if (terrainArray[x][y].isChest()) {
+        drawImage(x * 32, y * 32, 32, 32, img_treasureChest, 0, opacity);
+    }
+    else if (terrainArray[x][y].isDollar()) {
+        drawImage(x * 32, y * 32, 32, 32, img_dollar, 0, opacity);
+    }
+    if (terrainArray[x][y].isPotion()) {
+        drawImage(x * 32, y * 32, 32, 32, img_potion, 0, opacity);
+    }
+    if (terrainArray[x][y].isPotionHP()) {
+        drawImage(x * 32, y * 32, 32, 32, img_potion_hp, 0, opacity);
+    }
+    if (terrainArray[x][y].isBomb()) {
+        drawImage(x * 32, y * 32, 32, 32, img_bomb, 0, opacity);
+    }
+    if (terrainArray[x][y].isFirecracker()) {
+        drawImage(x * 32, y * 32, 32, 32, img_firecracker, 0, opacity);
+    }
+    if (terrainArray[x][y].isDrone()) {
+        drawImage(x * 32, y * 32, 32, 32, img_drone, 0, opacity);
+    }
+    if (terrainArray[x][y].isLightning()) {
+        drawImage(x * 32, y * 32, 32, 32, img_lightning, 0, opacity);
+    }
+    if (terrainArray[x][y].isGoggle()) {
+        drawImage(x * 32, y * 32, 32, 32, img_goggles, 0, opacity);
+    }
+    if (terrainArray[x][y].isHazard()) {
+        if (terrainArray[x][y].getHazard() === 1)
+            drawImage(x * 32, y * 32, 32, 32, img_spikes, 0, opacity);
+        if (terrainArray[x][y].getHazard() === 2)
+            drawImage(x * 32, y * 32, 32, 32, img_chainSaw, 0, opacity);
     }
 
+    if (terrainArray[x][y].isPortal()) {
+        if (terrainArray[x][y].portal.id == 0)
+            drawImage(x * 32, y * 32, 32, 32, img_portal, 0, opacity);
+        else if (terrainArray[x][y].portal.id == 1)
+            drawImage(x * 32, y * 32, 32, 32, img_portal2, 0, opacity);
+    }
 }
 function revealNeighbors(startX, startY, range, func) {
     for (let x = -range; x <= range; x++) {
@@ -642,19 +674,59 @@ function postMove() {
     interactX = -1;
     interactY = -1;
     revealNearby();
-    //Hurt the player is they are on top of a hazard.
-    if (terrainArray[getplayer.x][getplayer.y].isHazard()) {
-        if (terrainArray[getplayer.x][getplayer.y].getHazard() === 1) {
-            getplayer.health -= 3;
-            terrainArray[getplayer.x][getplayer.y].removeHazard();
-        } else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 2) {
-            getplayer.health -= 6;
+    if (getplayer.ghost > 0) {
+        getplayer.ghost--;
+    }
+    else {
+        //Hurt the player is they are on top of a hazard. But not when they are given truesight!
+        if (terrainArray[getplayer.x][getplayer.y].isHazard()) {
+            //Spikes
+            if (terrainArray[getplayer.x][getplayer.y].getHazard() === 1) {
+                getplayer.health -= 3;
+                terrainArray[getplayer.x][getplayer.y].removeHazard();
+                //Chainsaw
+            } else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 2) {
+                getplayer.health -= 6;
+            }
         }
     }
+    //Perform movement on each enemy.
+    const data = [].concat(...terrainArray).filter(c => c.isEnemy()).forEach(c => {
+
+        c.enemy.turns--;
+        if (c.enemy.turns <= 0) {
+            let getE = c.enemy;
+
+            let choose = [[0, 0], [0, 1], [1, 0], [0, -1], [-1, 0]];
+            while (choose.length > 0) {
+                let behavior = randomInteger(0, choose.length);
+                //enemy moves at a different location.
+                if (getE.x + choose[behavior][0] > 0 && getE.x + choose[behavior][0] < boardSize.width - 1 && getE.y + choose[behavior][1] > 0 && getE.y + choose[behavior][1] < boardSize.height - 1) {
+                    if (isNothingAhead(getE.x + choose[behavior][0], getE.y + choose[behavior][1])) {
+                        getE.x += choose[behavior][0];
+                        getE.y += choose[behavior][1];
+                        let id = getE.id;
+                        c.removeEnemy();
+
+                        terrainArray[getE.x][getE.y].assignExistEnemy(getE, id);
+                        break;
+                    }
+                    else {
+                        choose.splice(behavior, 1);
+                    }
+                }
+                else {
+                    choose.splice(behavior, 1);
+                }
+                //console.log(choose);
+            }
+        }
+    });
+
 }
 function moveUp() {
     if (getplayer.y > 0) {
-        if (isNothingAhead(getplayer.x, getplayer.y - 1)) {
+        if (isNothingAhead(getplayer.x, getplayer.y - 1) || (isThingAhead(getplayer.x, getplayer.y - 1) && getplayer.ghost > 0)) {
             getplayer.movePlayer(0, -1);
             postMove();
         } else {
@@ -665,7 +737,7 @@ function moveUp() {
 }
 function moveDown() {
     if (getplayer.y < boardSize.height - 1) {
-        if (isNothingAhead(getplayer.x, getplayer.y + 1)) {
+        if (isNothingAhead(getplayer.x, getplayer.y + 1) || (isThingAhead(getplayer.x, getplayer.y + 1) && getplayer.ghost > 0)) {
             getplayer.movePlayer(0, 1);
             postMove();
         } else {
@@ -675,7 +747,7 @@ function moveDown() {
 }
 function moveLeft() {
     if (getplayer.x > 0) {
-        if (isNothingAhead(getplayer.x - 1, getplayer.y)) {
+        if (isNothingAhead(getplayer.x - 1, getplayer.y) || (isThingAhead(getplayer.x - 1, getplayer.y) && getplayer.ghost > 0)) {
             getplayer.movePlayer(-1, 0);
             postMove();
         } else {
@@ -685,7 +757,7 @@ function moveLeft() {
 }
 function moveRight() {
     if (getplayer.x < boardSize.width - 1) {
-        if (isNothingAhead(getplayer.x + 1, getplayer.y)) {
+        if (isNothingAhead(getplayer.x + 1, getplayer.y) || (isThingAhead(getplayer.x + 1, getplayer.y) && getplayer.ghost > 0)) {
             getplayer.movePlayer(1, 0);
             postMove();
         } else {
@@ -711,13 +783,13 @@ function activateBomb() {
 function activateDrone() {
 
     if (castMode["usingDrone"].x > 0 && castMode["usingDrone"].x < boardSize.width - 1 && castMode["usingDrone"].y > 0 && castMode["usingDrone"].y < boardSize.height - 1) {
-    revealNeighbors(castMode["usingDrone"].x, castMode["usingDrone"].y, 1,
-        (x, y) => {
-            revealLocation(x, y);
-        });
-    delete castMode.usingDrone;
-    getplayer.bag.drone -= 1;
-    
+        revealNeighbors(castMode["usingDrone"].x, castMode["usingDrone"].y, 1,
+            (x, y) => {
+                revealLocation(x, y);
+            });
+        delete castMode.usingDrone;
+        getplayer.bag.drone -= 1;
+
     }
 }
 function activateFirecracker() {
@@ -725,7 +797,7 @@ function activateFirecracker() {
         for (let i = 0; i < boardSize.width; i++) {
             destroyObstacles(i, getplayer.y, false);
             revealLocation(i, getplayer.y);
-terrainArray[i][getplayer.y].removeHazard()
+            terrainArray[i][getplayer.y].removeHazard()
         }
         delete castMode.usingFirecracker;
         getplayer.bag.firecracker -= 1;
@@ -736,11 +808,34 @@ terrainArray[i][getplayer.y].removeHazard()
 
             destroyObstacles(getplayer.x, i, false);
             revealLocation(getplayer.x, i);
-terrainArray[getplayer.x][i].removeHazard()
+            terrainArray[getplayer.x][i].removeHazard()
         }
         delete castMode.usingFirecracker;
         getplayer.bag.firecracker -= 1;
 
+    }
+}
+function activateLightning(maxCount = 20) {
+    if (castMode["usingLightning"].x > 0 && castMode["usingLightning"].x < boardSize.width - 1 && castMode["usingLightning"].y > 0 && castMode["usingLightning"].y < boardSize.height - 1) {
+        if (castMode.hasOwnProperty("usingLightning") === true) {
+            const data = [].concat(...terrainArray).filter(c => c.explore === false || c.isHazard() || c.isEnemy()).sort(() => 0.5 - Math.random()).slice(0, maxCount);
+            for (let i = 0; i < data.length; i++) {
+                data[i].explore = true;
+                data[i].removeEnemy();
+                data[i].removeHazard();
+            }
+        }
+        delete castMode.usingLightning;
+        getplayer.bag.lightning -= 1;
+    }
+}
+function activateGoggles() {
+    if (castMode["usingGoggle"].x > 0 && castMode["usingGoggle"].x < boardSize.width - 1 && castMode["usingGoggle"].y > 0 && castMode["usingGoggle"].y < boardSize.height - 1) {
+        if (castMode.hasOwnProperty("usingGoggle") === true) {
+            getplayer.ghost = 50;
+        }
+        delete castMode.usingGoggle;
+        getplayer.bag.goggle -= 1;
     }
 }
 function keyPressed(key) {
@@ -757,7 +852,16 @@ function keyPressed(key) {
             if (getplayer.bag.drone > 0)
                 castMode["usingDrone"] = { x: getplayer.x, y: getplayer.y };
         }
-        if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingDrone') == false) {
+        if (key == "R" || key == "r") {
+            if (getplayer.bag.lightning > 0)
+                castMode["usingLightning"] = { x: getplayer.x, y: getplayer.y };
+        }
+        if (key == "T" || key == "t") {
+            if (getplayer.bag.goggle > 0)
+                castMode["usingGoggle"] = { x: getplayer.x, y: getplayer.y };
+        }
+        if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false &&
+            castMode.hasOwnProperty('usingDrone') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false) {
             if (key == "ArrowUp") {
                 moveUp();
             } else if (key == "ArrowDown") {
@@ -834,9 +938,28 @@ function keyPressed(key) {
                 delete castMode.usingDrone
             }
         }
-        if (key == "P" || key == "P") {
-            generateMap();
+        else if (castMode.hasOwnProperty('usingLightning') == true) {
+
+            if (key == "Enter") {
+                //Explode in a 5x5 radius.
+                activateLightning();
+            } else if (key == "Escape") {
+                delete castMode.usingDrone
+            }
+        }
+        else if (castMode.hasOwnProperty('usingGoggle') == true) {
+
+            if (key == "Enter") {
+                //Explode in a 5x5 radius.
+                activateGoggles();
+            } else if (key == "Escape") {
+                delete castMode.usingGoggle;
+            }
+        }
+        if (key == "p" || key == "P") {
             currentStage = 1;
+            generateMap();
+
             score = 0;
             getplayer.reset();
         }
@@ -861,7 +984,7 @@ function leftClickEvent() {
             getplayer.reset();
         }
     } else {
-        if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false&& castMode.hasOwnProperty('usingDrone') == false) {
+        if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
             let tileX = Math.floor(mousePos.x / 32);
             let tileY = Math.floor(mousePos.y / 32);
 
@@ -898,10 +1021,19 @@ function leftClickEvent() {
             castMode["usingDrone"] = { x: Math.floor(mousePos.x / 32), y: Math.floor(mousePos.y / 32) };
             activateDrone();
         }
+        else if (castMode.hasOwnProperty('usingLightning') == true) {
+            castMode["usingLightning"] = { x: Math.floor(mousePos.x / 32), y: Math.floor(mousePos.y / 32) };
+            activateLightning();
+        }
+        else if (castMode.hasOwnProperty('usingGoggle') == true) {
+            castMode["usingGoggle"] = { x: Math.floor(mousePos.x / 32), y: Math.floor(mousePos.y / 32) };
+            activateGoggles();
+        }
+
         let r = { x: boardSize.width * 32, y: 224, width: uiWidth, height: 32 };
 
         if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
-            if (!castMode.hasOwnProperty("usingBomb")) {
+            if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.bomb > 0)
                     castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
             } else {
@@ -910,7 +1042,7 @@ function leftClickEvent() {
         }
         r = { x: boardSize.width * 32, y: 256, width: uiWidth, height: 32 };
         if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
-            if (!castMode.hasOwnProperty("usingFirecracker")) {
+            if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.firecracker > 0)
                     castMode["usingFirecracker"] = { direction: "vertical" };
             } else {
@@ -919,13 +1051,32 @@ function leftClickEvent() {
         }
         r = { x: boardSize.width * 32, y: 288, width: uiWidth, height: 32 };
         if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
-            if (!castMode.hasOwnProperty("usingDrone")) {
+            if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.drone > 0)
                     castMode["usingDrone"] = { x: getplayer.x, y: getplayer.y };
             } else {
                 delete castMode.usingDrone;
             }
         }
+        r = { x: boardSize.width * 32, y: 320, width: uiWidth, height: 32 };
+        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+            if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
+                if (getplayer.bag.lightning > 0)
+                    castMode["usingLightning"] = { x: getplayer.x, y: getplayer.y };
+            } else {
+                delete castMode.usingLightning;
+            }
+        }
+        r = { x: boardSize.width * 32, y: 352, width: uiWidth, height: 32 };
+        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+            if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
+                if (getplayer.bag.goggle > 0)
+                    castMode["usingGoggle"] = { x: getplayer.x, y: getplayer.y };
+            } else {
+                delete castMode.usingGoggle
+            }
+        }
+        
     }
 }
 //Keyboard Input

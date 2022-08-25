@@ -8,8 +8,8 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 0, firecracker: 0, drone: 0};
-
+     this.bag = {bomb: 0, firecracker: 0, drone: 0, lightning: 10,goggle: 10};
+     this.ghost = 0;
      this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:[0,0,0]};
     }
     getEnergyRatio() {
@@ -22,8 +22,13 @@ class player {
         context.translate(this.x * 32 + 16, this.y * 32 + 16);
         context.rotate(0 * Math.PI/180);
         context.translate(-16, -16);
-        if (this.isAlive())
+        if (this.isAlive()) {
+            if (this.ghost > 0) {
+                context.globalAlpha = 0.5;
+            }
             context.drawImage(this.playerImg, 0, 0, 32, 32 );
+            context.globalAlpha = 1;
+        }
         else
             context.drawImage(img_playerCry,0,0,32,32);
         context.resetTransform();
@@ -74,13 +79,23 @@ class player {
     addDrone(amount) {
         this.bag.drone += amount;
     }
+    addLightning(amount) {
+        this.bag.lightning += amount;
+    }
+    addGoggle(amount) {
+        this.bag.goggle += amount;
+    }
     reset() {
         this.health = 100;
         this.energy = 100;
-        this.bag = {bomb: 0, firecracker: 0, drone: 0};
+        this.bag = {bomb: 0, firecracker: 0, drone: 0, lightning: 0,goggle: 0};
         this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:0};
+        this.ghost = 0;
     }
     isAlive() {
         return this.health > 0;
+    }
+    isAtLocation(x,y) {
+        return this.x == x && this.y == y;
     }
  }
