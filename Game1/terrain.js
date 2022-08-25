@@ -19,7 +19,13 @@ class terrainCell {
     assignExistEnemy(attached_enemy, id) {
         this.enemy = attached_enemy;
         this.enemy.id = id;
-        this.enemy.turns = randomInteger(1,3);
+        if (id != 5 && id !=4) {
+            this.enemy.turns = randomInteger(1,3);
+        } else if (id === 6) {
+            this.enemy.turns = randomInteger(3,7);   
+        }else {
+            this.enemy.turns = 1;
+        }
    }
     assignHazard(index) {
         this.hazard.enabled = true;
@@ -180,10 +186,11 @@ class terrainCell {
         this.hasObstacle.enabled = false;
         this.unbreakable = false;
         this.hazard.enabled =false;
-         delete this.hasObstacle.enemy;
-        delete this.hasObstacle.x;
-        delete this.hasObstacle.y;
-        delete this.hasObstacle.turns;
+ 
+    }
+    removeObstacles() {
+        this.hasObstacle.enabled = false;
+        
     }
     removeObject() {
         this.object.enabled = false;

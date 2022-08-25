@@ -10,7 +10,7 @@ class player {
      this.playerImg = image;
      this.bag = {bomb: 0, firecracker: 0, drone: 0, lightning: 0,goggle: 0};
      this.ghost = 0;
-     this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:[0,0,0]};
+     this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0,0,0,0],rocksDestroyed:[0,0,0]};
     }
     getEnergyRatio() {
          return this.energy/this.maxEnergy;

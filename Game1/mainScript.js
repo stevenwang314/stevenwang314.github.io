@@ -17,6 +17,7 @@ let img_spikes = document.getElementById("spikes");
 let img_firecracker = document.getElementById("firecracker");
 let img_portal = document.getElementById("portal");
 let img_portal2 = document.getElementById("portal2");
+let img_portal3 = document.getElementById("portal3");
 let img_enemy = document.getElementById("slime");
 let img_enemy2 = document.getElementById("bat");
 let img_enemy3 = document.getElementById("snake");
@@ -26,6 +27,9 @@ let img_dollar = document.getElementById("dollarBill");
 let img_drone = document.getElementById("drone");
 let img_lightning = document.getElementById("lightning");
 let img_goggles = document.getElementById("goggles");
+let img_frog = document.getElementById("frog");
+let img_rat = document.getElementById("rat");
+let img_hawk = document.getElementById("hawk");
 var ctx = getCanvas.getContext("2d");
 
 
@@ -53,7 +57,7 @@ const boardSize = { width: 25, height: 25 };
 const obstacleAmount = boardSize.width * boardSize.height * 0.2;
 const uiWidth = 160;
 const navigationChance = 10;
-const wallChance = 25;
+const wallChance = 15;
 const bagChance = 5;
 const chestChance = 0.2;
 const dollarChance = 2;
@@ -67,8 +71,8 @@ const lightningChance = 0.8;
 const goggleChance = 0.4;
 
 const spikeChance = 2.5;
-const portalChance = 7.5;
-const enemyChance = 7.5;
+const portalChance = 6;
+const enemyChance = 8;
 function setup() {
     getCanvas.width = boardSize.width * 32 + uiWidth;
     getCanvas.height = boardSize.height * 32;
@@ -89,19 +93,34 @@ function decideTypeOfRock() {
 
 }
 function decideTypeOfEnemy() {
-    if (currentStage > 15) {
-        if (randomDecimal(0, 100) < clamp(7.5 * (1.1 * Math.max(currentStage - 15, 0)), 10, 20)) {
+    if (currentStage > 20) {
+        if (randomDecimal(0, 100) < clamp(7.5 * (1.1 * Math.max(currentStage - 20, 0)), 10, 20)) {
             return 4;
         }
     }
+    if (currentStage > 15) {
+        if (randomDecimal(0, 100) < clamp(10 * (1.05 * Math.max(currentStage - 15, 0)), 5, 25)) {
+            return 7;
+        }
+    }
     if (currentStage > 10) {
-        if (randomDecimal(0, 100) < clamp(10 * (1.075 * Math.max(currentStage - 10, 0)), 10, 30)) {
+        if (randomDecimal(0, 100) < clamp(10 * (1.075 * Math.max(currentStage - 10, 0)), 10, 25)) {
             return 3;
         }
     }
+    if (currentStage > 8) {
+        if (randomDecimal(0, 100) < clamp(10 * (1.05 * Math.max(currentStage - 8, 0)), 5, 25)) {
+            return 6;
+        }
+    }
     if (currentStage > 5) {
-        if (randomDecimal(0, 100) < clamp(20 * (1.05 * Math.max(currentStage - 5, 0)), 5, 50)) {
+        if (randomDecimal(0, 100) < clamp(10 * (1.03 * Math.max(currentStage - 5, 0)), 5, 30)) {
             return 2;
+        }
+    }
+    if (currentStage > 3) {
+        if (randomDecimal(0, 100) < clamp(15 * (1.03 * Math.max(currentStage - 3, 0)), 5, 30)) {
+            return 5;
         }
     }
     return 1;
@@ -136,7 +155,7 @@ function generateMap() {
         let data = [];
         for (let j = 0; j < boardSize.height; j++) {
             let tc = new terrainCell();
-            // tc.explore = true;
+            //tc.explore = true;
             data.push(tc);
         }
         terrainArray.push(data);
@@ -146,16 +165,18 @@ function generateMap() {
     for (let i = 0; i < (maxAmount < boardSize.width * boardSize.height - 1 ? maxAmount : boardSize.width * boardSize.height - 1); i++) {
         let terrainPosition = { x: randomInteger(0, boardSize.width), y: randomInteger(0, boardSize.height) };
         //Check if that rock doesn't exist.
-        if (terrainArray[terrainPosition.x][terrainPosition.y].isObstacle() === false && (getplayer.x != terrainPosition.x || getplayer.y != terrainPosition.y)) {
-            //20% for a wall
-            if (randomDecimal(0, 100) < wallChance) {
-                terrainArray[terrainPosition.x][terrainPosition.y].assignWall();
-            }
-            //7.5% ~ 30% chance for enemy
-            else if (randomDecimal(0, 100) < clamp(enemyChance * (1 + 0.01 * (currentStage - 1)), enemyChance, 30)) {
+        if (terrainArray[terrainPosition.x][terrainPosition.y].isObstacle() === false && terrainArray[terrainPosition.x][terrainPosition.y].isEnemy() === false
+            && (getplayer.x != terrainPosition.x || getplayer.y != terrainPosition.y)) {
+            //8% ~ 24% chance for enemy
+            if (randomDecimal(0, 100) < clamp(enemyChance * (1 + 0.05 * (currentStage - 1)), enemyChance, 24)) {
 
                 terrainArray[terrainPosition.x][terrainPosition.y].assignEnemy(decideTypeOfEnemy(), terrainPosition.x, terrainPosition.y);
             }
+            //20% for a wall
+            else if (randomDecimal(0, 100) < wallChance) {
+                terrainArray[terrainPosition.x][terrainPosition.y].assignWall();
+            }
+
             else {
 
                 terrainArray[terrainPosition.x][terrainPosition.y].assignRock(decideTypeOfRock());
@@ -174,7 +195,7 @@ function generateMap() {
     let decay6 = 0;
     let decay7 = 0;
     //Create Portals (Up to 2 maximum)
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
         if (randomDecimal(0, 100) < portalChance) {
             let first = { x: 0, y: 0 };
             let second = { x: 0, y: 0 };
@@ -191,7 +212,8 @@ function generateMap() {
             do {
                 let getX = randomInteger(0, boardSize.width);
                 let getY = randomInteger(0, boardSize.height);
-                if (terrainArray[getX][getY].unbreakable === false && terrainArray[getX][getY].isPortal() === false) {
+                if (terrainArray[getX][getY].unbreakable === false && terrainArray[getX][getY].isPortal() === false && 
+                    Math.abs(getX - first.x) + Math.abs(getY - first.y) > 15) {
                     terrainArray[getX][getY].assignPortal(i);
                     second = { x: getX, y: getY };
                     break;
@@ -212,44 +234,44 @@ function generateMap() {
             }
 
             if (!terrainArray[i][j].unbreakable && !terrainArray[i][j].isPortal()) {
-                if (randomDecimal(0, 100) < (potionChance / (1 + decay * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (potionChance / (1 + decay * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignPotion();
                     decay++;
                 }
-                if (randomDecimal(0, 100) < (healthPotionChance / (1 + decay4 * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (healthPotionChance / (1 + decay4 * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignPotionHP();
                     decay4++;
                 }
-                if (randomDecimal(0, 100) < (clamp(bombChance / (1 + 0.25 * (currentStage - 1))), bombChance / 75, bombChance) / (1 + decay2 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(bombChance / (1 + 0.25 * (currentStage - 1))), bombChance / 75, bombChance) / (1 + decay2 * 0.35) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignBomb();
                     decay2++;
                 }
-                if (randomDecimal(0, 100) < (clamp(firecrackerChance / (1 + 0.25 * (currentStage - 1))), firecrackerChance / 75, firecrackerChance) / (1 + decay3 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(firecrackerChance / (1 + 0.25 * (currentStage - 1))), firecrackerChance / 75, firecrackerChance) / (1 + decay3 * 0.35) * ((terrainArray[i][j].isObstacle() ? 1.75 : 1))) {
                     terrainArray[i][j].assignFirecracker();
                     decay3++;
                 }
-                if (randomDecimal(0, 100) < (clamp(droneChance / (1 + 0.25 * (currentStage - 1))), droneChance / 75, droneChance) / (1 + decay5 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(droneChance / (1 + 0.25 * (currentStage - 1))), droneChance / 75, droneChance) / (1 + decay5 * 0.35) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignDrone();
                     decay5++;
                 }
-                if (randomDecimal(0, 100) < (clamp(lightningChance / (1 + 0.25 * (currentStage - 1))), lightningChance / 75, lightningChance) / (1 + decay6 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(lightningChance / (1 + 0.25 * (currentStage - 1))), lightningChance / 75, lightningChance) / (1 + decay6 * 0.35) * ((terrainArray[i][j].isObstacle() ? 1.75 : 1))) {
                     terrainArray[i][j].assignLightning();
                     decay6++;
                 }
-                if (randomDecimal(0, 100) < (clamp(goggleChance / (1 + 0.25 * (currentStage - 1))), goggleChance / 75, goggleChance) / (1 + decay7 * 0.35) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (clamp(goggleChance / (1 + 0.25 * (currentStage - 1))), goggleChance / 75, goggleChance) / (1 + decay7 * 0.35) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignGoggle();
                     decay7++;
                 }
                 //0.2% ~ 0.4% chest
-                if (randomDecimal(0, 100) < clamp(chestChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), chestChance, 0.4) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < clamp(chestChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), chestChance, 0.4) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignChest();
                 }
                 //2% ~ 4.5% dollar.
-                else if (randomDecimal(0, 100) < clamp(dollarChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), dollarChance, 4.5) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                else if (randomDecimal(0, 100) < clamp(dollarChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), dollarChance, 4.5) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignDollar();
                 }
                 //5%~10% bag
-                else if (randomDecimal(0, 100) < clamp(bagChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), bagChance, 10) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                else if (randomDecimal(0, 100) < clamp(bagChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), bagChance, 10) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignBag();
                 }
 
@@ -309,35 +331,59 @@ function destroyEnemy(x, y, hasCost = true) {
     if (terrainArray[x][y].isEnemy()) {
         if (terrainArray[x][y].getEnemy() === 1) {
             if (hasCost) {
-                getplayer.performCost(0.5)
-                getplayer.reduceHealth(2);
+                getplayer.performCost(1)
+                getplayer.reduceHealth(1);
             }
             addScore(10);
             getplayer.stats.enemies[0] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 2) {
             if (hasCost) {
-                getplayer.performCost(0.5);
-                getplayer.reduceHealth(3);
+                getplayer.performCost(1);
+                getplayer.reduceHealth(1.5);
             }
             addScore(20);
             getplayer.stats.enemies[1] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 3) {
             if (hasCost) {
-                getplayer.performCost(0.5);
-                getplayer.reduceHealth(4);
+                getplayer.performCost(1);
+                getplayer.reduceHealth(2);
             }
             addScore(30);
             getplayer.stats.enemies[2] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 4) {
             if (hasCost) {
-                getplayer.performCost(0.5);
-                getplayer.reduceHealth(6);
+                getplayer.performCost(1);
+                getplayer.reduceHealth(3);
             }
             addScore(40);
             getplayer.stats.enemies[3] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 5) { //Rat
+            if (hasCost) {
+                getplayer.performCost(1);
+                getplayer.reduceHealth(1.2);
+            }
+            addScore(15);
+            getplayer.stats.enemies[4] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 6) { //Frog
+            if (hasCost) {
+                getplayer.performCost(1);
+                getplayer.reduceHealth(1.5);
+            }
+            addScore(25);
+            getplayer.stats.enemies[5] += 1;
+        }
+        else if (terrainArray[x][y].getEnemy() === 7) { //Hawk
+            if (hasCost) {
+                getplayer.performCost(1);
+                getplayer.reduceHealth(2.5);
+            }
+            addScore(35);
+            getplayer.stats.enemies[6] += 1;
         }
         terrainArray[x][y].removeEnemy();
         return true;
@@ -367,7 +413,7 @@ function destroyObstacles(x, y, hasCost = true) {
             getplayer.stats.rocksDestroyed[2] += 1;
         }
 
-        terrainArray[x][y].removeTerrain();
+        terrainArray[x][y].removeObstacles();
         return true;
     }
     return false;
@@ -511,7 +557,10 @@ function draw() {
                         drawItems(x, y, 0.5);
                     }
                 }
-                else if (terrainArray[x][y].isEnemy()) {
+                 else {
+                    drawItems(x, y);
+                }
+                if (terrainArray[x][y].isEnemy()) {
                     if (terrainArray[x][y].getEnemy() === 1)
                         drawImage(x * 32, y * 32, 32, 32, img_enemy, 0);
                     if (terrainArray[x][y].getEnemy() === 2)
@@ -520,10 +569,14 @@ function draw() {
                         drawImage(x * 32, y * 32, 32, 32, img_enemy3, 0);
                     if (terrainArray[x][y].getEnemy() === 4)
                         drawImage(x * 32, y * 32, 32, 32, img_enemy4, 0);
+                    if (terrainArray[x][y].getEnemy() === 5)
+                        drawImage(x * 32, y * 32, 32, 32, img_rat, 0);
+                    if (terrainArray[x][y].getEnemy() === 6)
+                        drawImage(x * 32, y * 32, 32, 32, img_frog, 0);
+                    if (terrainArray[x][y].getEnemy() === 7)
+                        drawImage(x * 32, y * 32, 32, 32, img_hawk, 0);
                 }
-                else {
-                    drawItems(x, y);
-                }
+               
                 //Show the goal object
                 if (terrainArray[x][y].isGoal === true) {
                     ctx.drawImage(flagImg, x * 32, y * 32, 32, 32,);
@@ -659,6 +712,8 @@ function drawItems(x, y, opacity = 1.0) {
             drawImage(x * 32, y * 32, 32, 32, img_portal, 0, opacity);
         else if (terrainArray[x][y].portal.id == 1)
             drawImage(x * 32, y * 32, 32, 32, img_portal2, 0, opacity);
+        else if (terrainArray[x][y].portal.id == 2)
+            drawImage(x * 32, y * 32, 32, 32, img_portal3, 0, opacity);
     }
 }
 function revealNeighbors(startX, startY, range, func) {
@@ -692,33 +747,17 @@ function postMove() {
     }
     //Perform movement on each enemy.
     const data = [].concat(...terrainArray).filter(c => c.isEnemy()).forEach(c => {
-        //Attack the player
-        if (getplayer.ghost <= 0 && getplayer.isNearPlayer(c.enemy.x, c.enemy.y)) {
 
-            if (c.enemy.id == 1) {
-             
-                getplayer.reduceHealth(1);
-            }
-            if (c.enemy.id == 2) {
-                getplayer.reduceHealth(1.5);
-            }
-            if (c.enemy.id == 3) {
-                getplayer.reduceHealth(2);
-            }
-            if (c.enemy.id == 4) {
-                getplayer.reduceHealth(3);
-            } 
-        }
         c.enemy.turns--;
+        //Move
         if (c.enemy.turns <= 0) {
             let getE = c.enemy;
-
             let choose = [[0, 0], [0, 1], [1, 0], [0, -1], [-1, 0]];
             while (choose.length > 0) {
                 let behavior = randomInteger(0, choose.length);
                 //enemy moves at a different location.
                 if (getE.x + choose[behavior][0] > 0 && getE.x + choose[behavior][0] < boardSize.width - 1 && getE.y + choose[behavior][1] > 0 && getE.y + choose[behavior][1] < boardSize.height - 1) {
-                    if (isNothingAhead(getE.x + choose[behavior][0], getE.y + choose[behavior][1])) {
+                    if (isNothingAhead(getE.x + choose[behavior][0], getE.y + choose[behavior][1]) || getE.id == 7) {
                         getE.x += choose[behavior][0];
                         getE.y += choose[behavior][1];
                         let id = getE.id;
@@ -734,10 +773,35 @@ function postMove() {
                 else {
                     choose.splice(behavior, 1);
                 }
-                //console.log(choose);
+            }
+
+        }
+        //Attack the player
+        if (getplayer.ghost <= 0 && getplayer.isNearPlayer(c.enemy.x, c.enemy.y)) {
+
+            if (c.enemy.id == 1) {
+
+                getplayer.reduceHealth(1);
+            }
+            if (c.enemy.id == 2) {
+                getplayer.reduceHealth(1.5);
+            }
+            if (c.enemy.id == 3) {
+                getplayer.reduceHealth(2);
+            }
+            if (c.enemy.id == 4) {
+                getplayer.reduceHealth(3);
+            }
+            if (c.enemy.id == 5) { //Rat
+                getplayer.reduceHealth(1.2);
+            }
+            if (c.enemy.id == 6) { //Frog
+                getplayer.reduceHealth(1.5);
+            }
+            if (c.enemy.id == 7) { //Hawk
+                getplayer.reduceHealth(2.5);
             }
         }
-
     });
 
 }
@@ -964,7 +1028,7 @@ function keyPressed(key) {
                 //Explode in a 5x5 radius.
                 activateLightning();
             } else if (key == "Escape") {
-                delete castMode.usingDrone
+                delete castMode.usingLightning
             }
         }
         else if (castMode.hasOwnProperty('usingGoggle') == true) {
@@ -1096,7 +1160,7 @@ function leftClickEvent() {
                 delete castMode.usingGoggle
             }
         }
-        
+
     }
 }
 //Keyboard Input
