@@ -212,7 +212,7 @@ function generateMap() {
             }
 
             if (!terrainArray[i][j].unbreakable && !terrainArray[i][j].isPortal()) {
-                if (randomDecimal(0, 100) < (potionChance / (1 + decay2 * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
+                if (randomDecimal(0, 100) < (potionChance / (1 + decay * clamp(0.35 + (currentStage - 1) * 0.069, 0.35, 3.14))) * ((terrainArray[i][j].isObstacle() || terrainArray[i][j].isEnemy()) ? 1.5 : 1)) {
                     terrainArray[i][j].assignPotion();
                     decay++;
                 }
@@ -556,12 +556,12 @@ function draw() {
     drawText(boardSize.width * 32, 96, "Health " + pad(getplayer.health) + "/" + getplayer.maxHealth, "Arial Narrow", 16, "black");
     if (getplayer.ghost > 0)
         drawText(boardSize.width * 32, 128, "Truesight: " + pad(getplayer.ghost) + " turns.", "Arial Narrow", 16, "black");
-    drawText(boardSize.width * 32, 160, "Score: " + score.toLocaleString("en-US"), "Trebuchet", 16, "black");
-    drawText(boardSize.width * 32, 224, "Bomb: " + getplayer.bag.bomb.toLocaleString("en-US"), "Trebuchet", 24, "black");
-    drawText(boardSize.width * 32, 256, "Firecracker: " + getplayer.bag.firecracker.toLocaleString("en-US"), "Trebuchet", 24, "black");
-    drawText(boardSize.width * 32, 288, "Drone: " + getplayer.bag.drone.toLocaleString("en-US"), "Trebuchet", 24, "black");
-    drawText(boardSize.width * 32, 320, "Lightning: " + getplayer.bag.lightning.toLocaleString("en-US"), "Trebuchet", 24, "black");
-    drawText(boardSize.width * 32, 352, "Goggle: " + getplayer.bag.goggle.toLocaleString("en-US"), "Trebuchet", 24, "black");
+    drawText(boardSize.width * 32, 160, "Score: " + score.toLocaleString("en-US"), "DynaPuff", 16, "black");
+    drawText(boardSize.width * 32, 224, "Bomb: " + getplayer.bag.bomb.toLocaleString("en-US"), "DynaPuff", 20, "black");
+    drawText(boardSize.width * 32, 256, "Firecracker: " + getplayer.bag.firecracker.toLocaleString("en-US"), "DynaPuff", 20, "black");
+    drawText(boardSize.width * 32, 288, "Drone: " + getplayer.bag.drone.toLocaleString("en-US"), "DynaPuff", 20, "black");
+    drawText(boardSize.width * 32, 320, "Lightning: " + getplayer.bag.lightning.toLocaleString("en-US"), "DynaPuff", 20, "black");
+    drawText(boardSize.width * 32, 352, "Goggle: " + getplayer.bag.goggle.toLocaleString("en-US"), "DynaPuff", 20, "black");
     if (castMode.hasOwnProperty('usingBomb')) {
         drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Bomb Location", "Trebuchet", 12, "black");
         drawImage(castMode["usingBomb"].x * 32, castMode["usingBomb"].y * 32, 32, 32, img_bomb, 0, 0.4);
@@ -682,17 +682,33 @@ function postMove() {
         if (terrainArray[getplayer.x][getplayer.y].isHazard()) {
             //Spikes
             if (terrainArray[getplayer.x][getplayer.y].getHazard() === 1) {
-                getplayer.health -= 3;
+                getplayer.reduceHealth(3);
                 terrainArray[getplayer.x][getplayer.y].removeHazard();
                 //Chainsaw
             } else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 2) {
-                getplayer.health -= 6;
+                getplayer.reduceHealth(6);
             }
         }
     }
     //Perform movement on each enemy.
     const data = [].concat(...terrainArray).filter(c => c.isEnemy()).forEach(c => {
+        //Attack the player
+        if (getplayer.ghost <= 0 && getplayer.isNearPlayer(c.enemy.x, c.enemy.y)) {
 
+            if (c.enemy.id == 1) {
+             
+                getplayer.reduceHealth(1);
+            }
+            if (c.enemy.id == 2) {
+                getplayer.reduceHealth(1.5);
+            }
+            if (c.enemy.id == 3) {
+                getplayer.reduceHealth(2);
+            }
+            if (c.enemy.id == 4) {
+                getplayer.reduceHealth(3);
+            } 
+        }
         c.enemy.turns--;
         if (c.enemy.turns <= 0) {
             let getE = c.enemy;
@@ -721,6 +737,7 @@ function postMove() {
                 //console.log(choose);
             }
         }
+
     });
 
 }

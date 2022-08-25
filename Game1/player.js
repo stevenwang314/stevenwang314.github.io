@@ -98,4 +98,9 @@ class player {
     isAtLocation(x,y) {
         return this.x == x && this.y == y;
     }
+    isNearPlayer(x,y) {
+        return (this.x == x + 1 && this.y == y) || (this.x == x - 1 && this.y == y)|| (this.x == x && this.y == y) ||
+        (this.x == x + 1 && this.y == y + 1) || (this.x == x - 1 && this.y == y + 1)|| (this.x == x && this.y == y + 1) ||
+        (this.x == x + 1 && this.y == y - 1) || (this.x == x - 1 && this.y == y - 1)|| (this.x == x && this.y == y - 1);
+    }
  }
