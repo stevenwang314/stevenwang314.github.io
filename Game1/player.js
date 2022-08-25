@@ -8,7 +8,7 @@ class player {
      this.x = 0;
      this.y = 0;
      this.playerImg = image;
-     this.bag = {bomb: 0, firecracker: 0, drone: 0, lightning: 10,goggle: 10};
+     this.bag = {bomb: 0, firecracker: 0, drone: 0, lightning: 0,goggle: 0};
      this.ghost = 0;
      this.stats = {bag:0,dollar:0,chest:0,enemies:[0,0,0,0],rocksDestroyed:[0,0,0]};
     }
