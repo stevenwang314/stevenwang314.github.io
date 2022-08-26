@@ -1,3 +1,8 @@
+const BOMB = "Bomb";
+const FIRECRACKER = "Firecracker";
+const DRONE = "Drone";
+const LIGHTNING = "Lightning";
+const GOGGLE = "Goggle";
 class terrainCell {
     constructor() {
         this.explore = false;
@@ -5,7 +10,7 @@ class terrainCell {
         this.unbreakable = false;
         this.isGoal = false;
         this.directional = {enabled: false, typeOfDirection: 0};
-        this.object= {enabled: false, type: ""};
+        this.object= {enabled: false, type: "", item: []};
         this.hazard = {enabled : false, id : 0};
         this.portal = {enabled : false, linkedPortal : {x : 0, y: 0 }, id: 0};
         this.enemy = { id: 0};
@@ -62,46 +67,46 @@ class terrainCell {
     }
     assignBomb() {
         if (this.object.hasOwnProperty("item")) {
-            this.object.item.push("Bomb");
+            this.object.item.push(BOMB);
         }
          else {
-            this.object.item = ["Bomb"];
+            this.object.item = [BOMB];
         }
         this.object.enabled = true;
     }
     assignFirecracker() {
         if (this.object.hasOwnProperty("item")) {
-            this.object.item.push("Firecracker");
+            this.object.item.push(FIRECRACKER);
         }
          else {
-            this.object.item = ["Firecracker"];
+            this.object.item = [FIRECRACKER];
         }
         this.object.enabled = true;
     }
     assignDrone() {
         if (this.object.hasOwnProperty("item")) {
-            this.object.item.push("Drone");
+            this.object.item.push(DRONE);
         }
          else {
-            this.object.item = ["Drone"];
+            this.object.item = [DRONE];
         }
         this.object.enabled = true;
     }
     assignLightning() {
         if (this.object.hasOwnProperty("item")) {
-            this.object.item.push("Lightning");
+            this.object.item.push(LIGHTNING);
         }
          else {
-            this.object.item = ["Lightning"];
+            this.object.item = [LIGHTNING];
         }
         this.object.enabled = true;
     }
     assignGoggle() {
         if (this.object.hasOwnProperty("item")) {
-            this.object.item.push("Goggle");
+            this.object.item.push(GOGGLE);
         }
          else {
-            this.object.item = ["Goggle"];
+            this.object.item = [GOGGLE];
         }
         this.object.enabled = true;
     }
@@ -119,6 +124,7 @@ class terrainCell {
     isWall() {
         return this.hasObstacle.enabled === true && this.unbreakable === true;
     }
+    
     isBag() {
         return this.object.enabled === true && (this.object.type == "Bag");
     }
@@ -135,22 +141,22 @@ class terrainCell {
         return this.object.enabled === true && this.object.type == "PotionHP";
     }
     isBomb() {
-        return this.object.enabled === true &&this.object.hasOwnProperty("item") && this.object.item.includes("Bomb");
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") && this.object.item.includes(BOMB);
     }
     isFirecracker() {
-        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes("Firecracker");
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes(FIRECRACKER);
     }
     isLightning() {
-        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes("Lightning");
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes(LIGHTNING);
     }
     isGoggle() {
-        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes("Goggle");
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes(GOGGLE);
     }
     isHazard() {
         return this.hazard.enabled === true;
     }
     isDrone() {
-        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes("Drone");
+        return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes(DRONE);
     }
     isRevealed() {
         return this.explore === true;
@@ -179,6 +185,16 @@ class terrainCell {
         this.enemy = { id: 0};
 
     }
+    //Removes the item.
+    removeObjectItem(item) {
+        const getIndex = this.object.item.indexOf(item);
+        if (getIndex != -1) {
+            this.object.item.splice(getIndex,1);
+            if (this.object.item.length == 0 && this.object.type == "") {
+                this.object.enabled = false;
+            }
+        }
+    }
     removeHazard() {
         this.hazard.enabled =false;
     }
@@ -193,9 +209,11 @@ class terrainCell {
         
     }
     removeObject() {
-        this.object.enabled = false;
         this.object.type = "";
-        delete this.object.item;
+        if (this.object.item.length == 0 && this.object.type == "") {
+
+            this.object.enabled = false;
+        }
     }
     revealLocation() {
         this.explore = true;

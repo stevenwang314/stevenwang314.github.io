@@ -433,32 +433,33 @@ function activateObject(x, y) {
     if (terrainArray[x][y].isBomb()) {
         addScore(3);
         getplayer.addBomb(1);
-        terrainArray[x][y].removeObject();
+        terrainArray[x][y].removeObjectItem(BOMB);
     }
     //Collect firecracker.
     if (terrainArray[x][y].isFirecracker()) {
         addScore(3);
         getplayer.addFirecracker(1);
-        terrainArray[x][y].removeObject();
+        terrainArray[x][y].removeObjectItem(FIRECRACKER);
     }
     //Collect drone.
     if (terrainArray[x][y].isDrone()) {
         addScore(3);
         getplayer.addDrone(1);
-        terrainArray[x][y].removeObject();
+        terrainArray[x][y].removeObjectItem(DRONE);
     }
     //Collect lightning.
     if (terrainArray[x][y].isLightning()) {
         addScore(3);
         getplayer.addLightning(1);
-        terrainArray[x][y].removeObject();
+        terrainArray[x][y].removeObjectItem(LIGHTNING);
     }
     //Collect goggle.
     if (terrainArray[x][y].isGoggle()) {
         addScore(3);
         getplayer.addGoggle(1);
-        terrainArray[x][y].removeObject();
+        terrainArray[x][y].removeObjectItem(GOGGLE);
     }
+ 
     if (terrainArray[x][y].isBag()) {
         addScore(10);
         getplayer.stats.bag += 1;
