@@ -4,117 +4,51 @@
  
 }
 #nameFont {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Hubballi", Arial, Helvetica, sans-serif;
     font-style: oblique;
-    font-size: 72px;
+    font-size:80px;
 
     text-align: center;
   
 }
 #aboutFont {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Hubballi", Arial, Helvetica, sans-serif;
     font-style:italic;
-    font-size: 24px;
-    color:rgb(189, 33, 181);
+    font-weight: bolder;
+    font-size: 36px;
+    color:rgb(24, 125, 90);
     display: block;
     text-align: center;
 }
 #body1 {
-    border: 20px 20px;
+    border: 10px 10px;
     background: linear-gradient(red,green,blue);
     border-style: solid;
     border-color: red;
-    animation-name: backgroundColor;
+    border-radius: 300px;
+    opacity: 75%;
+    /*animation-name: backgroundColor;
     animation-duration: 0.75s;
-    animation-iteration-count: infinite;
+    animation-iteration-count: infinite;*/
+
 }
+#animatedText {
+    font-family: "Metal Mania", Arial, Helvetica, sans-serif;
+    position: relative;
+    left: 30vw;
+    top: 30vh;
+    font-size: 72px;
+    color: rgb(165, 30, 30);
+}
+
 #animatedText::after {
     animation-name: HelloWorld;
-    content: "std::cout < ";
-    animation-duration: 5s;
+    content: "";
+    animation-duration: 4.2s;
     animation-iteration-count: infinite;
  
 }
-#image {
-
-    opacity: 75%;
-}
-
-@keyframes HelloWorld {
-    0% {        
-        content: 'std::cout << ';
-     }
-    4% {   
-        content: "std::cout << H";
-    }
-   8% {    
-        content: "std::cout << He";
-    }
-    12% { 
-        content: "std::cout << Hel";
-    }
-    16% { 
-        content: "std::cout << Hell";
-    }
-    20% { 
-        content: "std::cout << Hello";
-    }
-    24% { 
-        content: "std::cout << Hello W";
-    }
-    28% { 
-        content: "std::cout << Hello Wo";
-    }
-   32% { 
-        content: "std::cout << Hello Wor";
-    }
-    36% { 
-        content: "std::cout << Hello Worl";
-    }
-   40% { 
-        content: "std::cout << Hello World";
-    }
-    44% { 
-        content: "std::cout << Hello World!";
-    }
-    48% { 
-        content: "std::cout << Hello World! <";
-    }
-   52% { 
-        content: "std::cout << Hello World! <<";
-    }
-   56% { 
-        content: "std::cout << Hello World! << s";
-    }
-    60% { 
-        content: "std::cout << Hello World! << st";
-    }
-    64% { 
-        content: "std::cout << Hello World! << std";
-    }
-    68% { 
-        content: "std::cout << Hello World! << std:";
-    }
-   72% { 
-        content: "std::cout << Hello World! << std::";
-    }
-    76% { 
-        content: "std::cout << Hello World! << std::e";
-    }
-   80% { 
-        content: "std::cout << Hello World! << std::en";
-    }
-    84% { 
-        content: "std::cout << Hello World! << std::end";
-    }
-    88% { 
-        content: "std::cout << Hello World! << std::endl";
-    }
-    92% { 
-        content: "std::cout << Hello World! << std::endl;";
-    }
-}
-
+/*
 @keyframes backgroundColor {
     0% {        
         background: linear-gradient(red,green,blue);
@@ -145,19 +79,96 @@
         color:darkviolet;
     }
 
+}*/
+
+@keyframes HelloWorld {
+    0% {        
+        content: 'H';
+     }
+    4% {   
+        content: "He";
+    }
+   8% {    
+        content: "Hel";
+    }
+    12% { 
+        content: "Hell";
+    }
+    16% { 
+        content: "Hello";
+    }
+    20% { 
+        content: "Hello ";
+    }
+    24% { 
+        content: "Hello W";
+    }
+    28% { 
+        content: "Hello Wo";
+    }
+   32% { 
+        content: "Hello Wor";
+    }
+    36% { 
+        content: "Hello Worl";
+    }
+   40% { 
+        content: "Hello World";
+    }
+    44% { 
+        content: "Hello World!";
+    }
+    48% { 
+        content: "Hello World! I";
+    }
+   52% { 
+    content: "Hello World! It";
+    }
+   56% { 
+    content: "Hello World! It'";
+    }
+    60% { 
+        content: "Hello World! It's";
+    }
+    64% { 
+        content: "Hello World! It's m";
+    }
+    68% { 
+        content: "Hello World! It's me";
+    }
+   72% { 
+    content: "Hello World! It's me S";
+    }
+    76% { 
+        content: "Hello World! It's me St";
+    }
+   80% { 
+    content: "Hello World! It's me Ste";
+    }
+    84% { 
+        content: "Hello World! It's me Stev";
+    }
+    88% { 
+        content: "Hello World! It's me Steve";
+    }
+    92% { 
+        content: "Hello World! It's me Steven";
+    }
 }
+
+
 #footer {
-    font-size: 18px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    font-family: "Arbutus", Arial, Helvetica, sans-serif;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     margin-left: auto; 
     margin-right: auto; 
-   width: 150px;
+   width: 350px;
 }
 #footer > p {
-    color: rgb(49, 202, 87);
-    
+    color: rgb(91, 161, 126);
+ 
 }

@@ -8,6 +8,7 @@ html {
     font-size: 24px;
     text-decoration: none;
     padding: 0px 16px;
+
 }
 #navigational {
     /*Fixed position*/
@@ -15,6 +16,7 @@ html {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     right: 0;
+    z-index: 2;
 }
 
 #navigational > a:hover {
@@ -33,5 +35,5 @@ html {
     z-index: -1;
     top: 0;
     left: 0;
-    opacity: 30%;
+    opacity: 50%;
 }
