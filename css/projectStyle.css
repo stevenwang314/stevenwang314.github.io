@@ -16,49 +16,41 @@
 }
 .fillColor {
   background-color:rgba(143,183,143,40%);
-  /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-  overflow: hidden;
+
   border-bottom: 3px solid black;
 }
 .fillColor#project1{
     background-color: rgba(220,20,60,40%);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+  
         border-bottom: 3px solid black;
   }
   .fillColor#project2{
     background-color: rgba(154,205,50,40%);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+
         border-bottom: 3px solid black;
   }
   .fillColor#project3{
     background-color: rgba(50, 195, 205, 40%);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+
         border-bottom: 3px solid black;
   }
   .fillColor#project4{
     background-color: rgba(204, 160, 38, 40%);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+   
     border-bottom: 3px solid black;
   }
   .fillColor#project5{
     background-color: rgba(140, 34, 117, 40%);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+
     border-bottom: 3px solid black;
   }  
   .fillColor#project6{
     background-color: rgba(126, 19, 158, 0.4);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+
   }
   .fillColor#project7{
     background-color: rgba(136, 191, 87, 0.4);
-    /*Float property will remove the coloring, we need to use overflow:hidden to get the color back*/
-    overflow: hidden;
+
   }
 .no-spacing {
     margin: 0 0;
@@ -67,13 +59,15 @@
     margin-top: 7.5px;
 }
 .leftSection {
-    width: 60%;
-    float: left;
+    position: relative;
+    display: inline-block;
+    width: 65%;
 }
 .rightSection {
-    width: 40%;
-    left: 90%;
-    float: right;
+  position: relative;
+  width: 30%;
+   display: inline-block;
+ 
 }
 .main {
     display: flex;
