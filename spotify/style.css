@@ -126,6 +126,9 @@
 .ninty {
     width: 60%
 }
+.blackColor {
+    color: black;
+}
 #artist_followers, .pushLeft {
     margin-left: 40px;
 

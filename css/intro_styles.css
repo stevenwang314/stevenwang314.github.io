@@ -9,7 +9,6 @@
     font-size:80px;
 
     text-align: center;
-  
 }
 #aboutFont {
     font-family: "Hubballi", Arial, Helvetica, sans-serif;
@@ -27,6 +26,7 @@
     border-color: red;
     border-radius: 300px;
     opacity: 75%;
+
     /*animation-name: backgroundColor;
     animation-duration: 0.75s;
     animation-iteration-count: infinite;*/
@@ -34,9 +34,7 @@
 }
 #animatedText {
     font-family: "Metal Mania", Arial, Helvetica, sans-serif;
-    position: relative;
-    left: 30vw;
-    top: 30vh;
+    margin-left: 30vw;
     font-size: 72px;
     color: rgb(165, 30, 30);
 }
@@ -172,3 +170,4 @@
     color: rgb(91, 161, 126);
  
 }
+
