@@ -35,19 +35,19 @@
 
 @media screen and (max-width: 1200px) {
     #gameplay {
-        transform: scale(0.6,0.6);
-        left: 0px;
+        transform: scale(0.8,0.8);
+        transform-origin: 0 0;
     }
 }
 @media screen and (max-width: 1000px) {
     #gameplay {
-        transform: scale(0.4,0.4);
-        left: 0px;
+        transform: scale(0.6,0.6);
+        transform-origin: 0 0;
     }
 }
 @media screen and (max-width: 800px) {
     #gameplay {
-        transform: scale(0.25,0.25);
-        left: 0px;
+        transform: scale(0.4,0.4);
+        transform-origin: 0 0;
     }
 }
