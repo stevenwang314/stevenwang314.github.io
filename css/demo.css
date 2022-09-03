@@ -60,12 +60,12 @@
 
 @media screen and (max-width: 1000px) {
     #gameplay {
-        transform: scale(0.25, 0.25);
+        transform: scale(0.4, 0.4);
         transform-origin: 0px 0px;
         display: block;
     }
     #gameplayHUD {
-        transform: scale(0.25, 0.25) ;
+        transform: scale(0.4, 0.4) ;
         transform-origin: 0px 0px;
         display: block;
         visibility:visible;
@@ -76,13 +76,13 @@
     }
     #gameplay-div {
         display: block;
-        width: 200px;
-        height: 200px;
+        width: 320px;
+        height: 320px;
     }
     #gameplayHUD-div {
         display: block;
-        width: 200px;
-        height: 24px;
+        width: 320px;
+        height: 38.4px;
     }
 
     #gameplayHUD-right-div {
