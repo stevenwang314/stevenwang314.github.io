@@ -12,8 +12,9 @@
 
 }
 .fillColor {
-  background-color:rgba(143,183,143,40%);
-  width: 100%;
+  background-color:red; /*rgba(143,183,143,40%);*/
+  width: 80vw;
+  margin-left: 10vw;
   border-bottom: 3px solid black;
 }
 .fillColor#project1{
