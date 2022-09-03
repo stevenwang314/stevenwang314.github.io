@@ -1,14 +1,15 @@
 #title {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 48px;
- 
+    margin-top: 10vh;
 }
 #nameFont {
     font-family: "Hubballi", Arial, Helvetica, sans-serif;
     font-style: oblique;
-    font-size:80px;
+    font-size: 64px;
 
     text-align: center;
+
 }
 #aboutFont {
     font-family: "Hubballi", Arial, Helvetica, sans-serif;
@@ -26,7 +27,8 @@
     border-color: red;
     border-radius: 300px;
     opacity: 75%;
-
+   
+    min-width: 200px;
     /*animation-name: backgroundColor;
     animation-duration: 0.75s;
     animation-iteration-count: infinite;*/
@@ -34,8 +36,8 @@
 }
 #animatedText {
     font-family: "Metal Mania", Arial, Helvetica, sans-serif;
-    margin-left: 30vw;
-    font-size: 72px;
+    margin-left: 35vw;
+    width: 40vw;
     color: rgb(165, 30, 30);
 }
 
@@ -160,15 +162,11 @@
     font-family: "Arbutus", Arial, Helvetica, sans-serif;
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    margin-left: auto; 
-    margin-right: auto; 
-   width: 350px;
+    width: 100vw;
 }
 #footer > p {
-    color: rgb(91, 161, 126);
- 
+    color: rgba(11, 131, 71, 0.745);
+    text-align: center;
 }
 
 #dimensions {

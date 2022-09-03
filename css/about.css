@@ -1,7 +1,9 @@
 .about, .contacts, .demo {
     font-family: 'DynaPuff', sans-serif;
 }
-
+.about-font {
+    font-size: 18px;
+}
 #personalPicture {
     border-color: black;
     border-style: solid;
@@ -14,3 +16,13 @@
 
 }
 
+@media screen and (max-width: 1000px) {
+    .about-font {
+        font-size: 12px;
+    }
+    }
+    @media screen and (max-width: 800px) {
+        .about-font {
+            font-size: 7px;
+        }
+    }

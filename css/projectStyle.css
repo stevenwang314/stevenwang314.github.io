@@ -1,10 +1,10 @@
 .font {
     font-family: 'DynaPuff', sans-serif;
-    font-size: 28px;  
+    font-size: 24px;  
 }
 .small-font {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 22px; 
+    font-size: 16px; 
 }
 
 .bottomBorder {
@@ -12,9 +12,9 @@
 
 }
 .fillColor {
-  background-color:red; /*rgba(143,183,143,40%);*/
-  width: 80vw;
-  margin-left: 10vw;
+  background-color:rgba(143,183,143,40%);
+  width: 85vw;
+  margin-left: 7.5vw;
   border-bottom: 3px solid black;
 }
 .fillColor#project1{
@@ -31,9 +31,10 @@
   }
   .fillColor#project5{
     background-color: rgba(140, 34, 117, 40%);
+
   }  
   .fillColor#project6{
-    background-color: rgba(126, 19, 158, 0.4);
+    background-color: rgba(115, 61, 132, 0.4);
   }
   .fillColor#project7{
     background-color: rgba(136, 191, 87, 0.4);
@@ -50,10 +51,10 @@
   display:flex;
 }
 .leftSection {
-    flex: 75%;
+    flex: 80%;
 }
 .rightSection {
-  flex: 25%;
+    flex: 20%;
 }
 
 .bottom-margin {
@@ -68,4 +69,33 @@
   font-size: 18px;
   font-weight: bold;
   color: lightgreen ;
+}
+.video {
+  object-fit: scale-down;
+  max-width: 25vw;
+  max-height: 50vh;
+
+}@media screen and (max-width: 1000px) {
+.font {
+    font-size: 18px;  
+}
+.small-font {
+    font-size: 12px; 
+}
+.tools-used {
+  font-size: 12px;
+}
+}
+@media screen and (max-width: 800px) {
+  .font {
+    font-family: 'DynaPuff', sans-serif;
+    font-size: 14px;  
+}
+.small-font {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 7px; 
+}
+.tools-used {
+  font-size: 7px;
+}
 }

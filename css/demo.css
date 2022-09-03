@@ -33,8 +33,21 @@
     font-size: 20px;
 }
 
-@media (min-width: 800px) {
+@media screen and (max-width: 1200px) {
     #gameplay {
-        transform: scale(60vw, 60vh);
+        transform: scale(0.6,0.6);
+        left: 0px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    #gameplay {
+        transform: scale(0.4,0.4);
+        left: 0px;
+    }
+}
+@media screen and (max-width: 800px) {
+    #gameplay {
+        transform: scale(0.25,0.25);
+        left: 0px;
     }
 }

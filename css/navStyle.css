@@ -37,3 +37,16 @@ html {
     left: 0;
     opacity: 50%;
 }
+
+@media screen and (max-width: 1000px) {
+    .links {
+        font-size: 12px;    
+    }
+}
+@media screen and (max-width: 800px) {
+    .links {
+
+        font-size:8px;
+    
+    }
+}
