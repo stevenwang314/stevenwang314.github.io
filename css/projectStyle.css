@@ -17,27 +17,9 @@
   margin-left: 7.5vw;
   border-bottom: 3px solid black;
 }
-.fillColor#project1{
-    background-color: rgba(220,20,60,40%);
-  }
-  .fillColor#project2{
-    background-color: rgba(154,205,50,40%);
-  }
-  .fillColor#project3{
-    background-color: rgba(50, 195, 205, 40%);
-  }
-  .fillColor#project4{
-    background-color: rgba(204, 160, 38, 40%);
-  }
-  .fillColor#project5{
-    background-color: rgba(140, 34, 117, 40%);
-
-  }  
-  .fillColor#project6{
-    background-color: rgba(115, 61, 132, 0.4);
-  }
-  .fillColor#project7{
-    background-color: rgba(136, 191, 87, 0.4);
+.fillColor#project{
+    background-color: rgba(207, 31, 31, 0.596);
+    border-color: 2.5px solid black;
   }
 .no-spacing {
     margin: 0 0;

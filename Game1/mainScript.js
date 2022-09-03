@@ -609,10 +609,10 @@ function draw() {
 
     getplayer.draw(ctx);
     //Check we have invisibility.
-    var x = document.getElementById("gameplayHUD");
-    if (window.getComputedStyle(x).visibility != "hidden") {
+    if (window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden") {
         drawGui();
-    } else {
+    } 
+    else {
         drawGui2();
     }
 
@@ -1238,8 +1238,19 @@ function leftClickEvent() {
             castMode["usingGoggle"] = { x: Math.floor(mousePos.x / 32), y: Math.floor(mousePos.y / 32) };
             activateGoggles();
         }
+        
+        //Draw lightning
+        if (getplayer.bag.lightning > 0) {
+            drawImage2(ctx3,0, 232, 32, 32, img_lightning, 0);
+            drawText2(ctx3,32, 232, "x" + getplayer.bag.lightning.toLocaleString("en-US"), "DynaPuff", 18, "black");
+        }
+        //Draw goggles
+        if (getplayer.bag.goggle > 0) {
+            drawImage2(ctx3,64, 232, 32, 32, img_goggles, 0);
+            drawText2(ctx3, 96, 232, "x" + getplayer.bag.goggle.toLocaleString("en-US"), "DynaPuff", 18, "black");
+        }
 
-        let r = { x: 160, y: 32, width: 64, height: 32 };
+        let r =  window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ? { x: 160, y: 32, width: 64, height: 32 } : {  x: 0, y:200, width: 64, height: 32};
 
         if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
@@ -1249,7 +1260,7 @@ function leftClickEvent() {
                 delete castMode.usingBomb;
             }
         }
-        r = { x: 224, y: 32, width: 64, height: 32 };
+        r = window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ?  { x: 224, y: 32, width: 64, height: 32 } : {  x: 64, y:200, width: 64, height: 32};
         if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.firecracker > 0)
@@ -1258,7 +1269,7 @@ function leftClickEvent() {
                 delete castMode.usingFirecracker;
             }
         }
-        r = { x: 288, y: 32, width: 64, height: 32 };
+        r =  window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ?{ x: 288, y: 32, width: 64, height: 32 }: {  x: 128, y:200, width: 64, height: 32};
         if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.drone > 0)
@@ -1267,7 +1278,7 @@ function leftClickEvent() {
                 delete castMode.usingDrone;
             }
         }
-        r = { x: 352, y: 32, width: 64, height: 32 };
+        r = window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ?{ x: 352, y: 32, width: 64, height: 32 }: {  x: 0, y:232, width: 64, height: 32};
         if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.lightning > 0)
@@ -1276,7 +1287,7 @@ function leftClickEvent() {
                 delete castMode.usingLightning;
             }
         }
-        r = { x: 416, y: 32, width: 64, height: 32 };
+        r =  window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ?{ x: 352, y: 32, width: 64, height: 32 }:  { x: 64, y: 232, width: 64, height: 32 };
         if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.goggle > 0)
@@ -1308,12 +1319,12 @@ document.addEventListener('mousemove', function (event) {
     client.x = event.clientX;
     client.y = event.clientY;
     mousePos = getMousePos(getCanvas, event);
-    mousePos2 = getMousePos(getCanvas2, event);
+    mousePos2 = getMousePos( window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ? getCanvas2 : getCanvas3, event);
     //console.log(innerWidth + " " + innerHeight);
 });
 function Input(event) {
     mousePos = getMousePos(getCanvas, event);
-    mousePos2 = getMousePos(getCanvas2, event);
+    mousePos2 = getMousePos( window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ? getCanvas2 : getCanvas3, event);
     if (event.button == 0) {
         leftClickEvent();
     }

@@ -36,24 +36,25 @@
 }
 #animatedText {
     font-family: "Metal Mania", Arial, Helvetica, sans-serif;
-    margin-left: 35vw;
-    width: 40vw;
+    margin-left: 25vw;
+    margin-right: 15vw;
     color: rgb(165, 30, 30);
+    font-size: 36px;
 }
 
 #animatedText::after {
     animation-name: HelloWorld;
-    content: "";
+    content: "Hello World! It's me Steven! - Nice to meet you ~";
     animation-duration: 4.2s;
-    animation-iteration-count: infinite;
  
 }
 @media screen and (max-width: 1000px) {
     #animatedText {
         font-family: "Metal Mania", Arial, Helvetica, sans-serif;
         margin-left: 15vw;
-        width: 30vw;
+        margin-right: 5vw;
         color: rgb(165, 30, 30);
+        font-size: 24px;
     }
 }
 /*
@@ -145,22 +146,28 @@
         content: "Hello World! It's me";
     }
    72% { 
-    content: "Hello World! It's me S";
+    content: "Hello World! It's me ";
     }
     76% { 
-        content: "Hello World! It's me St";
+        content: "Hello World! It's me S";
     }
    80% { 
-    content: "Hello World! It's me Ste";
+    content: "Hello World! It's me St";
     }
     84% { 
-        content: "Hello World! It's me Stev";
+        content: "Hello World! It's me Ste";
     }
     88% { 
-        content: "Hello World! It's me Steve";
+        content: "Hello World! It's me Stev";
     }
     92% { 
+        content: "Hello World! It's me Steve";
+    }
+    96% { 
         content: "Hello World! It's me Steven";
+    }
+    100% { 
+        content: "Hello World! It's me Steven!";
     }
 }
 
