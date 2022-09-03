@@ -29,7 +29,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
 
 <body>
     <link href="https://fonts.googleapis.com/css?family=DynaPuff" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
     <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
     <nav id="navigational" class="skip">
         <a class="links" href="index.html">Home</a>
@@ -39,57 +40,36 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <a class="links" href="spotify/spotify.html">Spotify Demo</a>
     </nav>
     <div class="skip"></div>
-    <main class="main">
+
+    <main>
         <div class="container">
-            <div >
+            <div class="fillColor">
                 <h1 class="topBorder font no-spacing title">My Projects</h1>
-                <p class="bottomBorder small-font no-spacing">Here are the list of projects I have done before. Some of
+                <p class="small-font no-spacing">Here are the list of projects I have done before. Some of
                     the projects have a demonstration to see how it works!!</p>
             </div>
             <div id="project7" class="fillColor">
-                <div class="">
+                <div class="topBorder">
                     <div class="leftSection">
-                        <h1 class="topBorder font no-spacing">Grid Adventurer</h1>
-                        <p class="small-font no-spacing">First program made with Javascript using &lt;canvas&gt; element
-                            in
-                            HTML as a Arcade game. The player controls a character that adventures throughout a 25x25
-                            grid
-                            to find a red flag. Though there might be something blocking the way but also loot along the
-                            way. The demo of this game can be accessed <a target="_blank"
-                                href="steven_demo.html">here</a>
-                            or on the Game Demo above! <a target="_blank"
+                        <h1 class="font no-spacing">Grid Adventurer</h1>
+                        <p class="tools-used no-spacing">Language: Javascript, HTML, CSS</p>
+                         <p class="small-font no-spacing">My first program made using Javascript with the &lt;canvas&gt; element. The player controls a character that adventures throughout a 25x25
+                            grid in hopes to finding a red flag. However, it is much easier said than done. To get there, the player encounter enemies, obstacles, and dangerous hazards, though there are usable items and loot comes along the
+                            way that assist the player.</p>  
+                        <p class="small-font no-spacing bottom-spacing">Moving, destroying objects, and attacking enemies may be simple but they are limited. Each of those actions will deplete the players resources in which the player has finite amount
+                            of actions before the player reaches their own demise.
+                        </p>  
+                        <p class="small-font no-spacing bottom-spacing">This program uses the Document Object Model (DOM) API to interact with elements in html. In this case, we want to access the &lt;canvas&gt; element from Javascript. Each stage 
+                            contains completely random placements of enemies, objects, and obstacles in which no two stages are exactly the same.
+                        </p>                            
+                        <p class="small-font no-spacing bottom-spacing">The demo of this game can be accessed <a target="_blank"
+                                href="steven_demo.html">here</a> or on the Game Demo above! <a target="_blank"
                                 href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">and
                                 Github Source</a></p>
-                        <ul class="no-spacing">
-                            <li class="small-font bottom-spacing">The player can move with arrow keys and can interact
-                                with
-                                other objects
-                                with arrow keys </li>
-                            <li class="small-font bottom-spacing">Each action consumes energy. Using all energy will
-                                result
-                                in fatigue
-                                which will rapidly consume health</li>
-                            <li class="small-font bottom-spacing">The main goal of each stage is to find the flag, which
-                                proceeds to the
-                                next stage. To help out with that, there are arrow signs that point to (but not exactly)
-                                the
-                                red flag to make it easier</li>
-                            <li class="small-font bottom-spacing">The player can collect gold and chests to gain more
-                                points
-                                during the
-                                stage.</li>
-                            <li class="small-font bottom-spacing">As the player reaches higher stages, there will be
-                                more
-                                obstacles,
-                                hazards, and less likely to find any arrows and supporting items. However, the player
-                                gains
-                                more points at higher stages as a result.</li>
-                            <li class="small-font bottom-spacing">The game is over when the player loses all of their
-                                health
-                            </li>
+ 
                     </div>
                     <div class="rightSection">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/fiijgEZTcBo"
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/fiijgEZTcBo"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -99,9 +79,10 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
 
             </div>
             <div id="project3" class="fillColor">
-                <div>
+                <div class="topBorder">
                     <div class="leftSection">
-                        <h1 class="topBorder font no-spacing">Song recommendations using Spotify API</h1>
+                        <h1 class="font no-spacing">Song recommendations using Spotify API</h1>
+                        <p class="tools-used no-spacing">Language:  Javascript, HTML, and CSS  Libraries: React, Bootstrap, Jquery, and Browser’s local storage</p>
                         <p class="small-font no-spacing">Sometimes a person would repeat listening to the same songs
                             mainly
                             that
@@ -155,139 +136,175 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 </div>
             </div>
             <div id="project5" class="fillColor">
-                <div class="leftSection">
-                    <h1 class="topBorder font no-spacing">Auto Battle Simulator</h1>
-                    <p class="small-font no-spacing">A fighting simulation project that features two sides fighting
-                        against each other except that no user input is involved. All units are automatically controlled
-                        by the game resulting in hands-free gameplay. It does get tiring when the player has to spend
-                        countless hours on trying to achieve a goal in a game, but why do that when the game can be
-                        played all on its own while the player can sit back and do something else. The battle ends when
-                        either side has no units remaining.</p>
-                    <p class="small-font no-spacing bottom-spacing">There are more than 20 different types of units to
-                        choose from, each unit contains an specific ability exclusive to that particular unit. The
-                        abilities are also automatically activated.</p>
-                    <p class="small-font no-spacing bottom-spacing">A computer artificial intelligence controls all
-                        units. By default automatically head to the opposing side walking normally.</p>
-                    <p class="small-font no-spacing bottom-spacing">Units engage with enemy units when it reaches a
-                        specific distance, units that can attack from afar will engage further than units that can hit
-                        up close.</p>
-                </div>
-                <div class="rightSection">
-                    <iframe width="600" height="400" src="https://www.youtube.com/embed/bxLWzU9j9YE"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <h1 class="font no-spacing">Auto Battle Simulator</h1>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="small-font no-spacing">A fighting simulation project that features two sides fighting
+                            against each other except that no user input is involved. All units are automatically
+                            controlled
+                            by the game resulting in hands-free gameplay. It does get tiring when the player has to
+                            spend
+                            countless hours on trying to achieve a goal in a game, but why do that when the game can be
+                            played all on its own while the player can sit back and do something else. The battle ends
+                            when
+                            either side has no units remaining.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are more than 20 different types of units
+                            to
+                            choose from, each unit contains an specific ability exclusive to that particular unit. The
+                            abilities are also automatically activated.</p>
+                        <p class="small-font no-spacing bottom-spacing">A computer artificial intelligence controls all
+                            units. By default automatically head to the opposing side walking normally.</p>
+                        <p class="small-font no-spacing bottom-spacing">Units engage with enemy units when it reaches a
+                            specific distance, units that can attack from afar will engage further than units that can
+                            hit
+                            up close.</p>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/bxLWzU9j9YE"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
             <div id="project5" class="fillColor">
-                <div class="leftSection topBorder">
-                    <p class="small-font no-spacing">There is a first iteration of this project where the units are
-                        shapes with different abilities. This demonstrates a never ending battle where new units
-                        constantly spawn to replace any that were slained. The current iteration of this projects
-                        contains differet kinds of modes to
-                        play so it does not look monotone style of gameplay.</p>
-                </div>
-                <div class="rightSection">
-                    <iframe width="600" height="250" src="https://www.youtube.com/embed/0h9i7NL7ojw"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <p class="small-font no-spacing">There is a first iteration of this project where the units are
+                            shapes with different abilities. This demonstrates a never ending battle where new units
+                            constantly spawn to replace any that were slained. The current iteration of this projects
+                            contains differet kinds of modes to
+                            play so it does not look monotone style of gameplay.</p>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="600" height="250" src="https://www.youtube.com/embed/0h9i7NL7ojw"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
             <div id="project1" class="fillColor">
-                <div class="leftSection">
-                    <h1 class="topBorder font no-spacing">Tower Defense</h1>
-                    <p class="small-font no-spacing">A tower defense game with 20 towers each having specific unique
-                        properties to handle against 18 different enemies in a map. There are enemies can weaken towers
-                        by making them shoot slower, weaker projectiles, as well as not letting them do anything at all.
-                        There are also enemies that help boost enemies speed and even force towers to attack a specific
-                        enemy. For towers, there are some towers that requires manual casting to deal powerful attack as
-                        well as some towers that boost other towers performance. </p>
-                    <p class="small-font no-spacing bottom-spacing">Other than that, normal tower defense rules still
-                        apply. Spend gold to build towers and do not let enemies reach the exit path. Each enemy that
-                        escapes takes off 1 health and the game ends when all health is lost. There isn’t an end to the
-                        game but to get as far as possible.</p>
-                    <p class="small-font no-spacing bottom-spacing">For angled collisions, it uses the Separate axis
-                        theorem to be able to perform these collisions.
-                    <p>
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <h1 class="font no-spacing">Tower Defense</h1>
+                                                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="small-font no-spacing">A tower defense game with 20 towers each having specific unique
+                            properties to handle against 18 different enemies in a map. There are enemies can weaken
+                            towers
+                            by making them shoot slower, weaker projectiles, as well as not letting them do anything at
+                            all.
+                            There are also enemies that help boost enemies speed and even force towers to attack a
+                            specific
+                            enemy. For towers, there are some towers that requires manual casting to deal powerful
+                            attack as
+                            well as some towers that boost other towers performance. </p>
+                        <p class="small-font no-spacing bottom-spacing">Other than that, normal tower defense rules
+                            still
+                            apply. Spend gold to build towers and do not let enemies reach the exit path. Each enemy
+                            that
+                            escapes takes off 1 health and the game ends when all health is lost. There isn’t an end to
+                            the
+                            game but to get as far as possible.</p>
+                        <p class="small-font no-spacing bottom-spacing">For angled collisions, it uses the Separate axis
+                            theorem to be able to perform these collisions.
+                        <p>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/yedSG0wUD04"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
-                <div class="rightSection">
-                    <iframe width="600" height="400" src="https://www.youtube.com/embed/yedSG0wUD04"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-
             </div>
             <div id="project2" class="fillColor">
-               
-                <div class="leftSection">
-                    <h1 class="topBorder font no-spacing">2d Platformer RPG</h1>
-                    <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a 2D
-                        environment similar to a normal 2d platformer would be. There are RPG elements such as Inventory
-                        system where the player can equip items and use potions. A shop NPC that allows the player to
-                        buy and sell items. A quest NPC that assigns the player to do a certain task and if they do
-                        receive a reward.</p>
-                    <p class="small-font no-spacing bottom-spacing">There are many different areas to explore with a
-                        variety of enemies
-                        and even 1 boss enemy. Some of them can apply status effect on the player making them weaker..
-                    </p>
-                    <p class="small-font no-spacing bottom-spacing">Just like a RPG would be, the player can fight the
-                        enemies to
-                        increase their experience and their levels while also collecting any loot the enemies drop
-                        whenever they are beaten. There are 4 different skills to tackle enemies.</p>
-                    <p class="small-font no-spacing bottom-spacing">Additionally, there are breakable boxes that the
-                        player can destroy
-                        in the beginning to get some items that respawns after a certain period of time.</p>
-                    <p class="small-font no-spacing bottom-spacing">The game is saved when the game closes. The file
-                        will be saved in
-                        an XML file.</p>
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <h1 class="font no-spacing">2d Platformer RPG</h1>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a
+                            2D
+                            environment similar to a normal 2d platformer would be. There are RPG elements such as
+                            Inventory
+                            system where the player can equip items and use potions. A shop NPC that allows the player
+                            to
+                            buy and sell items. A quest NPC that assigns the player to do a certain task and if they do
+                            receive a reward.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are many different areas to explore with a
+                            variety of enemies
+                            and even 1 boss enemy. Some of them can apply status effect on the player making them
+                            weaker..
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">Just like a RPG would be, the player can fight
+                            the
+                            enemies to
+                            increase their experience and their levels while also collecting any loot the enemies drop
+                            whenever they are beaten. There are 4 different skills to tackle enemies.</p>
+                        <p class="small-font no-spacing bottom-spacing">Additionally, there are breakable boxes that the
+                            player can destroy
+                            in the beginning to get some items that respawns after a certain period of time.</p>
+                        <p class="small-font no-spacing bottom-spacing">The game is saved when the game closes. The file
+                            will be saved in
+                            an XML file.</p>
 
-                </div>
-                <div class="rightSection">
-                    <iframe width="600" height="400" src="https://www.youtube.com/embed/N8JAszDYEo8"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/N8JAszDYEo8"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
             <div id="project3" class="fillColor">
-                <div class="leftSection">
-                    <h1 class="topBorder font no-spacing">Sudoku</h1>
-                    <p class="small-font no-spacing">A number placement puzzle game where the goal is to fill a
-                        partially completed grid using numbers from 1 to 9 to finish the puzzle. The sole rule of this
-                        puzzle game is that each row, column, and region in a 9x9 grid is to contain all the numbers
-                        from 1 to 9. </p>
-                    <p class="small-font no-spacing bottom-spacing">There are sample puzzles a user can solve as well as
-                        creating brand new sudoku puzzles from scratch by simply pressing generate puzzle.</p>
-                    <ul class="no-spacing">
-                        <li class="small-font bottom-spacing">It uses the modified Backtrack Algorithm to solve any
-                            Sudoku puzzle
-                            (including the hardest sudoku puzzles out there). The modifications to the Backtrack
-                            Algorithm are that first it will eliminate candidate numbers that does not fit in either
-                            row, column, or region in that particular cell. Next it will identify Naked/Hidden Singles
-                            and Intersection Row/Column techniques that will further reduce candidates possible. This
-                            significantly improves the algorithm speed as there will be less possible cases possible in
-                            a particular possible.</li>
-                        <li class="small-font bottom-spacing">The modified Backtrack Algorithm is also used to generate
-                            a brand new
-                            sudoku puzzle that always results in one unique solution.</li>
-                        <li class="small-font bottom-spacing">A built-in hint that uses several human technique logics
-                            that can solve
-                            all but the hardest Sudoku Problems out there.</li>
-                        <li class="small-font bottom-spacing">Detects errors whenever the player inputs a incorrect
-                            number.</li>
-                        <li class="small-font bottom-spacing">Pre-made puzzles that can be loaded from a xml file
-                            containing multiple
-                            demo sudoku puzzles, the user can use arrow keys to switch between puzzles.</li>
-                    </ul>
-                </div>
-                <div class="rightSection">
-                    <iframe width="600" height="400" src="https://www.youtube.com/embed/X8aiZYdBZJQ"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <h1 class="font no-spacing">Sudoku</h1>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics Development Interface (GDI), MSXML APIs</p>
+                        <p class="small-font no-spacing">A number placement puzzle game where the goal is to fill a
+                            partially completed grid using numbers from 1 to 9 to finish the puzzle. The sole rule of
+                            this
+                            puzzle game is that each row, column, and region in a 9x9 grid is to contain all the numbers
+                            from 1 to 9. </p>
+                        <p class="small-font no-spacing bottom-spacing">There are sample puzzles a user can solve as
+                            well as
+                            creating brand new sudoku puzzles from scratch by simply pressing generate puzzle.</p>
+                        <ul class="no-spacing">
+                            <li class="small-font bottom-spacing">It uses the modified Backtrack Algorithm to solve any
+                                Sudoku puzzle
+                                (including the hardest sudoku puzzles out there). The modifications to the Backtrack
+                                Algorithm are that first it will eliminate candidate numbers that does not fit in either
+                                row, column, or region in that particular cell. Next it will identify Naked/Hidden
+                                Singles
+                                and Intersection Row/Column techniques that will further reduce candidates possible.
+                                This
+                                significantly improves the algorithm speed as there will be less possible cases possible
+                                in
+                                a particular possible.</li>
+                            <li class="small-font bottom-spacing">The modified Backtrack Algorithm is also used to
+                                generate
+                                a brand new
+                                sudoku puzzle that always results in one unique solution.</li>
+                            <li class="small-font bottom-spacing">A built-in hint that uses several human technique
+                                logics
+                                that can solve
+                                all but the hardest Sudoku Problems out there.</li>
+                            <li class="small-font bottom-spacing">Detects errors whenever the player inputs a incorrect
+                                number.</li>
+                            <li class="small-font bottom-spacing">Pre-made puzzles that can be loaded from a xml file
+                                containing multiple
+                                demo sudoku puzzles, the user can use arrow keys to switch between puzzles.</li>
+                        </ul>
+                    </div>
+                    <div class="rightSection">
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/X8aiZYdBZJQ"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
@@ -305,15 +322,20 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <div id="project6" class="fillColor">
             <div>
                 <h1 class="topBorder font no-spacing">Guitar Chord Detector</h1>
+                <p class="tools-used no-spacing">Language: C (Java for Android app), Libraries: MSP432 library
                 <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the
                     user plucks a chord from the guitar. The results appears on a Android Application through Bluetooth
                     where it determines which type of chord has been struck.</p>
+                    <p class="small-font no-spacing bottom-spacing">It uses a MSP432 hardware that is capable of doing a Fast Fourier Transform on hardware which signficantly increases it performance as the computation
+                        of the FFT is done in one clock cycle. The usage is to convert 4096 ADC samples into a frequency samples. In the frequency samples, we select the 10 highest peaks from the amplitude of our frequency.</p>
+                        <p class="small-font no-spacing bottom-spacing">We also used K-Nearest Neighbors algorithm which helps us determine how similar our FFT results are compared to other FFT results. This helps us match up with given frequency of known chords easily. </p>
                 <p class="small-font no-spacing">Here is the full project <a target="_blank"
                         href="https://drive.google.com/file/d/1gqJI3oSqBdOhpFgBbAus-Fd3VQVh7LJ6/view?usp=sharing">report</a>
                 </p>
             </div>
             <div>
                 <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
+                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics Development Interface</p>
                 <p class="small-font no-spacing">Made in Hackathon of fall 2018, the goal of the project is to replace
                     quick flashing strobe of lights in certain videos into a static color to protect the viewer from
                     collapsing from a seizure </p>
@@ -323,7 +345,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         href="https://devpost.com/software/seizure-flash-blocker#updates">Github </a></span>
             </div>
             <div>
-                <h1 class="topBorder font no-spacing">System on Chip - Tramel Blaze</h1>
+                <h1 class="topBorder font no-spacing">System on Chip Design - Tramel Blaze</h1>
+                <p class="tools-used no-spacing">Language: Verilog</p>
                 <p class="small-font no-spacing">Tramel Blaze is a modified version of PicoBlaze architecture where it
                     is able to execute 16bits of code instructors. It contains a register, memory, RAM, TSI, and UART
                     modules
@@ -340,6 +363,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
 
             <div>
                 <h1 class="topBorder font no-spacing">Single Cycle Mips Processor</h1>
+                <p class="tools-used no-spacing">Language: Verilog</p>
                 <p class="small-font no-spacing">A Single Cycle Mips Processor is used to execute assembly instructions
                     in one single clock cycle. There are many different instructions that affect registers and values in
                     the memory address in the processor.
@@ -355,6 +379,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
             </div>
             <div>
                 <h1 class="topBorder font no-spacing">Bluetooth Car with IR Transmitter</h1>
+                <p class="tools-used no-spacing">Language: C, Java (for android app), Libraries TM4C123 library </p>
                 <p class="small-font no-spacing">In this project we used Bluetooth through HC-05 on our car to
                     communicate between phone and car while blasting IR signals to perform the communication.
                     We used a terminal to connect our bluetooth between our car and our mobile phone with UART. We used

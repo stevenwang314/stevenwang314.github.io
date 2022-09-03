@@ -1,6 +1,7 @@
 #gameplay {
     border-style: solid;
     border-color: black;
+    transform: scale(100vw, 1.0);
 }
 #image {
 
