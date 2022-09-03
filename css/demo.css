@@ -1,7 +1,7 @@
 #gameplay {
     border-style: solid;
     border-color: black;
-    transform: scale(100vw, 1.0);
+    transform: scale(100vw, 100vh);
 }
 #image {
 
@@ -31,4 +31,10 @@
     color: black;
     margin-top: 0; 
     font-size: 20px;
+}
+
+@media (min-width: 800px) {
+    #gameplay {
+        transform: scale(60vw, 60vh);
+    }
 }

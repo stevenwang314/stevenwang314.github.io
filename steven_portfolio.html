@@ -29,7 +29,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
 
 <body>
     <link href="https://fonts.googleapis.com/css?family=DynaPuff" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">    
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
     <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1011124809104625684/bg.jpg">
     <nav id="navigational" class="skip">
@@ -53,23 +53,32 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                     <div class="leftSection">
                         <h1 class="font no-spacing">Grid Adventurer</h1>
                         <p class="tools-used no-spacing">Language: Javascript, HTML, CSS</p>
-                         <p class="small-font no-spacing">My first program made using Javascript with the &lt;canvas&gt; element. The player controls a character that adventures throughout a 25x25
-                            grid in hopes to finding a red flag. However, it is much easier said than done. To get there, the player encounter enemies, obstacles, and dangerous hazards, though there are usable items and loot comes along the
-                            way that assist the player.</p>  
-                        <p class="small-font no-spacing bottom-spacing">Moving, destroying objects, and attacking enemies may be simple but they are limited. Each of those actions will deplete the players resources in which the player has finite amount
+                        <p class="small-font no-spacing">My first program made using Javascript with the &lt;canvas&gt;
+                            element. The player controls a character that adventures throughout a 25x25
+                            grid in hopes to finding a red flag. However, it is much easier said than done. To get
+                            there, the player encounter enemies, obstacles, and dangerous hazards, though there are
+                            usable items and loot comes along the
+                            way that assist the player.</p>
+                        <p class="small-font no-spacing bottom-spacing">Moving, destroying objects, and attacking
+                            enemies may be simple but they are limited. Each of those actions will deplete the players
+                            resources in which the player has finite amount
                             of actions before the player reaches their own demise.
-                        </p>  
-                        <p class="small-font no-spacing bottom-spacing">This program uses the Document Object Model (DOM) API to interact with elements in html. In this case, we want to access the &lt;canvas&gt; element from Javascript. Each stage 
-                            contains completely random placements of enemies, objects, and obstacles in which no two stages are exactly the same.
-                        </p>                            
-                        <p class="small-font no-spacing bottom-spacing">The demo of this game can be accessed <a target="_blank"
-                                href="steven_demo.html">here</a> or on the Game Demo above! <a target="_blank"
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">This program uses the Document Object Model
+                            (DOM) API to interact with elements in html. In this case, we want to access the
+                            &lt;canvas&gt; element from Javascript. Each stage
+                            contains completely random placements of enemies, objects, and obstacles in which no two
+                            stages are exactly the same.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">The demo of this game can be accessed <a
+                                target="_blank" href="steven_demo.html">here</a> or on the Game Demo above! <a
+                                target="_blank"
                                 href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">and
                                 Github Source</a></p>
- 
+
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/fiijgEZTcBo"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/fiijgEZTcBo"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -82,8 +91,9 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Song recommendations using Spotify API</h1>
-                        <p class="tools-used no-spacing">Language:  Javascript, HTML, and CSS  Libraries: React, Bootstrap, Jquery, and Browser’s local storage</p>
-                        <p class="small-font no-spacing">Sometimes a person would repeat listening to the same songs
+                        <p class="tools-used no-spacing">Language: Javascript, HTML, and CSS Libraries: React,
+                            Bootstrap, Jquery, Spotify API, RESTful API, and Browser’s local storage</p>
+                        <p class="small-font no-spacing bottom-spacing">Sometimes a person would repeat listening to the same songs
                             mainly
                             that
                             the songs they like are far much better than songs that are out of their comfort zone. To
@@ -91,44 +101,26 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             alleviate this issue, a song recommendation based on the last recent songs they played is
                             needed.
                         </p>
-                        <p class="small-font no-spacing">In this program, the goal is to provide a recommended song list
-                            based
-                            on the list of artists or songs that the person likes. The demo of this game can be accessed
+                        <p class="small-font no-spacing bottom-spacing">In this program, the goal is to provide a recommended song list
+                            based on the list of artists or songs that the person likes.</p>      
+                        <p class="small-font no-spacing bottom-spacing">This program interacts with official Spotify API through their
+                            RESTful API by first obtaining a access token through Client Credentials or Authorization Code. It does not require an account to use this, though an
+                            account is helpful since the generated playlist can be added to the player’s new playlist. The person can choose up to 5 tracks/artists combined and the
+                            spotify recommendation will run behind the scenes to provide up to 100 songs that are related to
+                            the  person liking. This can be done multiple times as each unique song adds to a bucket. Once the person is satisfied after finding many songs
+                            in their recommendation list, the person can save it to a brand new playlist to listen to all the recommendation
+                            songs at a instant. No adding one by one, the program does it all at a instant! The person can add as many songs as they want in their
+                            list as each song does somewhat affect the recommendations.</p>
+                        <p class="small-font no-spacing bottom-spacing"> The demo of this game can be accessed
                             <a target="_blank" href="spotify/spotify.html">here</a>
-                            or on the Spotfiy Demo above! <a target="_blank"
-                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">and
+                            or on the Spotfiy Demo above! <a target="_blank" href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">and
                                 Github Source</a>
                         </p>
-                        <ul class="no-spacing">
-                            <li class="small-font bottom-spacing">Made with Javascript, HTML, and CSS followed by
-                                helpful libraries such as
-                                React, Bootstrap, Jquery, and browser’s local storage.</li>
-                            <li class="small-font bottom-spacing">Interacted with official Spotify API through their
-                                RESTful API by first
-                                obtaining a access token through Client Credentials or Authorization Code.</li>
-                            <li class="small-font bottom-spacing">It does not require an account to use this, though an
-                                account is helpful
-                                since the generated playlist can be added to the player’s new playlist.</li>
-                            <li class="small-font ">The person can choose up to 5 tracks/artists combined and the
-                                spotify
-                                recommendation will run behind the scenes to provide up to 100 songs that are related to
-                                the
-                                person liking. This can be done multiple times as each unique song adds to a bucket.
-                            </li>
-                            <li class="small-font bottom-spacing">Once the person is satisfied after finding many songs
-                                in their
-                                recommendation
-                                list, the person can save it to a brand new playlist to listen to all the recommendation
-                                songs
-                                at a instant. No adding one by one, the program does it all at a instant!</li>
-                            <li class="small-font bottom-spacing">The person can add as many songs as they want in their
-                                list as each song
-                                does
-                                somewhat affect the recommendations.</li>
-                        </ul>
+                        <p class="small-font no-spacing bottom-spacing"><b>Bonus:</b> I have used C++ to interact through RESTful API to accessing Spotify API requests. 
+                            To be able to perform RESTful API calls, I used WinHTTP API to do HTTP requests. As C++ does not have a way to parse JSON, I created my own JSON parser to be able to parse the output of JSON obtained from the results. To see a C++ way to interact with spotify API, it is found <a target="_blank" href="https://github.com/stevenwang314/spotify-api-cpp-test">here</a></p>
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/BW5pa66xkBI"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/BW5pa66xkBI"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -139,7 +131,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Auto Battle Simulator</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                            Direct2D, XAudio2, MSXML APIs</p>
                         <p class="small-font no-spacing">A fighting simulation project that features two sides fighting
                             against each other except that no user input is involved. All units are automatically
                             controlled
@@ -161,7 +154,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             up close.</p>
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/bxLWzU9j9YE"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/bxLWzU9j9YE"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -178,7 +171,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             play so it does not look monotone style of gameplay.</p>
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="250" src="https://www.youtube.com/embed/0h9i7NL7ojw"
+                        <iframe class="video" width="600" height="250" src="https://www.youtube.com/embed/0h9i7NL7ojw"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -189,7 +182,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Tower Defense</h1>
-                                                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                            Direct2D, XAudio2, MSXML APIs</p>
                         <p class="small-font no-spacing">A tower defense game with 20 towers each having specific unique
                             properties to handle against 18 different enemies in a map. There are enemies can weaken
                             towers
@@ -212,7 +206,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         <p>
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/yedSG0wUD04"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/yedSG0wUD04"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -223,7 +217,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">2d Platformer RPG</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Direct2D, XAudio2, MSXML APIs</p>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                            Direct2D, XAudio2, MSXML APIs</p>
                         <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a
                             2D
                             environment similar to a normal 2d platformer would be. There are RPG elements such as
@@ -251,7 +246,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
 
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/N8JAszDYEo8"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/N8JAszDYEo8"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -263,7 +258,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Sudoku</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics Development Interface (GDI), MSXML APIs</p>
+                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                            Graphics Development Interface (GDI), MSXML APIs</p>
                         <p class="small-font no-spacing">A number placement puzzle game where the goal is to fill a
                             partially completed grid using numbers from 1 to 9 to finish the puzzle. The sole rule of
                             this
@@ -300,7 +296,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         </ul>
                     </div>
                     <div class="rightSection">
-                        <iframe width="600" height="400" src="https://www.youtube.com/embed/X8aiZYdBZJQ"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/X8aiZYdBZJQ"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -326,16 +322,22 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the
                     user plucks a chord from the guitar. The results appears on a Android Application through Bluetooth
                     where it determines which type of chord has been struck.</p>
-                    <p class="small-font no-spacing bottom-spacing">It uses a MSP432 hardware that is capable of doing a Fast Fourier Transform on hardware which signficantly increases it performance as the computation
-                        of the FFT is done in one clock cycle. The usage is to convert 4096 ADC samples into a frequency samples. In the frequency samples, we select the 10 highest peaks from the amplitude of our frequency.</p>
-                        <p class="small-font no-spacing bottom-spacing">We also used K-Nearest Neighbors algorithm which helps us determine how similar our FFT results are compared to other FFT results. This helps us match up with given frequency of known chords easily. </p>
+                <p class="small-font no-spacing bottom-spacing">It uses a MSP432 hardware that is capable of doing a
+                    Fast Fourier Transform on hardware which signficantly increases it performance as the computation
+                    of the FFT is done in one clock cycle. The usage is to convert 4096 ADC samples into a frequency
+                    samples. In the frequency samples, we select the 10 highest peaks from the amplitude of our
+                    frequency.</p>
+                <p class="small-font no-spacing bottom-spacing">We also used K-Nearest Neighbors algorithm which helps
+                    us determine how similar our FFT results are compared to other FFT results. This helps us match up
+                    with given frequency of known chords easily. </p>
                 <p class="small-font no-spacing">Here is the full project <a target="_blank"
                         href="https://drive.google.com/file/d/1gqJI3oSqBdOhpFgBbAus-Fd3VQVh7LJ6/view?usp=sharing">report</a>
                 </p>
             </div>
             <div>
                 <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
-                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics Development Interface</p>
+                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics
+                    Development Interface</p>
                 <p class="small-font no-spacing">Made in Hackathon of fall 2018, the goal of the project is to replace
                     quick flashing strobe of lights in certain videos into a static color to protect the viewer from
                     collapsing from a seizure </p>
