@@ -4,7 +4,7 @@
 }
 .small-font {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 16px; 
+    font-size: 18px; 
 }
 
 .bottomBorder {
@@ -13,13 +13,15 @@
 }
 .fillColor {
   background-color:rgba(143,183,143,40%);
-  width: 85vw;
-  margin-left: 7.5vw;
+  width: 64vw;
+  margin-left: 18vw;
+  margin-right: 18vw;
   border-bottom: 3px solid black;
 }
 .fillColor#project{
-    background-color: rgba(207, 31, 31, 0.596);
-    border-color: 2.5px solid black;
+    background-color: rgba(218, 124, 124, 0.75);
+    border: 2.5px solid rgba(173, 51, 18, 0.75);
+    margin-top: 33px;
   }
 .no-spacing {
     margin: 0 0;

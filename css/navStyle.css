@@ -35,7 +35,7 @@ html {
     z-index: -1;
     top: 0;
     left: 0;
-    opacity: 40%;
+    opacity: 50%;
 }
 
 @media screen and (max-width: 1000px) {

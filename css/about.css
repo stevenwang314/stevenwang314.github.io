@@ -15,9 +15,7 @@
     border-width: 10px;
     border-radius: 50px;
     /*Center the image, set margins left and right to auto and put display: block.*/
-    width: 15%;
-    height: 15%;
-    margin-left: auto;
+     margin-left: auto;
     margin-right: auto;
     display: block;
 
