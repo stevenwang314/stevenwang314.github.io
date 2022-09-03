@@ -48,6 +48,14 @@
     animation-iteration-count: infinite;
  
 }
+@media screen and (max-width: 1000px) {
+    #animatedText {
+        font-family: "Metal Mania", Arial, Helvetica, sans-serif;
+        margin-left: 15vw;
+        width: 30vw;
+        color: rgb(165, 30, 30);
+    }
+}
 /*
 @keyframes backgroundColor {
     0% {        
