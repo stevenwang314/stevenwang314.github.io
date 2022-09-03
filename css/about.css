@@ -20,9 +20,9 @@
     .about-font {
         font-size: 12px;
     }
+}
+@media screen and (max-width: 800px) {
+    .about-font {
+        font-size: 7px;
     }
-    @media screen and (max-width: 800px) {
-        .about-font {
-            font-size: 7px;
-        }
-    }
+}

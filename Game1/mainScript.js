@@ -1,4 +1,7 @@
 let getCanvas = document.getElementById("gameplay");
+let getCanvas2 = document.getElementById("gameplayHUD");
+let getCanvas3 = document.getElementById("gameplayHUD-right");
+
 let grassImg = document.getElementById("grass");
 let playerImg = document.getElementById("player");
 let img_playerCry = document.getElementById("playerCry");
@@ -30,9 +33,11 @@ let img_goggles = document.getElementById("goggles");
 let img_frog = document.getElementById("frog");
 let img_rat = document.getElementById("rat");
 let img_hawk = document.getElementById("hawk");
+
 var ctx = getCanvas.getContext("2d");
-
-
+//HUD on different displays.
+var ctx2 = getCanvas2.getContext("2d");
+var ctx3 = getCanvas3.getContext("2d");
 //Current Stage (aka Level)
 var currentStage = 1;
 //Player's score.
@@ -47,6 +52,7 @@ let goalPoint = { x: 0, y: 0 };
 let page = { x: 0, y: 0 };
 let client = { x: 0, y: 0 };
 let mousePos = { x: 0, y: 0 };
+let mousePos2 = {x: 0 ,y:0}
 
 let replay_button = { x: 400, y: 496, width: 160, height: 64 };
 let getplayer = new player(playerImg);
@@ -74,8 +80,11 @@ const spikeChance = 2.5;
 const portalChance = 6;
 const enemyChance = 8;
 function setup() {
-    getCanvas.width = boardSize.width * 32 + uiWidth;
+
+    getCanvas.width = boardSize.width * 32;
     getCanvas.height = boardSize.height * 32;
+
+ 
 
 }
 function decideTypeOfRock() {
@@ -212,7 +221,7 @@ function generateMap() {
             do {
                 let getX = randomInteger(0, boardSize.width);
                 let getY = randomInteger(0, boardSize.height);
-                if (terrainArray[getX][getY].unbreakable === false && terrainArray[getX][getY].isPortal() === false && 
+                if (terrainArray[getX][getY].unbreakable === false && terrainArray[getX][getY].isPortal() === false &&
                     Math.abs(getX - first.x) + Math.abs(getY - first.y) > 15) {
                     terrainArray[getX][getY].assignPortal(i);
                     second = { x: getX, y: getY };
@@ -459,7 +468,7 @@ function activateObject(x, y) {
         getplayer.addGoggle(1);
         terrainArray[x][y].removeObjectItem(GOGGLE);
     }
- 
+
     if (terrainArray[x][y].isBag()) {
         addScore(10);
         getplayer.stats.bag += 1;
@@ -558,7 +567,7 @@ function draw() {
                         drawItems(x, y, 0.5);
                     }
                 }
-                 else {
+                else {
                     drawItems(x, y);
                 }
                 if (terrainArray[x][y].isEnemy()) {
@@ -577,12 +586,14 @@ function draw() {
                     if (terrainArray[x][y].getEnemy() === 7)
                         drawImage(x * 32, y * 32, 32, 32, img_hawk, 0);
                 }
-               
+
                 //Show the goal object
                 if (terrainArray[x][y].isGoal === true) {
                     ctx.drawImage(flagImg, x * 32, y * 32, 32, 32,);
                 }
-
+                if (!getplayer.isNearPlayer(x,y)) {
+                    fillRectangle(x * 32, y * 32, 32, 32, "white", 0.25);
+                }
             }
             else { //Obscure the tile if not seen.
                 fillRectangle(x * 32, y * 32, 32, 32, "#46C03F", 0.75);
@@ -591,37 +602,75 @@ function draw() {
             if (interactX == x && interactY == y) {
                 fillRectangle(x * 32, y * 32, 32, 32, "#CBCD32", 0.6);
             }
-
+           
         }
 
     }
 
     getplayer.draw(ctx);
+    //Check we have invisibility.
+    var x = document.getElementById("gameplayHUD");
+    if (window.getComputedStyle(x).visibility != "hidden") {
+        drawGui();
+    } else {
+        drawGui2();
+    }
 
-    fillRectangle(boardSize.width * 32, 0, uiWidth, boardSize.height * 32, "lightgreen");
-    drawText(boardSize.width * 32, 0, "Stage " + currentStage, "Arial", 32, "black");
+    drawGameOverHUD(240, 240, 400, 320);
 
-    fillRectangle(boardSize.width * 32, 64, clamp(getplayer.energy / getplayer.maxEnergy * uiWidth, 0, uiWidth), 32, "yellow");
-    drawRectangle(boardSize.width * 32, 64, uiWidth, 32);
-    drawText(boardSize.width * 32, 64, "Energy " + pad(getplayer.energy) + "/" + getplayer.maxEnergy, "Arial Narrow", 16, "black");
-
-    fillRectangle(boardSize.width * 32, 96, clamp(getplayer.health / getplayer.maxHealth * uiWidth, 0, uiWidth), 32, "red");
-    drawRectangle(boardSize.width * 32, 96, uiWidth, 32, "black");
-    drawText(boardSize.width * 32, 96, "Health " + pad(getplayer.health) + "/" + getplayer.maxHealth, "Arial Narrow", 16, "black");
-    if (getplayer.ghost > 0)
-        drawText(boardSize.width * 32, 128, "Truesight: " + pad(getplayer.ghost) + " turns.", "Arial Narrow", 16, "black");
-    drawText(boardSize.width * 32, 160, "Score: " + score.toLocaleString("en-US"), "DynaPuff", 16, "black");
-    drawText(boardSize.width * 32, 224, "Bomb: " + getplayer.bag.bomb.toLocaleString("en-US"), "DynaPuff", 20, "black");
-    drawText(boardSize.width * 32, 256, "Firecracker: " + getplayer.bag.firecracker.toLocaleString("en-US"), "DynaPuff", 20, "black");
-    drawText(boardSize.width * 32, 288, "Drone: " + getplayer.bag.drone.toLocaleString("en-US"), "DynaPuff", 20, "black");
-    drawText(boardSize.width * 32, 320, "Lightning: " + getplayer.bag.lightning.toLocaleString("en-US"), "DynaPuff", 20, "black");
-    drawText(boardSize.width * 32, 352, "Goggle: " + getplayer.bag.goggle.toLocaleString("en-US"), "DynaPuff", 20, "black");
-    if (castMode.hasOwnProperty('usingBomb')) {
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Bomb Location", "Trebuchet", 12, "black");
+}
+function drawGui() {
+      //Fill the background
+      fillRectangle2(ctx2,0, 0, 800, 96, "lightgreen");
+      //Draw stage
+      drawText2(ctx2,0, 0, "Stage " + currentStage, "Arial", 24, "black");
+      //Draw Energy
+      fillRectangle2(ctx2,0, 32, clamp(getplayer.energy / getplayer.maxEnergy * 160, 0, 160), 32, "blue", 0.6);
+      drawRectangle2(ctx2,0, 32, 160, 32);
+      drawText2(ctx2,0, 32, "Energy " + pad(getplayer.energy) + "/" + getplayer.maxEnergy, "Arial Narrow", 16, "black");
+      //Draw health bar
+      fillRectangle2(ctx2,0, 64, clamp(getplayer.health / getplayer.maxHealth * 160, 0, 160), 32, "red", 0.6);
+      drawRectangle2(ctx2,0, 64, 160, 32, "black");
+      drawText2(ctx2,0, 64, "Health " + pad(getplayer.health) + "/" + getplayer.maxHealth, "Arial Narrow", 16, "black");
+  
+      if (getplayer.ghost > 0) {
+          drawImage2(ctx2,420, 0,32,32,img_goggles,0);
+           drawText2(ctx2,452, 0, getplayer.ghost + " turns", "Arial Narrow", 16, "black");
+      }
+      //Draw score
+      drawText2(ctx2,160, 0, "Score: " + score.toLocaleString("en-US"), "DynaPuff", 24, "black");
+      //Draw bomb count
+      if (getplayer.bag.bomb > 0) {
+          drawImage2(ctx2,160, 32, 32, 32, img_bomb, 0);
+          drawText2(ctx2,192, 32, "x" + getplayer.bag.bomb.toLocaleString("en-US"), "DynaPuff", 18, "black");
+      }
+      //Draw firecracker
+      if (getplayer.bag.firecracker > 0) {
+          drawImage2(ctx2,224, 32, 32, 32, img_firecracker, 0);
+          drawText2(ctx2,256, 32, "x" + getplayer.bag.firecracker.toLocaleString("en-US"), "DynaPuff", 18, "black");
+      }
+      //Draw drone
+      if (getplayer.bag.drone > 0) {
+          drawImage2(ctx2,288, 32, 32, 32, img_drone, 0);
+          drawText2(ctx2,320, 32, "x" + getplayer.bag.drone.toLocaleString("en-US"), "DynaPuff", 18, "black");
+      }
+      //Draw lightning
+      if (getplayer.bag.lightning > 0) {
+          drawImage2(ctx2,352, 32, 32, 32, img_lightning, 0);
+          drawText2(ctx2,384, 32, "x" + getplayer.bag.lightning.toLocaleString("en-US"), "DynaPuff", 18, "black");
+      }
+      //Draw goggles
+      if (getplayer.bag.goggle > 0) {
+          drawImage2(ctx2,416, 32, 32, 32, img_goggles, 0);
+          drawText2(ctx2,448, 32, "x" + getplayer.bag.goggle.toLocaleString("en-US"), "DynaPuff", 18, "black");
+      }
+  
+      if (castMode.hasOwnProperty('usingBomb')) {
+        fillRectangle2(ctx2,160, 32, 64, 32, "yellow", 0.5);
         drawImage(castMode["usingBomb"].x * 32, castMode["usingBomb"].y * 32, 32, 32, img_bomb, 0, 0.4);
     }
     else if (castMode.hasOwnProperty('usingFirecracker')) {
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Firecracker direction", "Trebuchet", 12, "black");
+        fillRectangle2(ctx2,224, 32, 64, 32, "yellow", 0.5);
         //Display firecracker direction
         if (castMode.usingFirecracker.direction === "vertical") {
             for (let i = 0; i < boardSize.height; i++) {
@@ -637,20 +686,95 @@ function draw() {
     }
 
     else if (castMode.hasOwnProperty('usingDrone')) {
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Choose Drone Location", "Trebuchet", 12, "black");
+        fillRectangle2(ctx2,288, 32, 64, 32, "yellow", 0.5);
         drawImage(castMode["usingDrone"].x * 32, castMode["usingDrone"].y * 32, 32, 32, img_drone, 0, 0.4);
     }
     else if (castMode.hasOwnProperty('usingLightning')) {
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Press Enter/Click anywhere", "Trebuchet", 12, "black");
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32 + 12, "to cast Lightning", "Trebuchet", 12, "black");
+        fillRectangle2(ctx2,352, 32, 64, 32, "yellow", 0.5);
     }
     else if (castMode.hasOwnProperty('usingGoggle')) {
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32, "Press Enter/Click anywhere", "Trebuchet", 12, "black");
-        drawText(boardSize.width * 32, 32 * boardSize.height - 32 + 12, "to cast Goggles", "Trebuchet", 12, "black");
-
+        fillRectangle2(ctx2,416, 32, 64, 32, "yellow", 0.5);
     }
-    drawGameOverHUD(240, 240, 400, 320);
+}
+function drawGui2() {
+    //Fill the background
+    fillRectangle2(ctx3, 0, 0, 192, 800, "lightgreen");
+    //Draw stage
+    drawText2(ctx3, 0, 0, "Stage " + currentStage, "Arial", 24, "black");
+    //Draw Energy
+    fillRectangle2(ctx3, 0, 32, clamp(getplayer.energy / getplayer.maxEnergy * 160, 0, 160), 32, "blue", 0.6);
+    drawRectangle2(ctx3, 0, 32, 160, 32);
+    drawText2(ctx3, 0, 32, "Energy " + pad(getplayer.energy) + "/" + getplayer.maxEnergy, "Arial Narrow", 16, "black");
+    //Draw health bar
+    fillRectangle2(ctx3,0, 64, clamp(getplayer.health / getplayer.maxHealth * 160, 0, 160), 32, "red", 0.6);
+    drawRectangle2(ctx3,0, 64, 160, 32, "black");
+    drawText2(ctx3,0, 64, "Health " + pad(getplayer.health) + "/" + getplayer.maxHealth, "Arial Narrow", 16, "black");
 
+    if (getplayer.ghost > 0) {
+        drawImage2(ctx3, 0, 96 ,32,32,img_goggles,0);
+         drawText2(ctx3, 32, 96, getplayer.ghost + " turns", "Arial Narrow", 16, "black");
+    }
+    //Draw score
+    drawText2(ctx3, 0, 128, "Score: " + score.toLocaleString("en-US"), "DynaPuff", 24, "black");
+    //Draw bomb count
+    if (getplayer.bag.bomb > 0) {
+        drawImage2(ctx3, 0, 200, 32, 32, img_bomb, 0);
+        drawText2(ctx3, 32, 200, "x" + getplayer.bag.bomb.toLocaleString("en-US"), "DynaPuff", 18, "black");
+    }
+    
+    //Draw firecracker
+    if (getplayer.bag.firecracker > 0) {
+        drawImage2(ctx3, 64, 200, 32, 32, img_firecracker, 0);
+        drawText2(ctx3, 96, 200, "x" + getplayer.bag.firecracker.toLocaleString("en-US"), "DynaPuff", 18, "black");
+    }
+    
+    //Draw drone
+    if (getplayer.bag.drone > 0) {
+        drawImage2(ctx3,128, 200, 32, 32, img_drone, 0);
+        drawText2(ctx3,160, 200, "x" + getplayer.bag.drone.toLocaleString("en-US"), "DynaPuff", 18, "black");
+    }
+    
+    //Draw lightning
+    if (getplayer.bag.lightning > 0) {
+        drawImage2(ctx3,0, 232, 32, 32, img_lightning, 0);
+        drawText2(ctx3,32, 232, "x" + getplayer.bag.lightning.toLocaleString("en-US"), "DynaPuff", 18, "black");
+    }
+    //Draw goggles
+    if (getplayer.bag.goggle > 0) {
+        drawImage2(ctx3,64, 232, 32, 32, img_goggles, 0);
+        drawText2(ctx3, 96, 232, "x" + getplayer.bag.goggle.toLocaleString("en-US"), "DynaPuff", 18, "black");
+    }
+
+    if (castMode.hasOwnProperty('usingBomb')) {
+        fillRectangle2(ctx3, 0, 200, 64, 32, "yellow", 0.5);
+        drawImage(castMode["usingBomb"].x * 32, castMode["usingBomb"].y * 32, 32, 32, img_bomb, 0, 0.4);
+    }
+    else if (castMode.hasOwnProperty('usingFirecracker')) {
+        fillRectangle2(ctx3, 64, 200, 64, 32, "yellow", 0.5);
+        //Display firecracker direction
+        if (castMode.usingFirecracker.direction === "vertical") {
+            for (let i = 0; i < boardSize.height; i++) {
+                drawImage(getplayer.x * 32, i * 32, 32, 32, img_firecracker, 0, 0.4);
+            }
+
+
+        } else if (castMode.usingFirecracker.direction === "horizontal") {
+            for (let i = 0; i < boardSize.width; i++) {
+                drawImage(i * 32, getplayer.y * 32, 32, 32, img_firecracker, 0, 0.4);
+            }
+        }
+    }
+
+    else if (castMode.hasOwnProperty('usingDrone')) {
+        fillRectangle2(ctx3, 128, 200, 64, 32, "yellow", 0.5);
+        drawImage(castMode["usingDrone"].x * 32, castMode["usingDrone"].y * 32, 32, 32, img_drone, 0, 0.4);
+    }
+    else if (castMode.hasOwnProperty('usingLightning')) {
+        fillRectangle2(ctx3,0, 232, 64, 32, "yellow", 0.5);
+    }
+    else if (castMode.hasOwnProperty('usingGoggle')) {
+        fillRectangle2(ctx3,64, 232, 64, 32, "yellow", 0.5);
+    }
 }
 function drawItems(x, y, opacity = 1.0) {
     if (terrainArray[x][y].directional.enabled === true) {
@@ -1115,9 +1239,9 @@ function leftClickEvent() {
             activateGoggles();
         }
 
-        let r = { x: boardSize.width * 32, y: 224, width: uiWidth, height: 32 };
+        let r = { x: 160, y: 32, width: 64, height: 32 };
 
-        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.bomb > 0)
                     castMode["usingBomb"] = { x: getplayer.x, y: getplayer.y };
@@ -1125,8 +1249,8 @@ function leftClickEvent() {
                 delete castMode.usingBomb;
             }
         }
-        r = { x: boardSize.width * 32, y: 256, width: uiWidth, height: 32 };
-        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        r = { x: 224, y: 32, width: 64, height: 32 };
+        if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.firecracker > 0)
                     castMode["usingFirecracker"] = { direction: "vertical" };
@@ -1134,8 +1258,8 @@ function leftClickEvent() {
                 delete castMode.usingFirecracker;
             }
         }
-        r = { x: boardSize.width * 32, y: 288, width: uiWidth, height: 32 };
-        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        r = { x: 288, y: 32, width: 64, height: 32 };
+        if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.drone > 0)
                     castMode["usingDrone"] = { x: getplayer.x, y: getplayer.y };
@@ -1143,8 +1267,8 @@ function leftClickEvent() {
                 delete castMode.usingDrone;
             }
         }
-        r = { x: boardSize.width * 32, y: 320, width: uiWidth, height: 32 };
-        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        r = { x: 352, y: 32, width: 64, height: 32 };
+        if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.lightning > 0)
                     castMode["usingLightning"] = { x: getplayer.x, y: getplayer.y };
@@ -1152,8 +1276,8 @@ function leftClickEvent() {
                 delete castMode.usingLightning;
             }
         }
-        r = { x: boardSize.width * 32, y: 352, width: uiWidth, height: 32 };
-        if (mousePos.x >= r.x && mousePos.x <= r.x + r.width && mousePos.y >= r.y && mousePos.y <= r.y + r.height) {
+        r = { x: 416, y: 32, width: 64, height: 32 };
+        if (mousePos2.x >= r.x && mousePos2.x <= r.x + r.width && mousePos2.y >= r.y && mousePos2.y <= r.y + r.height) {
             if (castMode.hasOwnProperty('usingBomb') == false && castMode.hasOwnProperty('usingFirecracker') == false && castMode.hasOwnProperty('usingLightning') == false && castMode.hasOwnProperty('usingGoggle') == false && castMode.hasOwnProperty('usingDrone') == false) {
                 if (getplayer.bag.goggle > 0)
                     castMode["usingGoggle"] = { x: getplayer.x, y: getplayer.y };
@@ -1184,10 +1308,12 @@ document.addEventListener('mousemove', function (event) {
     client.x = event.clientX;
     client.y = event.clientY;
     mousePos = getMousePos(getCanvas, event);
-
+    mousePos2 = getMousePos(getCanvas2, event);
+    //console.log(innerWidth + " " + innerHeight);
 });
 function Input(event) {
     mousePos = getMousePos(getCanvas, event);
+    mousePos2 = getMousePos(getCanvas2, event);
     if (event.button == 0) {
         leftClickEvent();
     }

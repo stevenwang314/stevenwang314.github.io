@@ -1,6 +1,3 @@
-
-
-
 const drawRectangle = (x,y,width,height,color, size) => {
     ctx.fillStyle = color;
     ctx.lineWidth=  size;
@@ -31,3 +28,34 @@ const fillRectangle = (x,y,width,height,color, opacity= 1) => {
    ctx.globalAlpha = 1;
    ctx.resetTransform();
  };
+
+ const drawRectangle2 = (canvas, x,y,width,height,color, size) => {
+   canvas.fillStyle = color;
+   canvas.lineWidth=  size;
+   canvas.strokeRect(x,y,width,height);
+};
+
+const fillRectangle2 = (canvas, x,y,width,height,color, opacity= 1) => {
+   canvas.fillStyle = color;
+   canvas.globalAlpha = opacity;
+   canvas.fillRect(x,y,width,height);
+   canvas.globalAlpha = 1;
+};
+
+const drawText2 = (canvas, x,y,text,font, fontSize, color) => {
+   canvas.font = fontSize + "px "+ font;
+   canvas.fillStyle = color;
+   canvas.translate(0,fontSize);  
+   canvas.fillText(text, x,y);
+   canvas.translate(0,-fontSize); 
+
+};
+const drawImage2 = (canvas, x,y,width,height,img,rotation,opacity = 1) => {
+  canvas.translate(x + width/2, y + height/2);
+  canvas.rotate(rotation * Math.PI/180);
+  canvas.translate(-width/2, -height/2);
+  canvas.globalAlpha = opacity;
+  canvas.drawImage(img, 0, 0, width, height );
+  canvas.globalAlpha = 1;
+  canvas.resetTransform();
+};

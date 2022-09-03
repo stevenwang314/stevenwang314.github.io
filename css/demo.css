@@ -1,13 +1,29 @@
 #gameplay {
     border-style: solid;
     border-color: black;
-    transform: scale(100vw, 100vh);
-    position: relative;
+}
+#gameplayHUD {
+    border-style: solid;
+    border-color: black;
+   display: none;
+   visibility: hidden;
+}
+#gameplayHUD-right {
+    border-style: solid;
+    border-color: black;
+}
+#gameplay-div {
+    display:inline;
+}
+
+#gameplayHUD-right-div {
+    display:inline;
 }
 #image {
 
     opacity: 75%;
 }
+
 #demoTitle {
     font-style: bold;
     font-size: 36px;
@@ -15,30 +31,73 @@
     font-family: 'DynaPuff', sans-serif;
     color: lightsalmon;
 }
+
 #demoInfoHeader {
-    font-family:"Ubuntu", serif;
+    font-family: "Ubuntu", serif;
     color: lightcoral;
     font-size: 24px;
     text-decoration: underline;
-    margin-bottom: 0;  
+    margin-bottom: 0;
     margin-top: 3px;
 }
+
+#tutorial {
+    background-color: rgba(255, 0, 0, 0.447);
+    border: 2.5px solid black;
+}
+
 #demoInfoList {
     margin-top: 0;
 }
+
 #demoInfo {
     font-style: italic;
-    font-family:"Ubuntu", serif;
+    font-family: "Ubuntu", serif;
     color: black;
-    margin-top: 0; 
+    margin-top: 0;
     font-size: 20px;
 }
 
 @media screen and (max-width: 1000px) {
     #gameplay {
-        transform: scale(0.5,0.5);
-        transform-origin: 0 0;
-        height: 500px;
-        margin-bottom: -200px;
+        transform: scale(0.4, 0.4);
+        transform-origin: 0px 0px;
+        display: block;
+    }
+    #gameplayHUD {
+        transform: scale(0.4, 0.4) ;
+        transform-origin: 0px 0px;
+        display: block;
+        visibility:visible;
+    }
+    #gameplayHUD-right {
+        display: none;
+        visibility: hidden;
+    }
+    #gameplay-div {
+        display: block;
+        width: 320px;
+        height: 320px;
+    }
+    #gameplayHUD-div {
+        display: block;
+        width: 320px;
+        height: 38.4px;
+    }
+
+    #gameplayHUD-right-div {
+        display: none;
+        visibility: hidden;
+    }
+    #demoInfo {
+        font-size: 11px;
+    }
+
+    #demoTitle {
+        font-size: 18px;
+    }
+
+    #demoInfoHeader {
+        font-size: 16px;
     }
 }

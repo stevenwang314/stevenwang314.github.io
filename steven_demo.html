@@ -63,10 +63,19 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
             <a class="links" href="steven_demo.html">Game Demo</a>
             <a class="links" href="spotify/spotify.html">Spotify Demo</a>
         </nav>
-          <div class="skip"></div>
-
-
-        <canvas id="gameplay" width="800" height="640">Your browser does not support the HTML5 canvas tag.</canvas>
+        <p id="demoTitle">Grid Adventurer</p>
+        <div id="gameplayHUD-div">
+            <canvas id="gameplayHUD" width="800" height="96">Your browser does not support the HTML5 canvas tag.</canvas>
+         
+        </div>
+        <div id="gameplay-div">
+            <canvas id="gameplay" width="800" height="800">Your browser does not support the HTML5 canvas tag.</canvas>
+    
+        </div> 
+        <div id="gameplayHUD-right-div">
+            <canvas id="gameplayHUD-right" width="192" height="800">Your browser does not support the HTML5 canvas tag.</canvas>
+         
+        </div>
         <!--Script is called last, elements above must be instantiated first then script element.-->
         <script src="Game1/helpfulFunc.js"></script>
         <script src="Game1/terrain.js"></script>
@@ -76,7 +85,7 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
         <script src="Game1/mainScript.js"></script>
         
         <div id="tutorial">
-            <p id="demoTitle">Grid Adventurer</p>
+        
             <p  id="demoTitle">About</p>
             <p id="demoInfo">Grid Adventurer is an arcade game made with pure Javascript followed by HTML and CSS. The goal of this game is for the player to explore a 25x25 grid area and find the red flag in each stage within a limited amount of energy and health. You also can collect loot such as money to get more points.</p>
             <p id="demoInfo">Each action consumes stamina such as moving, breaking obstacles, hunting enemies. Running out of stamina will use your health which depletes much faster. Hazards will harm the player reducing health directly. Enemies will attack and deplete health.</p>
