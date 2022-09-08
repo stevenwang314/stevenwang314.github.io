@@ -210,26 +210,40 @@ class SpotifySongAnalysis extends React.Component {
         }
         this.trackCount = this.props.songData.filter(c => { return c.type == "track" }).length;
         if (this.trackCount > 0) {
-            let output = this.props.songData.map(c => { if (c.type == "track") return c.id; }).join(",");
-            let getData = await fetch('https://api.spotify.com/v1/audio-features?ids=' + output, {
-                method: 'GET',
-                headers: {
-                    "Authorization": localStorage.getItem("spotify_token_type") + " " + localStorage.getItem("spotify_access_token"),
-                    "Content-Type": "application/json"
-                }
-            })
-                .then((response) => {
-                    response.json().then(
-                        (json) => {
+            let getList = [];
+            for (let i = 0; i < Math.ceil(this.trackCount / 100); i++) {
 
-                            if (json.hasOwnProperty("error") === false) {
-                                this.parseSongAnalysisList(json);
-                            } else {
-                                processError(json.error);
+                let data = this.props.songData.slice(i* 100,i * 100 + 100);
+                let output = data.map(c => { if (c.type == "track") return c.id; }).join(",");
+                let getData = await fetch('https://api.spotify.com/v1/audio-features?ids=' + output, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization": localStorage.getItem("spotify_token_type") + " " + localStorage.getItem("spotify_access_token"),
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then((response) => {
+                        response.json().then(
+                            (json) => {
+
+                                if (json.hasOwnProperty("error") === false) {
+                                 getList.audio_features = [].concat(getList.audio_features, json.audio_features);
+                                
+      
+                                 if (getList.audio_features.length > 0 && i + 1 ==  Math.ceil(this.trackCount / 100)) {
+                                    console.log(getList);
+                                    this.parseSongAnalysisList(getList);
+                                 }
+                                } else {
+                                    processError(json.error);
+                                }
                             }
-                        }
-                    );
-                });
+                        );
+                    });
+        
+                console.log(i);
+            }
+            await sleep(500);
         } else {
             this.getSongRecommendations();
         }
@@ -287,8 +301,8 @@ class SpotifySongAnalysis extends React.Component {
     }
     async addItemsToPlaylist(json) {
         if (localStorage.getItem("spotify_auth_type") === "authorization_code") {
-            let ignore = this.props.ignoreData.map(c=>c.id);
-            let songRecommendData = this.songsAddedAsRecommendations.filter(c=>ignore.includes(c.id) === false).map(c => c.uri);
+            let ignore = this.props.ignoreData.map(c => c.id);
+            let songRecommendData = this.songsAddedAsRecommendations.filter(c => ignore.includes(c.id) === false).map(c => c.uri);
             for (let i = 0; i < Math.ceil(this.state.songsFound / 100); i++) {
 
 
@@ -324,35 +338,35 @@ class SpotifySongAnalysis extends React.Component {
     }
     changeDisplay(index) {
         this.setState({
-          listDisplayMode: index
+            listDisplayMode: index
         })
     }
     render() {
         //Draw our favorites and ignore list.
-        let drawList =   (this.state.listDisplayMode === 0)  ? 
-        (this.props.songData.map((c, index) => {
-           
+        let drawList = (this.state.listDisplayMode === 0) ?
+            (this.props.songData.map((c, index) => {
+
                 return (
                     <li key={"analysis" + index} className={"general-font list-group-item" + (c.selected === true ? " list-group-item-info " : (c.type == "track" ? " list-group-item-warning " : (c.type == "album" ? " list-group-item-info " : " list-group-item-secondary ")))}>
                         <button onClick={() => this.props.remove(c)}>X</button>
                         <button onClick={() => this.props.markSelectedSong(index)}>❤</button>
-                        {c.type + " - (" + c.name + ") - id: " + c.id}
+                        {index + ") " + c.type + " - (" + c.name + ") - id: " + c.id}
                     </li>
 
                 )
             }
-        )) : 
-         (this.props.ignoreData.map((c, index) => {
-           
-            return (
-                <li key={"analysis" + index} className={"general-font list-group-item" + (c.selected === true ? " list-group-item-info " : (c.type == "track" ? " list-group-item-warning " : (c.type == "album" ? " list-group-item-info " : " list-group-item-secondary ")))}>
-                    <button onClick={() => this.props.remove2(c)}>X</button>
-                    {c.type + " - (" + c.name + ") - id: " + c.id}
-                </li>
+            )) :
+            (this.props.ignoreData.map((c, index) => {
 
-            )
-        }
-    ));
+                return (
+                    <li key={"analysis" + index} className={"general-font list-group-item" + (c.selected === true ? " list-group-item-info " : (c.type == "track" ? " list-group-item-warning " : (c.type == "album" ? " list-group-item-info " : " list-group-item-secondary ")))}>
+                        <button onClick={() => this.props.remove2(c)}>X</button>
+                        {index + ") " + c.type + " - (" + c.name + ") - id: " + c.id}
+                    </li>
+
+                )
+            }
+            ));
         //draw our list of songs generated from spotify recommendations.
         let drawAnalyzeList = "";
         let categories = null;
@@ -378,19 +392,20 @@ class SpotifySongAnalysis extends React.Component {
                             </tr>
                         )}
                 </tbody>;
-            categories = ["Song Name", "Artist", "Album", "Duration", "Id", "Popularity", "Preview","Options"].map(c => <th key={c} scope="col">{c}</th>);
+            categories = ["Song Name", "Artist", "Album", "Duration", "Id", "Popularity", "Preview", "Options"].map(c => <th key={c} scope="col">{c}</th>);
         }
         return (
             <div>
-             
+
                 <div id="songAnalysisBackground">
-         
-                    <h1 className="no-lineBreak">Song Recommendations</h1>
+
+                    <h1 >Song Recommendations</h1>
                     <button id="btn-recommend" onClick={this.analyzeSongs}>Recommend me my Song!</button>
-                    <button id="btn-save" onClick={() => this.props.save({"favorite" : this.props.songData,"ignore" : this.props.ignoreData})}>Save Queue</button>
+                    <button id="btn-save" onClick={() => this.props.save({ "favorite": this.props.songData, "ignore": this.props.ignoreData })}>Save Queue</button>
                     <button id="btn-load" onClick={this.props.load}>Load Queue</button>
-                    <input id="radio-fav" type="radio" name="list1" defaultChecked onClick={() => this.changeDisplay(0)}/><span>Favorites</span>
-                    <input id="radio-ignore" className="pushLeft" name="list1" type="radio"onClick={() => this.changeDisplay(1)} /><span>Ignore</span>
+                    <button id="btn-load" onClick={this.props.clear}>Clear Queue</button>
+                    <input id="radio-fav" type="radio" name="list1" defaultChecked onClick={() => this.changeDisplay(0)} /><span>Favorites</span>
+                    <input id="radio-ignore" className="pushLeft" name="list1" type="radio" onClick={() => this.changeDisplay(1)} /><span>Ignore</span>
                     <div id="song-analysis">
 
                         <ul className="list-group ">
@@ -419,14 +434,10 @@ class SpotifySongAnalysis extends React.Component {
                     <input className="pushLeft" id="input-playlist" type="input" placeholder="playlist id" ></input>
                     <span className="pushLeft" id="span-playlist">Minimum Popularity: </span>
                     <input className="pushLeft" id="slider-playlist" type="number" min="0" max="100" defaultValue="50" />
-                    <button className="pushLeft" id="btn-add-recommend-playlist" onClick={this.addRecommendedSongstoList}> {"Add recent to song list (" + (this.state.songRecommend.hasOwnProperty("tracks") ? this.state.songRecommend.tracks.length : 0) +")"}</button>
-                    <button className="pushLeft" id="btn-clear-playlist" onClick={this.resetRecommendations}> {"Clear all songs: (" + this.songsAddedAsRecommendations.length +")"}</button>
+                    <button className="pushLeft" id="btn-add-recommend-playlist" onClick={this.addRecommendedSongstoList}> {"Add recent to song list (" + (this.state.songRecommend.hasOwnProperty("tracks") ? this.state.songRecommend.tracks.length : 0) + ")"}</button>
+                    <button className="pushLeft" id="btn-clear-playlist" onClick={this.resetRecommendations}> {"Clear all songs: (" + this.songsAddedAsRecommendations.length + ")"}</button>
                 </div>
             </div>
         );
     }
 }
-
-/*
-
-*/

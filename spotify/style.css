@@ -1,10 +1,7 @@
 #app-credentials {
     background-color: rgba(29, 115, 196, 0.6);
     width: 75%;
-}
-
-#app-credentials > input[type=password] {
-    width: 50%;
+    margin-bottom: 100px;
 }
 
 #artistInformation {
@@ -103,10 +100,12 @@
     font-family: DynaPuff,Verdana;
 }
 
-#btn-recommend, #btn-save, #btn-load ,#button-get-profile, .space-left {
+#btn-save, #btn-load ,#button-get-profile, .space-left {
     margin-left: 25px;
 }
-
+#btn-recommend, #btn-save, #btn-load {
+    font-size: 16px;
+}
 #authCode {
     width: 75%;
 }
@@ -150,4 +149,14 @@
 #input-playlist ,#span-playlist, #slider-playlist, #btn-add-recommend-playlist,#btn-clear-playlist {
     font-family: Raleway, Arial;
     font-size: 18px;
+}
+
+#image {
+    position: fixed;
+    opacity: 0.5;
+    z-index: -2;
+}
+
+#bottom-indent {
+    margin-bottom: 50px;
 }

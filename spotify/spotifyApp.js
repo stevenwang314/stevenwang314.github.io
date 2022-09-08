@@ -6,7 +6,6 @@ class SpotifyApp extends React.Component {
         this.state = {
             queuedSongs: [],
             ignoredSongs: [],
-            selectedTab: 0
         };
         this.addQueuedSong = this.addQueuedSong.bind(this);
         this.markSong = this.markSong.bind(this);
@@ -19,7 +18,6 @@ class SpotifyApp extends React.Component {
         this.removeIgnoredSong = this.removeIgnoredSong.bind(this);
         this.saveQueue = this.saveQueue.bind(this);
         this.loadQueue = this.loadQueue.bind(this);
-        this.switchTab = this.switchTab.bind(this);
         this.extractArtist = this.extractArtist.bind(this);
     }
     extractArtist() {
@@ -45,33 +43,23 @@ class SpotifyApp extends React.Component {
     render() {
         return (
             <div id="spotifyApp">
-                {/*Tab for the main bar*/}
-                <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <a onClick={() => this.switchTab(0)} className={"nav-link" + (this.state.selectedTab == 0 ? " active " : "")} aria-current="page" href="#">Search</a>
-                    </li>
-                    <li className="nav-item">
-                        <a onClick={() => this.switchTab(1)} className={"nav-link" + (this.state.selectedTab == 1 ? " active " : "")} href="#">Profile</a>
-                    </li>
-                </ul>
-                { }
-                {this.state.selectedTab == 0 && <SpotifySearch addIgnoredSong={this.modifyIgnoredSong} addQueuedSong={this.modifyQueuedSong} ignoredData={this.state.ignoredSongs} songData={this.state.queuedSongs} />}
-                {this.state.selectedTab == 1 && <SpotifyProfile loadPlaylist={this.loadQueuedSong} />}
+                {/*Profiles*/ }
+                <SpotifyProfile loadPlaylist={this.loadQueuedSong}/>
+                <div id="bottom-indent"/>
+                <SpotifySearch addIgnoredSong={this.modifyIgnoredSong} addQueuedSong={this.modifyQueuedSong} ignoredData={this.state.ignoredSongs} songData={this.state.queuedSongs} />
+
                 <button id="extractArtist" onClick={this.extractArtist}>Extract Artist from Queue</button>
-                <SpotifySongAnalysis addIgnoredSong={this.modifyIgnoredSong} addQueuedSong={this.modifyQueuedSong} songData={this.state.queuedSongs} ignoreData={this.state.ignoredSongs} markSelectedSong={this.markSong} remove={this.removeQueuedSong} remove2={this.removeIgnoredSong} save={this.saveQueue} load={this.loadQueue} />
+                <div id="bottom-indent"/>
+                <SpotifySongAnalysis addIgnoredSong={this.modifyIgnoredSong} addQueuedSong={this.modifyQueuedSong} songData={this.state.queuedSongs} ignoreData={this.state.ignoredSongs} markSelectedSong={this.markSong} remove={this.removeQueuedSong} remove2={this.removeIgnoredSong} save={this.saveQueue} load={this.loadQueue} clear={this.cleanQueuedSong} />
             </div>
         );
     }
-    switchTab(index) {
-        this.setState({
-            selectedTab: index
-        });
-    }
+
     loadQueuedSong(json) {
         let max = json.tracks.total;
         let market = "US";
         let limit = 50;
-        this.cleanQueuedSong();
+      
         for (let i = 0; i < Math.ceil(max / limit); i++) {
             let offset = 50 * i;
             let getData = fetch(json.tracks.href + "?limit=" + limit + "&market=" + market + "&offset=" + offset, {
@@ -103,7 +91,8 @@ class SpotifyApp extends React.Component {
     }
     cleanQueuedSong() {
         this.setState({
-            queuedSongs: []
+            queuedSongs: [],
+            ignoredSongs: []
         });
     }
     addQueuedSong(song) {

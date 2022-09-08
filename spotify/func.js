@@ -22,21 +22,10 @@ const setTime = (time) => {
     return min + ":" + sec + "." + ms;
 }
 
-function authorizationCode() {
-    window.open('https://accounts.spotify.com/authorize?' + serialize(
-        {
-            client_id: localStorage.getItem("clientKey"),
-            response_type: 'code',
-            redirect_uri: document.getElementById("redirectUri").value,
-            scope: `ugc-image-upload user-modify-playback-state 
-            user-read-playback-state user-read-currently-playing 
-            user-follow-modify user-follow-read user-read-recently-played user-top-read
-            playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private
-            app-remote-control streaming user-read-email user-read-private user-library-modify user-library-read`
 
-        }), '_blank');
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 function serialize(obj) {
     var str = [];
     for (var p in obj)
@@ -47,150 +36,37 @@ function serialize(obj) {
 }
 
 async function requestPermission() {
-    authorizationCode();
+    fetch("connection/authorize").then(response=>{
+
+    });
 }
 
-async function getAccessToken() {
-    if (document.getElementById("auth1").checked == true) {
-        //Form needs to be urlencoded since our content-type is set to urlencoded
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("grant_type", "client_credentials");
+let REDIRECT_URI = "https://spotify-api-test.netlify.app";
 
-        //Use Client credentials
-        let getData = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            body: urlencoded,
-            headers: {
-                "Authorization": 'Basic ' + btoa(localStorage.getItem("clientKey") + ':' + localStorage.getItem("secretKey")),
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        })
-            .then((response) => {
-                response.json().then(function (json) {
-                    if (json.hasOwnProperty("access_token")) {
-                        localStorage.setItem("spotify_access_token", json["access_token"]);
-                        localStorage.setItem("spotify_token_type", json["token_type"]);
-                        localStorage.setItem("spotify_auth_type", "client_credentials");
-                        const today = new Date();
-                        today.setSeconds(today.getSeconds() + json["expires_in"]);
-                        localStorage.setItem("spotify_expires_client", today.getTime());
-                        alert(SUCCESS_ACCESSTOKENGOT);
-                    } else {
-                        processError(json);
-                    }
-                });
-            });
-    } else if (document.getElementById("auth2").checked == true) {
-
-        //Current time is past expiration date and also we do have a refresh token
-        if (( localStorage.getItem("spotify_expires_authCode") == null || new Date().getTime() > localStorage.getItem("spotify_expires_authCode")) && localStorage.getItem("spotify_refresh") === null) {
-            //Form needs to be urlencoded since our content-type is set to urlencoded
-            var urlencoded = new URLSearchParams();
-            urlencoded.append("grant_type", "authorization_code");
-            urlencoded.append("code", localStorage.getItem("authCode"));
-            urlencoded.append("redirect_uri", window.location);
-            //Use Client credentials
-            let getData = await fetch('https://accounts.spotify.com/api/token', {
-                method: 'POST',
-                body: urlencoded,
-                headers: {
-                    "Authorization": 'Basic ' + btoa(localStorage.getItem("clientKey") + ':' + localStorage.getItem("secretKey")),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-                .then((response) => {
-                    response.json().then(function (json) {
-                        if (json.hasOwnProperty("access_token")) {
-                            localStorage.setItem("spotify_access_token", json["access_token"]);
-                            localStorage.setItem("spotify_token_type", json["token_type"]);
-                            localStorage.setItem("spotify_auth_type", "authorization_code");
-                            const today = new Date();
-                            today.setSeconds(today.getSeconds() + json["expires_in"]);
-                            localStorage.setItem("spotify_expires_authCode", today.getTime());
-                            localStorage.setItem("spotify_refresh", json["refresh_token"]);
-
-                            alert(SUCCESS_ACCESSTOKENGOT2);
-                        } else {
-                            console.log(json);
-                            processError(json);
-                        }
-                    });
-                });
-        }
-        else { //Use a refresh token instead given by first authorization code flow.
-
-            var urlencoded = new URLSearchParams();
-            urlencoded.append("grant_type", "refresh_token");
-            urlencoded.append("refresh_token", localStorage.getItem("spotify_refresh"));
-            //Refresh Token
-            let getData = await fetch('https://accounts.spotify.com/api/token', {
-                method: 'POST',
-                body: urlencoded,
-                headers: {
-                    "Authorization": 'Basic ' + btoa(localStorage.getItem("clientKey") + ':' + localStorage.getItem("secretKey")),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-                .then((response) => {
-                    response.json().then(function (json) {
-                        if (json.hasOwnProperty("access_token")) {
-                            localStorage.setItem("spotify_access_token", json["access_token"]);
-                            localStorage.setItem("spotify_token_type", json["token_type"]);
-                            localStorage.setItem("spotify_auth_type", "authorization_code");
-                            const today = new Date();
-                            today.setSeconds(today.getSeconds() + json["expires_in"]);
-                            localStorage.setItem("spotify_expires_authCode", today.getTime());
-                            localStorage.removeItem("spotify_refresh");
-
-                            alert(SUCCESS_ACCESSTOKENGOT2);
-                        } else {
-                            console.log(json);
-                            processError(json);
-                        }
-                    });
-                });
-        }
-    }
-}
-
-function clientKeyChanged() {
-    localStorage.setItem("clientKey", document.getElementById("clientID").value);
-}
-
-function secretKeyChanged() {
-    localStorage.setItem("secretKey", document.getElementById("clientSecret").value);
-}
-function authCodeChanged() {
-    localStorage.setItem("authCode", document.getElementById("authCode").value);
-}
-function userIDChanged() {
-    localStorage.setItem("userID", document.getElementById("userID").value);
-}
 //Is called when document is ready.
 $(document).ready(function () {
-    if (localStorage.getItem("clientKey") != null) {
-        $("#clientID").prop("value", localStorage.getItem("clientKey"));
-    }
-    if (localStorage.getItem("secretKey") != null) {
-        $("#clientSecret").prop("value", localStorage.getItem("secretKey"));
-    }
-    if (localStorage.getItem("authCode") != null) {
-        $("#authCode").prop("value", localStorage.getItem("authCode"));
-    }
-    if (localStorage.getItem("userID") != null) {
-        $("#userID").prop("value", localStorage.getItem("userID"));
-    }
-    if (localStorage.getItem("spotify_auth_type") == "client_credentials") {
-        $("#auth1").prop("checked", true);
-    }
-    if (localStorage.getItem("spotify_auth_type") == "authorization_code") {
-        $("#auth2").prop("checked", true);
+    $("#authorize").prop("disabled", !keyExpired());
+
+    if (localStorage.getItem("authCode") != null && keyExpired()) {
+        //Perform auto get access token when needed
+        fetch("connection/connect").then(response=>{
+
+        });
     }
 
-       $("#redirectUri").prop("value", window.location);
-   
+    let getLoc = window.location.search;
+    if (getLoc.indexOf("code=") != -1) {
+        console.log('a');
+        let txt = getLoc.slice(getLoc.indexOf("code=") + 5, getLoc.length);
+
+        localStorage.setItem("authCode", txt);
+       window.location = REDIRECT_URI;
+    }
+  
 });
-
+const keyExpired = () => {
+    return (localStorage.getItem("spotify_expires_authCode") != null && new Date().getTime() > localStorage.getItem("spotify_expires_authCode")) || localStorage.getItem("spotify_expires_authCode") == null;
+};
 function processError(error) {
     if (error.hasOwnProperty("status")) {
         switch (error.status) {
@@ -211,7 +87,7 @@ function processError(error) {
                     alert(ERROR_INVALIDCLIENT);
             }
             case "invalid_grant": {
-                if (error.error_description ="Authorization code expired") {
+                if (error.error_description = "Authorization code expired") {
                     alert(ERROR_AUTHCODEEXPIRED);
                 }
             }
@@ -219,4 +95,50 @@ function processError(error) {
     } else {
         alert(ERROR_UNKNOWN);
     }
+}
+
+setInterval(oneSecondUpdate, 1000);
+
+function oneSecondUpdate() {
+    //Update every second.
+    if (keyExpired() == true) {
+        localStorage.removeItem("spotify_token_type");
+        localStorage.removeItem("spotify_access_token");
+      
+        localStorage.removeItem("spotify_expires_authCode");
+        //Automatically get acces token if we have a refresh token.
+        if (localStorage.getItem("spotify_refresh") != null && localStorage.getItem("spotify_access_token") == null) {
+            fetch("connection/connect").then(response=>{
+
+            });
+        }
+        //Otherwise we remove the authentication code.
+        if (localStorage.getItem("spotify_auth_type") != null && localStorage.getItem("spotify_refresh") == null && localStorage.getItem("spotify_access_token") == null) {
+            localStorage.removeItem("authCode");
+        }
+        localStorage.removeItem("spotify_auth_type");
+    }
+
+    let extraText = "";
+    if (!keyExpired()) {
+        let i = new Date(parseInt(localStorage.getItem("spotify_expires_authCode")));
+        extraText = "Session expires at " + (i.getMonth() + 1) + "/" + i.getDate() + "/" + i.getFullYear() + " at " + i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds();
+    } else if (localStorage.getItem("authCode") == null) {
+        extraText = "Click to authorize (Requires Spotify account).";
+    } else {
+        extraText = "Attempting to reauthenticate...";
+    }
+    $("#instructions").text(extraText);
+};
+
+function getOwnUser() {
+    //Get the user profile.
+    return fetch("https://api.spotify.com/v1/me", {
+        method: 'GET',
+        headers: {
+            "Authorization": localStorage.getItem("spotify_token_type") + " " + localStorage.getItem("spotify_access_token"),
+            "Content-Type": "application/json"
+        },
+    })
+        
 }
