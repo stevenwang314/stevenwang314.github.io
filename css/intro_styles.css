@@ -1,12 +1,12 @@
 #title {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 48px;
+    font-size: 72px;
     margin-top: 10vh;
 }
 #nameFont {
     font-family: "Hubballi", Arial, Helvetica, sans-serif;
     font-style: oblique;
-    font-size: 64px;
+    font-size: 72px;
 
     text-align: center;
 
@@ -22,7 +22,6 @@
 }
 #body1 {
     border: 10px 10px;
-    background: linear-gradient(red,green,blue);
     border-style: solid;
     border-color: red;
     border-radius: 300px;
@@ -90,7 +89,7 @@
 
 }*/
 
-@keyframes HelloWorld {
+/*@keyframes HelloWorld {
     0% {        
         content: 'H';
      }
@@ -169,15 +168,12 @@
     100% { 
         content: "Hello World! It's me Steven!";
     }
-}
+}*/
 
 
 #footer {
     font-size: 24px;
     font-family: "Arbutus", Arial, Helvetica, sans-serif;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
 }
 #footer > p {
     color: rgba(11, 131, 71, 0.745);
@@ -186,4 +182,38 @@
 
 #dimensions {
     min-width: 100%;
+}
+
+.about, .contacts, .demo {
+    font-family: 'DynaPuff', sans-serif;
+}
+.about-font {
+    font-size: 18px;
+    margin: auto 12vw;
+}
+.contacts{
+    font-size: 18px;
+    margin: auto 12vw;
+}
+#personalPicture {
+    border-color: black;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 50px;
+    /*Center the image, set margins left and right to auto and put display: block.*/
+     margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+
+@media screen and (max-width: 1000px) {
+    .about-font {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .about-font {
+        font-size: 7px;
+    }
 }
