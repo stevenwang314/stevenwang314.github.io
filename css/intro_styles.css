@@ -1,175 +1,52 @@
-#title {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 72px;
-    margin-top: 10vh;
+
+#name-container {
+
+    margin: 0 0;
+    padding:  0 0;
 }
+
 #nameFont {
     font-family: "Hubballi", Arial, Helvetica, sans-serif;
     font-style: oblique;
-    font-size: 72px;
-
+    font-size: 144px;
     text-align: center;
-
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: red;
 }
-#aboutFont {
-    font-family: "Hubballi", Arial, Helvetica, sans-serif;
-    font-style:italic;
-    font-weight: bolder;
-    font-size: 36px;
-    color:rgb(24, 125, 90);
-    display: block;
-    text-align: center;
+#image {
+    position: absolute;
+    top: 0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    opacity: 0.75;
 }
-#body1 {
-    border: 10px 10px;
+#personalPicture {
+    border-color: black;
     border-style: solid;
-    border-color: red;
-    border-radius: 300px;
-    opacity: 75%;
-   
-    min-width: 200px;
-    /*animation-name: backgroundColor;
-    animation-duration: 0.75s;
-    animation-iteration-count: infinite;*/
+    border-width: 10px;
+    border-radius: 50px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  
+}
+#intro-container {
+    height: 100vh;
 
 }
-#animatedText {
-    font-family: "Metal Mania", Arial, Helvetica, sans-serif;
-    margin-left: 25vw;
-    margin-right: 15vw;
-    color: rgb(165, 30, 30);
-    font-size: 36px;
+#intro-desc {
+    font-family: 'DynaPuff', sans-serif;
+    font-size: 28px;
+    text-align: center;
 }
-
-#animatedText::after {
-    animation-name: HelloWorld;
-    content: "Hello World! It's me Steven! - Nice to meet you ~";
-    animation-duration: 4.2s;
- 
+#about-container {
+    top: 100vh;
+    background-color: rgba(255,0,0,0.5);
 }
-@media screen and (max-width: 1000px) {
-    #animatedText {
-        font-family: "Metal Mania", Arial, Helvetica, sans-serif;
-        margin-left: 15vw;
-        margin-right: 5vw;
-        color: rgb(165, 30, 30);
-        font-size: 24px;
-    }
-}
-/*
-@keyframes backgroundColor {
-    0% {        
-        background: linear-gradient(red,green,blue);
-     }
-    17% {   
-        background: linear-gradient(red,rgb(25, 204, 49),blue);
-        text-shadow: 2px 2px #FF0000;
-        color: lightcoral;
-    }
-   34% {    
-    background: linear-gradient(rgb(243, 66, 12),rgb(25, 204, 49),blue);
-    text-shadow: 4px 4px #FF0000;
-    color: plum;
-    }
-    51% { 
-        background: linear-gradient(rgb(243, 66, 12),rgb(25, 204, 49),rgb(49, 35, 177));
-        text-shadow: 6px 6px #FF0000;
-        color:darkkhaki;
-    }
-    68% { 
-        background: linear-gradient(rgb(243, 66, 12),green,rgb(49, 35, 177));
-          text-shadow: -6px -6px #008cff;
-          color:antiquewhite;
-    }
-    85% { 
-        background: linear-gradient(red,green,rgb(49, 35, 177));
-        text-shadow: -4px -4px #008cff;
-        color:darkviolet;
-    }
-
-}*/
-
-/*@keyframes HelloWorld {
-    0% {        
-        content: 'H';
-     }
-    4% {   
-        content: "He";
-    }
-   8% {    
-        content: "Hel";
-    }
-    12% { 
-        content: "Hell";
-    }
-    16% { 
-        content: "Hello";
-    }
-    20% { 
-        content: "Hello ";
-    }
-    24% { 
-        content: "Hello W";
-    }
-    28% { 
-        content: "Hello Wo";
-    }
-   32% { 
-        content: "Hello Wor";
-    }
-    36% { 
-        content: "Hello Worl";
-    }
-   40% { 
-        content: "Hello World";
-    }
-    44% { 
-        content: "Hello World!";
-    }
-    48% { 
-        content: "Hello World! I";
-    }
-   52% { 
-    content: "Hello World! It";
-    }
-   56% { 
-    content: "Hello World! It'";
-    }
-    60% { 
-        content: "Hello World! It's";
-    }
-    64% { 
-        content: "Hello World! It's m";
-    }
-    68% { 
-        content: "Hello World! It's me";
-    }
-   72% { 
-    content: "Hello World! It's me ";
-    }
-    76% { 
-        content: "Hello World! It's me S";
-    }
-   80% { 
-    content: "Hello World! It's me St";
-    }
-    84% { 
-        content: "Hello World! It's me Ste";
-    }
-    88% { 
-        content: "Hello World! It's me Stev";
-    }
-    92% { 
-        content: "Hello World! It's me Steve";
-    }
-    96% { 
-        content: "Hello World! It's me Steven";
-    }
-    100% { 
-        content: "Hello World! It's me Steven!";
-    }
-}*/
-
 
 #footer {
     font-size: 24px;
@@ -184,27 +61,30 @@
     min-width: 100%;
 }
 
-.about, .contacts, .demo {
+.about-font, .contacts, .demo {
     font-family: 'DynaPuff', sans-serif;
 }
 .about-font {
-    font-size: 18px;
+    font-size: 20px;
     margin: auto 12vw;
 }
 .contacts{
-    font-size: 18px;
-    margin: auto 12vw;
+    font-size:  36px;
+    margin: 40px 40vw;
+    width: 50vw;
 }
-#personalPicture {
-    border-color: black;
-    border-style: solid;
-    border-width: 10px;
-    border-radius: 50px;
-    /*Center the image, set margins left and right to auto and put display: block.*/
-     margin-left: auto;
-    margin-right: auto;
-    display: block;
 
+.no-underline {
+text-decoration: none;
+}
+@media screen and (max-width: 1000px) {
+    #animatedText {
+        font-family: "Metal Mania", Arial, Helvetica, sans-serif;
+        margin-left: 15vw;
+        margin-right: 5vw;
+        color: rgb(165, 30, 30);
+        font-size: 24px;
+    }
 }
 
 @media screen and (max-width: 1000px) {

@@ -1,39 +1,3 @@
-let getCanvas = document.getElementById("gameplay");
-let getCanvas2 = document.getElementById("gameplayHUD");
-let getCanvas3 = document.getElementById("gameplayHUD-right");
-
-let grassImg = document.getElementById("grass");
-let playerImg = document.getElementById("player");
-let img_playerCry = document.getElementById("playerCry");
-let img_rock = document.getElementById("rock");
-let img_rock2 = document.getElementById("rock2");
-let img_rock3 = document.getElementById("rock3");
-let flagImg = document.getElementById("flag");
-let wallImg = document.getElementById("wall");
-let bagImg = document.getElementById("bag");
-let directionImg = document.getElementById("arrow");
-let img_potion_hp = document.getElementById("potionHealth");
-let img_potion = document.getElementById("potionEnergy");
-let img_treasureChest = document.getElementById("chest");
-let img_bomb = document.getElementById("bomb");
-let img_spikes = document.getElementById("spikes");
-let img_firecracker = document.getElementById("firecracker");
-let img_portal = document.getElementById("portal");
-let img_portal2 = document.getElementById("portal2");
-let img_portal3 = document.getElementById("portal3");
-let img_enemy = document.getElementById("slime");
-let img_enemy2 = document.getElementById("bat");
-let img_enemy3 = document.getElementById("snake");
-let img_enemy4 = document.getElementById("wolf");
-let img_chainSaw = document.getElementById("chainsaw");
-let img_dollar = document.getElementById("dollarBill");
-let img_drone = document.getElementById("drone");
-let img_lightning = document.getElementById("lightning");
-let img_goggles = document.getElementById("goggles");
-let img_frog = document.getElementById("frog");
-let img_rat = document.getElementById("rat");
-let img_hawk = document.getElementById("hawk");
-
 var ctx = getCanvas.getContext("2d");
 //HUD on different displays.
 var ctx2 = getCanvas2.getContext("2d");
@@ -59,33 +23,10 @@ let getplayer = new player(playerImg);
 let castMode = {};
 var isBuilding = true;
 
-const boardSize = { width: 25, height: 25 };
-const obstacleAmount = boardSize.width * boardSize.height * 0.2;
-const uiWidth = 160;
-const navigationChance = 10;
-const wallChance = 15;
-const bagChance = 5;
-const chestChance = 0.2;
-const dollarChance = 2;
-const potionChance = 1;
-const healthPotionChance = 0.75;
 
-const bombChance = 1.1;
-const firecrackerChance = 0.75;
-const droneChance = 1;
-const lightningChance = 0.8;
-const goggleChance = 0.4;
-
-const spikeChance = 2.5;
-const portalChance = 6;
-const enemyChance = 8;
 function setup() {
-
     getCanvas.width = boardSize.width * 32;
     getCanvas.height = boardSize.height * 32;
-
- 
-
 }
 function decideTypeOfRock() {
     if (currentStage > 20) {
@@ -141,7 +82,7 @@ function decideHazard() {
             return 2;
         }
     }
-
+   
     return 1;
 
 }
@@ -184,10 +125,8 @@ function generateMap() {
             //20% for a wall
             else if (randomDecimal(0, 100) < wallChance) {
                 terrainArray[terrainPosition.x][terrainPosition.y].assignWall();
-            }
-
+            }        
             else {
-
                 terrainArray[terrainPosition.x][terrainPosition.y].assignRock(decideTypeOfRock());
             }
 
@@ -283,7 +222,18 @@ function generateMap() {
                 else if (randomDecimal(0, 100) < clamp(bagChance * (1 + 0.03 * (Math.max(currentStage - 1, 0) / 2)), bagChance, 10) * ((terrainArray[i][j].isObstacle()) ? 1.75 : 1)) {
                     terrainArray[i][j].assignBag();
                 }
-
+                if (randomDecimal(0, 100) < fireChance && currentStage >= 6 &&  terrainArray[i][j].isPortal() === false) {
+                    terrainArray[i][j].removeObstacles();
+                    terrainArray[i][j].removeObject();
+                         terrainArray[i][j].removeObjectItem();
+                    terrainArray[i][j].assignHazard(3);
+                }
+                else if (randomDecimal(0, 100) < acidChance && currentStage >= 12 &&   terrainArray[i][j].isPortal() === false) {
+                    terrainArray[i][j].removeObstacles();
+                    terrainArray[i][j].removeObject();
+                    terrainArray[i][j].removeObjectItem();
+                    terrainArray[i][j].assignHazard(4);
+                }
                 //Create new spikes (Between 2.5% to 18%)
                 if (randomDecimal(0, 100) < clamp(spikeChance * (1 + 0.25 * (Math.max(currentStage - 3, 0) / 2)), spikeChance, 18)) {
                     terrainArray[i][j].assignHazard(decideHazard());
@@ -315,7 +265,7 @@ function revealLocation(x, y) {
         }
         terrainArray[x][y].explore = true;
         //Only put signs on non-walls or goals
-        if (!isWall(x, y) && !isAtGoal(x, y) && randomDecimal(0, 100) < clamp(navigationChance / (1 + 0.2 * (currentStage - 1)), 0.005, navigationChance)) {
+        if (!isWall(x, y) && !isAtGoal(x, y) && terrainArray[x][y].isLiquidHazard()&& randomDecimal(0, 100) < clamp(navigationChance / (1 + 0.2 * (currentStage - 1)), 0.005, navigationChance)) {
             terrainArray[x][y].directional.enabled = true;
             if (x == goalPoint.x && y != goalPoint.y) {
                 terrainArray[x][y].directional.typeOfDirection = 1;
@@ -338,60 +288,65 @@ function revealNearby() {
 }
 function destroyEnemy(x, y, hasCost = true) {
     if (terrainArray[x][y].isEnemy()) {
+        //Slime
         if (terrainArray[x][y].getEnemy() === 1) {
             if (hasCost) {
-                getplayer.performCost(1)
-                getplayer.reduceHealth(1);
+                getplayer.performCost(SLIME.energy)
+                getplayer.reduceHealth(SLIME.health);
             }
-            addScore(10);
+            addScore(SLIME.score);
             getplayer.stats.enemies[0] += 1;
         }
+        //bat
         else if (terrainArray[x][y].getEnemy() === 2) {
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(1.5);
+                getplayer.performCost(BAT.energy);
+                getplayer.reduceHealth(BAT.health);
             }
-            addScore(20);
+            addScore(BAT.score);
             getplayer.stats.enemies[1] += 1;
         }
+        //SNAKE
         else if (terrainArray[x][y].getEnemy() === 3) {
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(2);
+                getplayer.performCost(SNAKE.energy);
+                getplayer.reduceHealth(SNAKE.health);
             }
-            addScore(30);
+            addScore(SNAKE.score);
             getplayer.stats.enemies[2] += 1;
         }
+
+        //Wolf
         else if (terrainArray[x][y].getEnemy() === 4) {
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(3);
+                getplayer.performCost(WOLF.energy);
+                getplayer.reduceHealth(WOLF.health);
             }
-            addScore(40);
+            addScore(WOLF.score);
             getplayer.stats.enemies[3] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 5) { //Rat
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(1.2);
+                getplayer.performCost(RAT.energy);
+                getplayer.reduceHealth(RAT.health);
             }
-            addScore(15);
+            addScore(RAT.score);
             getplayer.stats.enemies[4] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 6) { //Frog
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(1.5);
+                getplayer.performCost(FROG.energy);
+                getplayer.reduceHealth(FROG.health);
             }
-            addScore(25);
+            addScore(FROG.score);
             getplayer.stats.enemies[5] += 1;
         }
         else if (terrainArray[x][y].getEnemy() === 7) { //Hawk
             if (hasCost) {
-                getplayer.performCost(1);
-                getplayer.reduceHealth(2.5);
+                getplayer.performCost(HAWK.energy);
+                getplayer.reduceHealth(HAWK.health);
             }
-            addScore(35);
+            addScore(HAWK.score);
             getplayer.stats.enemies[6] += 1;
         }
         terrainArray[x][y].removeEnemy();
@@ -406,19 +361,19 @@ function destroyObstacles(x, y, hasCost = true) {
 
         if (terrainArray[x][y].hasObstacle.type == 0) {
             if (hasCost)
-                getplayer.performCost(1);
-            addScore(5);
+                getplayer.performCost(ROCK1.energy);
+            addScore(ROCK1.score);
             getplayer.stats.rocksDestroyed[0] += 1;
         } else if (terrainArray[x][y].hasObstacle.type == 1) {
             if (hasCost)
-                getplayer.performCost(2);
-            addScore(15);
+                getplayer.performCost(ROCK2.energy);
+            addScore(ROCK2.score);
             getplayer.stats.rocksDestroyed[1] += 1;
         }
         else if (terrainArray[x][y].hasObstacle.type == 2) {
             if (hasCost)
-                getplayer.performCost(3);
-            addScore(25);
+                getplayer.performCost(ROCK3.energy);
+            addScore(ROCK3.score);
             getplayer.stats.rocksDestroyed[2] += 1;
         }
 
@@ -470,17 +425,17 @@ function activateObject(x, y) {
     }
 
     if (terrainArray[x][y].isBag()) {
-        addScore(10);
+        addScore(BAG1.score);
         getplayer.stats.bag += 1;
         terrainArray[x][y].removeObject();
     }
     if (terrainArray[x][y].isDollar()) {
-        addScore(30);
+        addScore(BAG2.score);
         getplayer.stats.dollar += 1;
         terrainArray[x][y].removeObject();
     }
     if (terrainArray[x][y].isChest()) {
-        addScore(100);
+        addScore(BAG3.score);
         getplayer.stats.chest += 1;
         terrainArray[x][y].removeObject();
     }
@@ -830,6 +785,10 @@ function drawItems(x, y, opacity = 1.0) {
             drawImage(x * 32, y * 32, 32, 32, img_spikes, 0, opacity);
         if (terrainArray[x][y].getHazard() === 2)
             drawImage(x * 32, y * 32, 32, 32, img_chainSaw, 0, opacity);
+            if (terrainArray[x][y].getHazard() === 3)
+            drawImage(x * 32, y * 32, 32, 32, img_fire, 0, opacity);
+        if (terrainArray[x][y].getHazard() === 4)
+            drawImage(x * 32, y * 32, 32, 32, img_acid, 0, opacity);
     }
 
     if (terrainArray[x][y].isPortal()) {
@@ -862,11 +821,20 @@ function postMove() {
         if (terrainArray[getplayer.x][getplayer.y].isHazard()) {
             //Spikes
             if (terrainArray[getplayer.x][getplayer.y].getHazard() === 1) {
-                getplayer.reduceHealth(3);
+                getplayer.reduceHealth(SPIKE.health);
                 terrainArray[getplayer.x][getplayer.y].removeHazard();
                 //Chainsaw
             } else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 2) {
-                getplayer.reduceHealth(6);
+                getplayer.reduceHealth(CHAINSAW.health);
+            }
+            //Fire
+            else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 3) {
+                getplayer.reduceHealth(FIRE.health);
+                getplayer.performCost(FIRE.energy);
+            }
+            //Acid
+            else if (terrainArray[getplayer.x][getplayer.y].getHazard() === 4) {
+                getplayer.performCost(ACID.energy);
             }
         }
     }
@@ -904,27 +872,26 @@ function postMove() {
         //Attack the player
         if (getplayer.ghost <= 0 && getplayer.isNearPlayer(c.enemy.x, c.enemy.y)) {
 
-            if (c.enemy.id == 1) {
-
-                getplayer.reduceHealth(1);
+            if (c.enemy.id == 1) {//Slime
+                getplayer.reduceHealth(SLIME.health);
             }
-            if (c.enemy.id == 2) {
-                getplayer.reduceHealth(1.5);
+            if (c.enemy.id == 2) { //Bat
+                getplayer.reduceHealth(BAT.health);
             }
-            if (c.enemy.id == 3) {
-                getplayer.reduceHealth(2);
+            if (c.enemy.id == 3) { //Snake
+                getplayer.reduceHealth(SNAKE.health);
             }
-            if (c.enemy.id == 4) {
-                getplayer.reduceHealth(3);
+            if (c.enemy.id == 4) { //wolf
+                getplayer.reduceHealth(WOLF.health);
             }
             if (c.enemy.id == 5) { //Rat
-                getplayer.reduceHealth(1.2);
+                getplayer.reduceHealth(RAT.health);
             }
             if (c.enemy.id == 6) { //Frog
-                getplayer.reduceHealth(1.5);
+                getplayer.reduceHealth(FROG.health);
             }
             if (c.enemy.id == 7) { //Hawk
-                getplayer.reduceHealth(2.5);
+                getplayer.reduceHealth(HAWK.health);
             }
         }
     });
@@ -1320,7 +1287,6 @@ document.addEventListener('mousemove', function (event) {
     client.y = event.clientY;
     mousePos = getMousePos(getCanvas, event);
     mousePos2 = getMousePos( window.getComputedStyle( document.getElementById("gameplayHUD")).visibility != "hidden" ? getCanvas2 : getCanvas3, event);
-    //console.log(innerWidth + " " + innerHeight);
 });
 function Input(event) {
     mousePos = getMousePos(getCanvas, event);
@@ -1329,10 +1295,12 @@ function Input(event) {
         leftClickEvent();
     }
 }
-document.addEventListener('click', Input);
-//for mobile users
-document.addEventListener('touchstart', Input);
 
+
+//Starting point of code execution
+document.addEventListener('click', Input);
+//for 'touch' users
+document.addEventListener('touchstart', Input);
 
 setup();
 generateMap();

@@ -155,6 +155,9 @@ class terrainCell {
     isHazard() {
         return this.hazard.enabled === true;
     }
+    isLiquidHazard() {
+        return this.hazard.enabled === true && this.hazard.id == 3 && this.hazard.id == 4;
+    }
     isDrone() {
         return this.object.enabled === true &&this.object.hasOwnProperty("item") &&  this.object.item.includes(DRONE);
     }
@@ -196,6 +199,7 @@ class terrainCell {
         }
     }
     removeHazard() {
+        if (this.hazard.id == 0 || this.hazard.id == 1)
         this.hazard.enabled =false;
     }
     removeTerrain() {
