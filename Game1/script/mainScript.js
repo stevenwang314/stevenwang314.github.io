@@ -265,7 +265,7 @@ function revealLocation(x, y) {
         }
         terrainArray[x][y].explore = true;
         //Only put signs on non-walls or goals
-        if (!isWall(x, y) && !isAtGoal(x, y) && terrainArray[x][y].isLiquidHazard()&& randomDecimal(0, 100) < clamp(navigationChance / (1 + 0.2 * (currentStage - 1)), 0.005, navigationChance)) {
+        if (!isWall(x, y) && !isAtGoal(x, y) && !terrainArray[x][y].isLiquidHazard()&& randomDecimal(0, 100) < clamp(navigationChance / (1 + 0.2 * (currentStage - 1)), 0.005, navigationChance)) {
             terrainArray[x][y].directional.enabled = true;
             if (x == goalPoint.x && y != goalPoint.y) {
                 terrainArray[x][y].directional.typeOfDirection = 1;

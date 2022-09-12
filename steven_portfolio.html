@@ -27,7 +27,7 @@ Everything that you see, read or hear on a browser lies in the body of HTML, lik
 
 All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <img>, <table>, etc all lies in the body section.-->
 
-<body >
+<body>
     <div id="dimensions"></div>
     <link href="https://fonts.googleapis.com/css?family=DynaPuff" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
@@ -36,51 +36,59 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <a class="links" href="index.html">Me</a>
         <a class="links" href="steven_portfolio.html">Projects</a>
         <a class="links" href="steven_demo.html">Game Demo</a>
-        <a class="links" target="_blank" href="https://spotify-api-test.netlify.app/" >Spotify Demo</a>
     </nav>
     <div class="skip"></div>
 
     <main>
         <div class="container">
             <div class="fillColor">
-                <h1 class="topBorder font no-spacing title">My Projects</h1>
-                <p class="small-font no-spacing">Here are the list of projects I have done before. Some of
-                    the projects have a demonstration to see how it works!!</p>
+                <h1 class="topBorder font no-spacing title">Personal Projects</h1>
+                <p class="small-font no-spacing">Here are some of my personal projects I have personally done!</p>
             </div>
             <div id="project" class="fillColor">
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Grid Adventurer</h1>
-                        <p class="tools-used no-spacing">Language: Javascript, HTML, CSS</p>
-                        <p class="small-font no-spacing">My first program made using Javascript with the &lt;canvas&gt;
-                            element. The player controls a character that adventures throughout a 25x25
-                            grid in hopes to finding a red flag. However, it is much easier said than done. To get
-                            there, the player encounter enemies, obstacles, and dangerous hazards, though there are
-                            usable items and loot comes along the
-                            way that assist the player.</p>
-                        <p class="small-font no-spacing bottom-spacing">Moving, destroying objects, and attacking
-                            enemies may be simple but they are limited. Each of those actions will deplete the players
-                            resources in which the player has finite amount
-                            of actions before the player reaches their own demise.
-                        </p>
-                        <p class="small-font no-spacing bottom-spacing">This program uses the Document Object Model
-                            (DOM) API to interact with elements in html. In this case, we want to access the
-                            &lt;canvas&gt; element from Javascript. Each stage
-                            contains completely random placements of enemies, objects, and obstacles in which no two
-                            stages are exactly the same.
-                        </p>
-                        <p class="small-font no-spacing bottom-spacing">The demo of this game can be accessed <a
-                                target="_blank" href="steven_demo.html">here</a> or on the Game Demo above! <a
-                                target="_blank"
-                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">and
-                                Github Source</a></p>
 
+                        <p class="small-font no-spacing">The player controls a character that adventures through a 25x25
+                            grid in hopes of finding the red flag. However, it is much easier said than done. Along the
+                            way, the player encounter enemies, obstacles, and even dangerous hazards. Fortunately, the
+                            player is able to also get their hands on usable items helpful arrows, and other spoils that
+                            come along the way that assist the player..</p>
+                        <p class="small-font no-spacing bottom-spacing">Each action the player makes will cost their own
+                            resources, for instance moving, breaking obstacles, or fighting enemies will deplete the
+                            players energy. Fighting enemies will additionally deplete the players health.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">The goal of the game is to get as far as
+                            possible. Each red flag the player obtains will increase the difficulty but the player gains
+                            more score. More information is located in the game.
+                        </p>
+
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Programming Languages: Javascript, HTML, CSS</p>
+                            <p class="small-font no-spacing bottom-spacing">It uses the Document Object Model (DOM) API
+                                to interact with elements in html. In this case, we want to access the &lt;canvas&gt;
+                                element from Javascript. Each stage contains completely random placements of enemies,
+                                objects, and obstacles in which no two stages are exactly the same.</p>
+                            <p class="small-font no-spacing bottom-spacing"> This is the first project made from pure
+                                Javascript that utilizes &lt;canvas&gt; element from HTML greatly to draw out images,
+                                shapes, and texts. The images were taken from <img> element while the fonts are from
+                                Google Fonts.</p>
+                            <p class="small-font no-spacing bottom-spacing"> It uses the random number generator to
+                                randomly setup the stage in a 25x25 grid resulting in dynamic gameplay. The player and
+                                the red flag is also randomly positioned too!</p>
+                        </details>
+                        <p class="small-font no-spacing bottom-spacing">
+                            <a target="_blank" href="steven_demo.html">Demo – You can also click on Game Demo
+                                above!</a><br /><br />
+                            <a target="_blank"
+                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">Github –
+                                Source Code</a>
+                        </p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/fiijgEZTcBo"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/MofQ8Fk_mWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     </ul>
                 </div>
@@ -90,39 +98,86 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Song recommendations using Spotify API</h1>
-                        <p class="tools-used no-spacing">Language: Javascript, HTML, and CSS Libraries: React,
-                            Bootstrap, Jquery, Spotify API, RESTful API, and Browser’s local storage</p>
-                        <p class="small-font no-spacing bottom-spacing">Sometimes a person would repeat listening to the same songs
-                            mainly
-                            that
-                            the songs they like are far much better than songs that are out of their comfort zone. To
-                            partially
-                            alleviate this issue, a song recommendation based on the last recent songs they played is
-                            needed.
+
+                        <p class="small-font no-spacing bottom-spacing">A person has songs that they like to listen over
+                            and over. But what if they want to listen to new songs?
                         </p>
-                        <p class="small-font no-spacing bottom-spacing">In this program, the goal is to provide a recommended song list
-                            based on the list of artists or songs that the person likes.</p>      
-                        <p class="small-font no-spacing bottom-spacing">This program interacts with official Spotify API through their
-                            RESTful API by first obtaining a access token through Client Credentials or Authorization Code. It does not require an account to use this, though an
-                            account is helpful since the generated playlist can be added to the player’s new playlist. The person can choose up to 5 tracks/artists combined and the
-                            spotify recommendation will run behind the scenes to provide up to 100 songs that are related to
-                            the  person liking. This can be done multiple times as each unique song adds to a bucket. Once the person is satisfied after finding many songs
-                            in their recommendation list, the person can save it to a brand new playlist to listen to all the recommendation
-                            songs at a instant. No adding one by one, the program does it all at a instant! The person can add as many songs as they want in their
-                            list as each song does somewhat affect the recommendations.</p>
-                        <p class="small-font no-spacing bottom-spacing"> The demo of this game can be accessed
-                            <a target="_blank" href="https://spotify-api-test.netlify.app/">here!</a>
-                             <a target="_blank" href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">and
-                                Source Code on Github</a>
+                        <p class="small-font no-spacing bottom-spacing">Assuming the user has a Spotify Account, the
+                            goal of this app is for the user to be able to compile a list of songs they like. The user
+                            can either use their own Spotify Account to use their playlist as their list or they can use
+                            a search engine in Spotify to grab songs of their choice. In the contrary, the user can
+                            create songs they dislike of their choice.</p>
+                        <p class="small-font no-spacing bottom-spacing">Once the user decides what the like or dislike,
+                            they can pick up to 5 songs or artists as a selector to feed to Spotify to generate a list
+                            of songs that will be recommended from there. In addition, having more songs on the list
+                            does affect the song recommendations even though they are not selected. The user can filter
+                            out songs based on popularity. Songs that are not popular will never be selected.</p>
+                        <p class="small-font no-spacing bottom-spacing">The user can repeat this step over and over by
+                            changing the 5 songs or artists of their own liking. The list of recommended songs will only
+                            add songs that are not on the list.</p>
+                        <p class="small-font no-spacing bottom-spacing">When the user decides he/she is ready to accept
+                            the list, they can click a button that adds ALL of the recommended songs except the songs
+                            they dislike into a new playlist directly at an instant. The user then can play the playlist
+                            without having to add the songs manually which takes a excruciating amount of time.</p>
+
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Language: Javascript, HTML, and CSS Libraries: React,
+                                Bootstrap, Jquery, Spotify API, RESTful API, and Browser’s local storage</p>
+                            <p class="small-font no-spacing bottom-spacing">In order to use Spotify API and their
+                                RESTful principles, an access token is required. To get an access token, first I must
+                                follow the Authorization Guide by first obtaining an access token through mainly Client
+                                Credentials Flow. Second, I also have to create a Spotify app on their dashboard to
+                                obtain several sensitive information such as Client Key and Client Secret. I also need a
+                                Spotify Account to gain authentication to finally get the Access Token.</p>
+                            <p class="small-font no-spacing bottom-spacing">To securely hide the sensitive Client ID and
+                                Client Secret, it is stored in a hidden environment variable behind the backend through
+                                Node.js. It uses Express to accept request from our front end where it calls GET/POST
+                                methods to our back-end we have and receive the messages. There we have two API
+                                functions which we have that can authorize the users Spotify account into the app and
+                                another one which is used to obtain an access token by using Axios library. Both of
+                                these function utilizes the Client ID and Client Secret to hook into Spotify API. Once
+                                we get the access token, we finally can use it to call our API calls from Spotify. </p>
+                            <p class="small-font no-spacing bottom-spacing">Getting the access token is automatically
+                                called once the user is able to click refresh permission but also an additional time
+                                once the access token expires, which is in 1 hour, as there is also a refresh token to
+                                get another access token which only happens once.</p>
+                            <p class="small-font no-spacing bottom-spacing">In the front-end part of our app, we use the
+                                fetch() function to call our Spotify API functions with our access token obtained to be
+                                able to search for songs, artists, albums, recommending songs, getting song audio
+                                features, and then adding songs to playlist. To be able to constantly update the dynamic
+                                list on the webpage, we need to use React whenever we modify the list to update the
+                                displayed dynamic list.</p>
+                            <p class="small-font no-spacing bottom-spacing">The input we feed it to the Spotify Song
+                                recommendation algorithm uses the average of all songs features that are on the favorite
+                                songs list from the user followed by the 5 “seeds” from the users’ songs/artists to
+                                generate recommended songs. Finally, once the song recommendation list is made, we use
+                                the save song to playlist using the Spotify API to directly add them to the playlist
+                                directly. </p>
+                        </details>
+                        <details class="small-font">
+                            <summary><b>Bonus:</b></summary>
+                            <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, WinHTTP</p>
+                            <p class="small-font no-spacing bottom-spacing">I have used C++ to interact through RESTful
+                                principals to accessing Spotify API requests. To be able to perform RESTful API calls, I
+                                used WinHTTP API to do HTTP requests. As C++ does not have an official way to parse
+                                JSON, I
+                                created my own JSON parser to be able to parse the output of JSON obtained from the
+                                results. To see a C++ way to interact with spotify API, it is located on
+                                <a target="_blank"
+                                    href="https://github.com/stevenwang314/spotify-api-cpp-test">Github</a>
+                            </p>
+
+                        </details>
+                        <p class="small-font no-spacing bottom-spacing">
+                            <a target="_blank" href="https://spotify-api-test.netlify.app/">Demo</a><br><br>
+                            <a target="_blank"
+                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">Github
+                                – Source Code</a>
                         </p>
-                        <p class="small-font no-spacing bottom-spacing"><b>Bonus:</b> I have used C++ to interact through RESTful API to accessing Spotify API requests. 
-                            To be able to perform RESTful API calls, I used WinHTTP API to do HTTP requests. As C++ does not have a way to parse JSON, I created my own JSON parser to be able to parse the output of JSON obtained from the results. To see a C++ way to interact with spotify API, it is found <a target="_blank" href="https://github.com/stevenwang314/spotify-api-cpp-test">here</a></p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/BW5pa66xkBI"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/XloFR0rIsXM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -130,79 +185,111 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Auto Battle Simulator</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
-                            Direct2D, XAudio2, MSXML APIs</p>
-                        <p class="small-font no-spacing">A fighting simulation project that features two sides fighting
-                            against each other except that no user input is involved. All units are automatically
-                            controlled
-                            by the game resulting in hands-free gameplay. It does get tiring when the player has to
-                            spend
-                            countless hours on trying to achieve a goal in a game, but why do that when the game can be
-                            played all on its own while the player can sit back and do something else. The battle ends
-                            when
-                            either side has no units remaining.</p>
-                        <p class="small-font no-spacing bottom-spacing">There are more than 20 different types of units
-                            to
-                            choose from, each unit contains an specific ability exclusive to that particular unit. The
-                            abilities are also automatically activated.</p>
-                        <p class="small-font no-spacing bottom-spacing">A computer artificial intelligence controls all
-                            units. By default automatically head to the opposing side walking normally.</p>
-                        <p class="small-font no-spacing bottom-spacing">Units engage with enemy units when it reaches a
-                            specific distance, units that can attack from afar will engage further than units that can
-                            hit
-                            up close.</p>
+
+                        <p class="small-font no-spacing">A fighting simulation project that features two teams with a
+                            given specific number of units to clash against each other with no external input from the
+                            user at all.</p>
+                        <p class="small-font no-spacing bottom-spacing">All units are automatically controlled by the
+                            computer AI. It controls the units’ movements that will move toward the opposing team,
+                            automatically attacking the nearest enemy as well as casting their own abilities.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are more than 30 different types of units
+                            to choose from, each unit containing a unique ability exclusive to that particular unit.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">Depending on the unit, some units are able to
+                            attack at a longer distance where as some of the units are able to hit up close. </p>
+                        <p class="small-font no-spacing bottom-spacing">The winner is when one team is able to eliminate
+                            all other units from the opposing team.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are a variety of modes to choose from in
+                            which they all have specific purposes.</p>
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                                Direct2D, XAudio2, MSXML APIs</p>
+                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
+                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
+                                XAudio2 to play audio. The unit data is stored as a XML file and is ready using
+                                Microsoft XML (MSXML) API in a Document Object Model(DOM) style.</p>
+                            <p class="small-font no-spacing bottom-spacing">The entire project uses the Object Oriented
+                                Programming (OOP) idea to store them as classes. For the unit class, it uses the
+                                Composition methodology where we can make multiple different kinds of units without
+                                adding more classes. Inside the Unit class, it contains a Skill class. The Skill
+                                contains several Effect classes which can be interchanged between units. For instance,
+                                an effect such as firing a projectile, creating a hitbox, apply buffs to itself or
+                                debuffs to enemies or even heal a unit. The unit class also contains a Buff class that
+                                stores all buffs/debuffs which affect their performance in the fight.</p>
+                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface used in the
+                                game are hand-made such as Button, Sliders, Checkbox, and Editboxes which are taken from
+                                previous projects.</p>
+                        </details>
+                        <details class="small-font">
+                            <summary><b>Extra</b></summary>
+                            <div class="leftSection">
+                                <p class="small-font no-spacing">This is a first iteration of this project where the
+                                    units are
+                                    shapes with different abilities. This demonstrates a never ending battle where new
+                                    units
+                                    constantly spawn to replace any that were slained. The current iteration of this
+                                    projects
+                                    contains differet kinds of modes to
+                                    play so it does not look monotone style of gameplay.</p>
+                            </div>
+                            <div class="rightSection">
+                                <iframe class="video" width="600" height="250"
+                                    src="https://www.youtube.com/embed/0h9i7NL7ojw" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </details>
                     </div>
+
                     <div class="rightSection">
                         <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/bxLWzU9j9YE"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
-            <div id="project" class="fillColor">
-                <div class="topBorder">
-                    <div class="leftSection">
-                        <p class="small-font no-spacing">There is a first iteration of this project where the units are
-                            shapes with different abilities. This demonstrates a never ending battle where new units
-                            constantly spawn to replace any that were slained. The current iteration of this projects
-                            contains differet kinds of modes to
-                            play so it does not look monotone style of gameplay.</p>
-                    </div>
-                    <div class="rightSection">
-                        <iframe class="video" width="600" height="250" src="https://www.youtube.com/embed/0h9i7NL7ojw"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
+
                 </div>
             </div>
             <div id="project" class="fillColor">
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Tower Defense</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
-                            Direct2D, XAudio2, MSXML APIs</p>
+
                         <p class="small-font no-spacing">A tower defense game with 20 towers each having specific unique
-                            properties to handle against 18 different enemies in a map. There are enemies can weaken
-                            towers
-                            by making them shoot slower, weaker projectiles, as well as not letting them do anything at
-                            all.
-                            There are also enemies that help boost enemies speed and even force towers to attack a
-                            specific
-                            enemy. For towers, there are some towers that requires manual casting to deal powerful
-                            attack as
-                            well as some towers that boost other towers performance. </p>
+                            properties to handle against 18 different enemies in a map. There are enemies that can
+                            weaken towers by making them shoot slower, weaker projectiles, reduce their enemy detection
+                            range, as well as not letting them do anything at all. There are also enemies that help
+                            boost enemies speed and even force towers to attack a specific enemy. For towers, there are
+                            some towers that requires manual casting to deal powerful attack as well as some towers that
+                            boost other towers performance.</p>
                         <p class="small-font no-spacing bottom-spacing">Other than that, normal tower defense rules
-                            still
-                            apply. Spend gold to build towers and do not let enemies reach the exit path. Each enemy
-                            that
-                            escapes takes off 1 health and the game ends when all health is lost. There isn’t an end to
-                            the
-                            game but to get as far as possible.</p>
-                        <p class="small-font no-spacing bottom-spacing">For angled collisions, it uses the Separate axis
-                            theorem to be able to perform these collisions.
-                        <p>
+                            still apply. Spend gold to build towers and do not let enemies reach the exit path. Each
+                            enemy that escapes to the end of the path costs 1 health and the game ends when all health
+                            is lost. There isn’t an end to the game but to get as far as possible.</p>
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                                Direct2D, XAudio2, MSXML APIs</p>
+                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
+                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
+                                XAudio2 to play audio.</p>
+                            <p class="small-font no-spacing bottom-spacing">Each Turret, enemies, and projectiles uses
+                                Object Oriented Programming (OOP) and are put in classes. To differentiate different
+                                turrets and enemies, each turret and enemy use class inheritance to override the base
+                                turret and enemy class. </p>
+                            <p class="small-font no-spacing bottom-spacing">For towers that shoot at an angle and to
+                                collide with enemies, it uses the Separate Axis Theorem to perform angled concave
+                                shapes.</p>
+                            <p class="small-font no-spacing bottom-spacing">For faster collision detection when checking
+                                through a larger enemy list, I have implemented a Spatial Hash data structure which is a
+                                hash table that divides portions of the world space into a list for that particular
+                                location. To access the list at a specified location, it needs a 2D vector key
+                                containing a x and y value. By implementing the Spatial Hash, the overall game
+                                performance is faster mainly because the amount of collision checks between projectile
+                                and enemies is significantly reduced.</p>
+                        </details>
                     </div>
                     <div class="rightSection">
                         <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/yedSG0wUD04"
@@ -210,39 +297,63 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
+
                 </div>
             </div>
             <div id="project" class="fillColor">
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">2d Platformer RPG</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
-                            Direct2D, XAudio2, MSXML APIs</p>
-                        <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a
-                            2D
-                            environment similar to a normal 2d platformer would be. There are RPG elements such as
-                            Inventory
-                            system where the player can equip items and use potions. A shop NPC that allows the player
-                            to
-                            buy and sell items. A quest NPC that assigns the player to do a certain task and if they do
-                            receive a reward.</p>
-                        <p class="small-font no-spacing bottom-spacing">There are many different areas to explore with a
-                            variety of enemies
-                            and even 1 boss enemy. Some of them can apply status effect on the player making them
-                            weaker..
-                        </p>
-                        <p class="small-font no-spacing bottom-spacing">Just like a RPG would be, the player can fight
-                            the
-                            enemies to
-                            increase their experience and their levels while also collecting any loot the enemies drop
-                            whenever they are beaten. There are 4 different skills to tackle enemies.</p>
-                        <p class="small-font no-spacing bottom-spacing">Additionally, there are breakable boxes that the
-                            player can destroy
-                            in the beginning to get some items that respawns after a certain period of time.</p>
-                        <p class="small-font no-spacing bottom-spacing">The game is saved when the game closes. The file
-                            will be saved in
-                            an XML file.</p>
 
+                        <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a
+                            2D environment similar to a normal 2d platformer would be. There are RPG elements such as
+                            Inventory system where the player can equip items and use potions. A shop NPC that allows
+                            the player to buy and sell items. A quest NPC that assigns the player to do a certain task
+                            and if they do receive a reward.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are many different areas to explore with a
+                            variety of enemies and even 1 boss enemy. Some of them can apply status effect on the player
+                            making them weaker, move slower, stop the player’s movement, or slowly deplete the players
+                            health bar.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">Similar to what would a RPG would be, the player
+                            can fight the enemies to increase their experience and their levels while also collecting
+                            any loot the enemies drop whenever they are beaten. There are 4 different skills to tackle
+                            enemies.</p>
+                        <p class="small-font no-spacing bottom-spacing">Additionally, there are breakable boxes that the
+                            player can destroy in the beginning to get some items that respawns after a certain period
+                            of time.</p>
+                        <p class="small-font no-spacing bottom-spacing">The game is saved when the game closes. The file
+                            will be saved in an XML file.</p>
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                                Direct2D, XAudio2, MSXML APIs</p>
+                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
+                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
+                                XAudio2 to play audio.</p>
+                            <p class="small-font no-spacing bottom-spacing">The inventory system contains an array of
+                                Item classes. Each items is categorized as whether it is a miscellaneous item, hat,
+                                shirt, pants, shoes, weapon, or consumables. All of these items use Inheritance to
+                                inherit from base Item class so that they all can be stored through a base item class
+                                through downcasting.</p>
+                            <p class="small-font no-spacing bottom-spacing">The enemy class has multiple child enemy
+                                class which each child enemy class contain different abilities of their own as well as
+                                different stats. </p>
+                            <p class="small-font no-spacing bottom-spacing">The maps are stored in a XML file which is
+                                loaded using Microsoft XML API for use. Portals are design to switch between maps which
+                                will load a different XML file.</p>
+                            <p class="small-font no-spacing bottom-spacing">The NPC class uses a composition method to
+                                be able to load specific NPC dialog for different kinds of NPCs.</p>
+                            <p class="small-font no-spacing bottom-spacing">The Skill classes are independent classes
+                                which is mainly because at that time, I am learning C++ and learning how to use low
+                                level APIs at the same time. Eventually, the skill class has been refactored to become a
+                                composition class containing several effects classes which is mainly used in Auto
+                                Battles Project.</p>
+                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface used in the
+                                game are hand-made such as Button, Sliders, Checkbox, and Editboxes. This is mainly
+                                because back then I wanted this to be a yet another coding challenge and here we are it
+                                has been made into the game and other programs later on.</p>
+                        </details>
                     </div>
                     <div class="rightSection">
                         <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/N8JAszDYEo8"
@@ -257,42 +368,48 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <div class="topBorder">
                     <div class="leftSection">
                         <h1 class="font no-spacing">Sudoku</h1>
-                        <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
-                            Graphics Development Interface (GDI), MSXML APIs</p>
+
                         <p class="small-font no-spacing">A number placement puzzle game where the goal is to fill a
                             partially completed grid using numbers from 1 to 9 to finish the puzzle. The sole rule of
-                            this
-                            puzzle game is that each row, column, and region in a 9x9 grid is to contain all the numbers
-                            from 1 to 9. </p>
-                        <p class="small-font no-spacing bottom-spacing">There are sample puzzles a user can solve as
-                            well as
-                            creating brand new sudoku puzzles from scratch by simply pressing generate puzzle.</p>
-                        <ul class="no-spacing">
-                            <li class="small-font bottom-spacing">It uses the modified Backtrack Algorithm to solve any
-                                Sudoku puzzle
-                                (including the hardest sudoku puzzles out there). The modifications to the Backtrack
-                                Algorithm are that first it will eliminate candidate numbers that does not fit in either
-                                row, column, or region in that particular cell. Next it will identify Naked/Hidden
-                                Singles
-                                and Intersection Row/Column techniques that will further reduce candidates possible.
-                                This
-                                significantly improves the algorithm speed as there will be less possible cases possible
-                                in
-                                a particular possible.</li>
-                            <li class="small-font bottom-spacing">The modified Backtrack Algorithm is also used to
-                                generate
-                                a brand new
-                                sudoku puzzle that always results in one unique solution.</li>
-                            <li class="small-font bottom-spacing">A built-in hint that uses several human technique
-                                logics
-                                that can solve
-                                all but the hardest Sudoku Problems out there.</li>
-                            <li class="small-font bottom-spacing">Detects errors whenever the player inputs a incorrect
-                                number.</li>
-                            <li class="small-font bottom-spacing">Pre-made puzzles that can be loaded from a xml file
-                                containing multiple
-                                demo sudoku puzzles, the user can use arrow keys to switch between puzzles.</li>
-                        </ul>
+                            this puzzle game is that each row, column, and region in a 9x9 grid is to contain all the
+                            numbers from 1 to 9. </p>
+                        <p class="small-font no-spacing bottom-spacing">The person can use numbers 1 to 9 to fill in the
+                            empty cells in hopes of filling the entire puzzle. Sometimes it can’t be done easily, in
+                            which the player can mark candidates from 1 to 9 in which tells the player that they can be
+                            possible numbers that fill in the cell. All advanced techniques utilized candidates which
+                            narrows down possible candidates to a few in which the user can finish the puzzle off
+                            easier. Or if the user wants to save time, the person can use auto-fill candidates to fill
+                            ALL possible candidates in the entire puzzle so they don’t have to write themselves.</p>
+                        <p class="small-font no-spacing bottom-spacing">In case of an error, the program will detect
+                            errors whenever the player inputs an incorrect number such as two numbers in the same row,
+                            column, or region. An undo/reverse button to either redo or revert changes made into the
+                            puzzle.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are many sample puzzles that can be loaded
+                            from an xml file for the player to solve. If that is not enough, the system can generate a
+                            new puzzle with a unique solution of its own providing nearly infinite amount of sudoku
+                            puzzles a person can solve.</p>
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
+                                Graphics Development Interface (GDI), MSXML APIs</p>
+                            <p class="small-font no-spacing">In order to solve sudoku puzzles (including the hardest
+                                sudoku puzzles out there). or generate new sudoku puzzles, I have used the modified
+                                Backtrack Algorithm. The modifications to the Backtrack Algorithm are that first it will
+                                eliminate candidate numbers that does not fit in either row, column, or region in that
+                                particular cell. Next it will identify Naked/Hidden Singles and Intersection Row/Column
+                                techniques that will further reduce candidates possible. This significantly improves the
+                                algorithm speed as there will be less possible cases possible in a particular possible.
+                            </p>
+                            <p class="small-font no-spacing bottom-spacing">To be able to solve sudoku puzzle using
+                                numbers logic, it is much harder to implement then modified Backtrack algorithm. To be
+                                able to get started, I had to create several arrays which are number of candidates, list
+                                of singles, pairs, triples, and quads, as well as candidates that remain in all row,
+                                column, and region. This allowed me to make Naked/hidden single, pairs, triples, and
+                                quads, intersections (pointing/claiming), X, XY, XYZ, W wings, Swordfish, and Simple
+                                Coloring. This has been extremely challenging for me as it is extremely hard to debug
+                                and find errors due to a 2d array of 9x9 making it hard to find which index were changed
+                                and so on.</p>
+                        </details>
                     </div>
                     <div class="rightSection">
                         <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/X8aiZYdBZJQ"
@@ -310,17 +427,25 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
     <br><br>
     <div class="container bottom-margin">
         <div class="fillColor">
-            <h1 class="topBorder font no-spacing title">Other Projects</h1>
+            <h1 class="topBorder font no-spacing title">School Projects</h1>
             <p class="bottomBorder small-font no-spacing">Here are the list of other projects I have done before during
                 university era.</p>
         </div>
 
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">Guitar Chord Detector</h1>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">Guitar Chord Detector</h1>
+
+            <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the
+                user plucks a chord from the guitar. The results appears on a Smartphone App through a Bluetooth from
+                the HC-05 Bluetooth Module inside our hardware
+                where it determines which type of chord has been struck.</p>
+            <p class="small-font no-spacing">To perform this, the person first connects the guitar into the hardware and
+                attempt to strum a chord. Then, once the processing finished, slide the guitar pick in the smartphone
+                app to obtain the detected chord.</p>
+
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
                 <p class="tools-used no-spacing">Language: C (Java for Android app), Libraries: MSP432 library
-                <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the
-                    user plucks a chord from the guitar. The results appears on a Android Application through Bluetooth
-                    where it determines which type of chord has been struck.</p>
                 <p class="small-font no-spacing bottom-spacing">It uses a MSP432 hardware that is capable of doing a
                     Fast Fourier Transform on hardware which signficantly increases it performance as the computation
                     of the FFT is done in one clock cycle. The usage is to convert 4096 ADC samples into a frequency
@@ -329,85 +454,190 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 <p class="small-font no-spacing bottom-spacing">We also used K-Nearest Neighbors algorithm which helps
                     us determine how similar our FFT results are compared to other FFT results. This helps us match up
                     with given frequency of known chords easily. </p>
-                <p class="small-font no-spacing">Here is the full project <a target="_blank"
-                        href="https://drive.google.com/file/d/1gqJI3oSqBdOhpFgBbAus-Fd3VQVh7LJ6/view?usp=sharing">report</a>
-                </p>
-            </div>
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
-                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 , Graphics
-                    Development Interface</p>
-                <p class="small-font no-spacing">Made in Hackathon of fall 2018, the goal of the project is to replace
-                    quick flashing strobe of lights in certain videos into a static color to protect the viewer from
-                    collapsing from a seizure </p>
-                <span class="small-font no-spacing">Links: <a target="_blank"
-                        href="https://devpost.com/software/seizure-flash-blocker#updates">Devpost</a></span>
-                <span class="small-font no-spacing"><a target="_blank"
-                        href="https://devpost.com/software/seizure-flash-blocker#updates">Github </a></span>
-            </div>
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">System on Chip Design - Tramel Blaze</h1>
-                <p class="tools-used no-spacing">Language: Verilog</p>
-                <p class="small-font no-spacing">Tramel Blaze is a modified version of PicoBlaze architecture where it
-                    is able to execute 16bits of code instructors. It contains a register, memory, RAM, TSI, and UART
-                    modules
-                    that help store data, receive/transfer data to another device. This is made using Xilinx ISE with
-                    Verilog as the language.
-                    It is then programmed onto a Nexys4 Board. It is done by feeding it lines of instructions and its
-                    output appears on the 8 digit LED. The buttons go through each register and also traversing through
-                    instructions </p>
-                <p class="small-font no-spacing">Here is the full <a target="_blank"
-                        href="https://drive.google.com/file/d/1fUWKiQnzfdymrrGUmtPFY28wLpIidMJo/view?usp=sharing">Chip
-                        Specification</a>
-                </p>
-            </div>
+            </details>
+            <p class="small-font no-spacing bottom-spacing">Here is the full project <a target="_blank"
+                    href="https://drive.google.com/file/d/1gqJI3oSqBdOhpFgBbAus-Fd3VQVh7LJ6/view?usp=sharing">report</a>
+            </p>
+        </div>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
 
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">Single Cycle Mips Processor</h1>
-                <p class="tools-used no-spacing">Language: Verilog</p>
-                <p class="small-font no-spacing">A Single Cycle Mips Processor is used to execute assembly instructions
-                    in one single clock cycle. There are many different instructions that affect registers and values in
-                    the memory address in the processor.
-                    We extended our Single Cycle Mips Processor by adding more instructions into the processor such as
-                    Load Word Increment (LWINC), Exchange (Xch), Multiple (MULT), Divide(DIV), Jump Bit (JB), Jump
-                    Carry( JC), and etc. By adding more instructions, we have to modify the structure of our processor
-                    in order to incorporate the new instructions to ensure that these extension instructions can be
-                    resolved with a single clock cycle.
+            <p class="small-font no-spacing">Made in Hackathon of fall 2018 in 48 hours, the goal of the project
+                is to replace
+                quick flashing strobe of lights in certain videos into a static color to protect the viewer from
+                collapsing from a seizure. In this program we used Google Chrome and a youtube video (as demonstration)
+                from a clip from
+                Pokemon (Dennō Senshi Porygon) that caused hundreds of people to be sent to hospitals due to seizures
+                caused in that episode.
+            </p>
+            <p class="small-font no-spacing bottom-spacing">A seizure (or a photosensitive epilepsy) is made from
+                constantly flashing colors or regularly repeating patterns</p>
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
+                <p class="tools-used no-spacing">Language: C/C++, Libraries: C++ Standard Library, Windows32 , Graphics
+                    Development Interface (GDI)</p>
+                <p class="small-font no-spacing bottom-spacing">The program is ran in background, there is no window
+                    that shows up</p>
+                <p class="small-font no-spacing bottom-spacing">It uses an algorithm which determines the aggregate
+                    color difference
+                    which compares the difference of color between the current frame and the last frame. The color has
+                    three channels of Red, Green, and Blue dimension which is then pointed in space.
+                    We can compute the distance between two colors through the distance formula. If the distance is
+                    bigger, it is shown that the color is changed extremely. This is for one pixel. To be able to cover
+                    the entire screen, we have to sum the color distances over the entire region to compute an aggregate
+                    between two frame.</p>
+
+                <p class="small-font no-spacing bottom-spacing">It records
+                    number of times within 200ms period that color difference reaches a specific threshold. If this
+                    threshold activates 3 times, it is marked as flashing. We used GDI (Graphics Development Interface)
+                    to draw a red rectangle over the region</p>
+
+            </details>
+            <details class="small-font">
+                <summary><b>Self-Reflections</b></summary>
+                <p class="small-font no-spacing">The successful finish of the project in under a 48 hour timeframe as
+                    well as the experience and
+                    knowledge obtained while in Hackathon have told
+                    me many things. First, it told me to deal with agile coding. Second, we worked together as a group
+                    of 3 communicating with each other on what our part of roles we do. And finally, it inspired me to
+                    start using Windows API instead of SFML/SDL libraries as a
+                    stepping stone to build desktop apps to improve my programming skills. The use of low level
+                    libraries taught me to use C-style coding techniques and the low-level libraries allows more freedom
+                    to customize the windows such as not showing the window and instead run in the background. In
+                    addition, we had the most originality of other projects in the Hackathon because it does not rely on
+                    any external libraries of any kind.</p>
+
+            </details>
+            <span class="small-font no-spacing">Links: <a target="_blank"
+                    href="https://devpost.com/software/seizure-flash-blocker#updates">Devpost</a></span>
+            <span class="small-font no-spacing"><a target="_blank"
+                    href="https://github.com/user234683/seizure-flash-blocker">Github </a></span>
+        </div>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">System on Chip Design - Tramel Blaze</h1>
+
+            <p class="small-font no-spacing">Tramel Blaze is a modified version of PicoBlaze architecture where it
+                is able to execute 16bits of instructions compared to PicoBlazes 8 bit instructions. It contains
+                components of 16 bit registers, SRAM (Static Random Access Memory) with 32,768 address, TSI (Technology
+                Specific Information), and UART (Universal Asynchronous Receiver Transmitter)
+                modules that when used, it can store/load data from memory as well as receiving/transferring data from
+                another device.
+                Our Verilog code is then programmed onto a Nexys4 Board. There, it is fed lines of assembly language
+                instructions and its
+                output appears on the 8 digit LED. The buttons go through each register and also traversing through
+                instructions </p>
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
+                <p class="tools-used no-spacing">Language: Verilog / Assembly Language</p>
+                <p class="small-font no-spacing bottom-spacing"><b>AISO – </b> The Asynchronous Input Synchronous Output
+                    is a module that turns an Asynchronous signal into a Synchronous Output. The main use of the module
+                    is to prevent an unstable signal know as metastability.</p>
+                <p class="small-font no-spacing bottom-spacing"><b>TSI – </b> The Technology Specific Instantiation is a
+                    module that makes sure that the I/O of the chip meets electrical and timing requirements of the
+                    external interface.</p>
+                <p class="small-font no-spacing bottom-spacing"><b>PED – </b> The positive edge detect simply detects
+                    whether a bit changes from low (0) to high(1)</p>
+                <p class="small-font no-spacing bottom-spacing"><b>Address Decoder – </b> The address decoder outputs
+                    control units based on the given input varying from address and read/write strobe.</p>
+                <p class="small-font no-spacing bottom-spacing"><b>UART -</b> The Universal Asynchronous Receive
+                    Transmitter has two component: The transmit side and the receive side.</p>
+                <p class="small-font no-spacing bottom-spacing">The <b>transmit</b> engine uses a Baud Decoder to
+                    translate 4 bits of input to a given selected Baud Rate. The larger the baud rate, the less clock
+                    cycles it takes to reach the Bit time counter. See the table in Chip Specification for more details.
                 </p>
-                <p class="small-font no-spacing">Here is the full project <a target="_blank"
-                        href="https://drive.google.com/file/d/1cL1Xc-2DzqNwCe3OA9CfsYQvuT9TE43Q/view?usp=sharing">report</a>
-                </p>
-            </div>
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">Bluetooth Car with IR Transmitter</h1>
-                <p class="tools-used no-spacing">Language: C, Java (for android app), Libraries TM4C123 library </p>
-                <p class="small-font no-spacing">In this project we used Bluetooth through HC-05 on our car to
-                    communicate between phone and car while blasting IR signals to perform the communication.
-                    We used a terminal to connect our bluetooth between our car and our mobile phone with UART. We used
-                    an android app to control our wireless car by using the arrow pads on the app to do so.
-                    We first have to setup and configure the HC-05 to be able to pair with the android phone.
-                    Our android app allows us to change direction and speed of the car while sending IR signals from our
-                    phone to the car.
-                </p>
-                <p class="small-font no-spacing">Here is the full project <a target="_blank"
-                        href="https://drive.google.com/file/d/1YXyN2htkgRV2CW81DQr-QSCh8F2THIBj/view?usp=sharing">report</a>
-                    and <a target="_blank" href="https://github.com/steveWin32/CECS-447-Project">Source Code</a>.
-                </p>
-            </div>
-            <div id="project" class="fillColor">
-                <h1 class="topBorder font no-spacing">Console Turn-Based RPG Game</h1>
-                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard library
-                <p class="small-font no-spacing">This is my first C++ project that I made while I was in university as a project. The player finds enemies and battle them for experience and gold. These help improve the player by buying equips, items and leveling up in battle.
-                    Once the player is strong enough and defeats enough monsters, they can fight a boss and if they did defeat the boss, the player goes to the next area where they fight stronger monsters
-                </p>
-                <p class="small-font no-spacing bottom-spacing">There are 6 areas with 29 enemies and 6 bosses to fight. 36 equips, 19 usable items, and 5 skills to use. The player wins once they defeat the final bosses.
-                    which is located in the 6th area. Yes there is a credits scene after the final boss is defeated.
-                </p>
-                <p class="small-font no-spacing bottom-spacing">It is a console game because at that time, because I barely got into C++ progamming language.</p>
-                <p class="small-font no-spacing">Here is the <a target="_blank"
-                        href="https://github.com/stevenwang314/console-rpg">source code.</a>
-                </p>
-            </div>
+                <p class="small-font no-spacing bottom-spacing">It uses the Shift Register to shift 1 bit to the right.
+                    The Least Significant bit is then sent to the TX signal. The contents contain a start bit and stop
+                    bit which is a fixed set of bits that tells the UART to start/stop processing the bits.</p>
+                <p class="small-font no-spacing bottom-spacing">The <b>receive</b> engine is much more complex than
+                    transmit engine. It is not a voluntary process and will wait until the transmit data from the other
+                    peripheral starts sending data to the receive side of this peripheral.</p>
+                <p class="small-font no-spacing bottom-spacing">Not all data will be transferred successfully from one
+                    side to another. We have to flag Parity, Framing, and Overflow errors as a way to check whether we
+                    are able to successfully transfer all of its bits from the other peripheral transmitter data to our
+                    receiver data.</p>
+            </details>
+            <details class="small-font">
+                <summary><b>Self-Reflections</b></summary>
+                <p class="small-font no-spacing">This project means alot to me. First, it teaches me how to verify our
+                    code we made in verilog through test-benches to ensure our modules work properly. Second,
+                    documentating code is the most vital part as it help me remember what a piece of code does. Finally,
+                    writing a Chip specification taught me to write better grammer as well as allowing me to organize
+                    and create schematics/diagrams to visualize myself and other on how to take approach on my chip
+                    design.</p>
+                <p class="small-font no-spacing">It allowed me to further learn how to debug code and find mistakes and
+                    errors as well as developing a technique to intentionally make a program/test fail to be able to
+                    prevent it from happening again in the future. The last thing I learned is code refactoring as
+                    refactoring significantly makes the code more readable to a human eye.</p>
+            </details>
+            <p class="small-font no-spacing">Here is the full <a target="_blank"
+                    href="https://drive.google.com/file/d/1fUWKiQnzfdymrrGUmtPFY28wLpIidMJo/view?usp=sharing">Chip
+                    Specification</a>
+            </p>
+        </div>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">Console Turn-Based RPG Game</h1>
+
+            <p class="small-font no-spacing">This is my first C++ project that I made while I was in university as a
+                project. The player finds enemies and battle them for experience and gold. These help improve the player
+                by buying equips, items and leveling up in battle.
+                Once the player is strong enough and defeats enough monsters, they can fight a boss and if they did
+                defeat the boss, the player goes to the next area where they fight stronger monsters
+            </p>
+            <p class="small-font no-spacing bottom-spacing">There are 6 areas with 29 enemies and 6 bosses to fight. 36
+                equips, 19 usable items, and 5 skills to use. The player wins once they defeat the final bosses.
+                which is located in the 6th area. Yes there is a credits scene after the final boss is defeated.
+            </p>
+            <p class="small-font no-spacing bottom-spacing">It is a console game because at that time, because I barely
+                got into C++ progamming language.</p>
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
+                <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard library</p>
+                <p class="small-font no-spacing bottom-spacing">It uses a Finite State Machine to track the current Game State such as being in a certain menu, fight mode, win battle, lose battle, shop, inventory, and etc. to organize the current scene where the game is currently at.</p>
+                <p class="small-font no-spacing bottom-spacing"></p>
+            </details>
+            <details class="small-font">
+                <summary><b>Self-Reflections</b></summary>
+                <p class="small-font no-spacing">As a first program made in C++ and overall, I learned alot of C++ along the way. Although the program is in console, most of the practicing is used through console program as it is easier for me and beginners in general.</p>
+                <p class="small-font no-spacing bottom-spacing">Though I finished, I felt like my code at that time had alot of issues after I looked back. The code overall needs to be organized, there were magic numbers all over the code, and also storing data onto code.</p>
+                <p class="small-font no-spacing bottom-spacing">Eventually, many small projects later, I have developed code refactoring, avoiding magic numbers, as well as having game data stored somewhere else other than the code itself as code is used to execute instructions but not data.</p>
+            </details>
+            <p class="small-font no-spacing">Here is the <a target="_blank"
+                    href="https://github.com/stevenwang314/console-rpg">source code.</a>
+            </p>
+        </div>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">Single Cycle Mips Processor</h1>
+            <p class="tools-used no-spacing">Language: Verilog</p>
+            <p class="small-font no-spacing">A Single Cycle Mips Processor is used to execute assembly instructions
+                in one single clock cycle. There are many different instructions that affect registers and values in
+                the memory address in the processor.
+                We extended our Single Cycle Mips Processor by adding more instructions into the processor such as
+                Load Word Increment (LWINC), Exchange (Xch), Multiple (MULT), Divide(DIV), Jump Bit (JB), Jump
+                Carry( JC), and etc. By adding more instructions, we have to modify the structure of our processor
+                in order to incorporate the new instructions to ensure that these extension instructions can be
+                resolved with a single clock cycle.
+            </p>
+            <p class="small-font no-spacing">Here is the full project <a target="_blank"
+                    href="https://drive.google.com/file/d/1cL1Xc-2DzqNwCe3OA9CfsYQvuT9TE43Q/view?usp=sharing">report</a>
+            </p>
+        </div>
+        <div id="project" class="fillColor">
+            <h1 class="topBorder font no-spacing">Bluetooth Car with IR Transmitter</h1>
+            <p class="tools-used no-spacing">Language: C, Java (for android app), Libraries TM4C123 library </p>
+            <p class="small-font no-spacing">In this project we used Bluetooth through HC-05 on our car to
+                communicate between phone and car while blasting IR signals to perform the communication.
+                We used a terminal to connect our bluetooth between our car and our mobile phone with UART. We used
+                an android app to control our wireless car by using the arrow pads on the app to do so.
+                We first have to setup and configure the HC-05 to be able to pair with the android phone.
+                Our android app allows us to change direction and speed of the car while sending IR signals from our
+                phone to the car.
+            </p>
+            <p class="small-font no-spacing">Here is the full project <a target="_blank"
+                    href="https://drive.google.com/file/d/1YXyN2htkgRV2CW81DQr-QSCh8F2THIBj/view?usp=sharing">report</a>
+                and <a target="_blank" href="https://github.com/steveWin32/CECS-447-Project">Source Code</a>.
+            </p>
+        </div>
+
     </div>
 </body>
 
