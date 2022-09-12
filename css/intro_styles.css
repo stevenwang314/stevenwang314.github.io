@@ -12,7 +12,7 @@
     text-align: center;
     margin-bottom: 0px;
     margin-top: 0px;
-    color: red;
+    color: rgb(205, 34, 34);
 }
 #image {
     position: absolute;
@@ -45,9 +45,11 @@
 }
 #about-container {
     top: 100vh;
+    background-color: rgba(200, 0, 0, 0.5);
+}
+#background {
     background-color: rgba(255,0,0,0.5);
 }
-
 #footer {
     font-size: 24px;
     font-family: "Arbutus", Arial, Helvetica, sans-serif;
