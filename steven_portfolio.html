@@ -88,7 +88,10 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         </p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/MofQ8Fk_mWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/MofQ8Fk_mWw"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                     </ul>
                 </div>
@@ -177,7 +180,10 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         </p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/XloFR0rIsXM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/XloFR0rIsXM"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -564,6 +570,9 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                     writing a Chip specification taught me to write better grammer as well as allowing me to organize
                     and create schematics/diagrams to visualize myself and other on how to take approach on my chip
                     design.</p>
+                <p class="small-font no-spacing">The project taught me on whenever I get started on a project, I first
+                    plan out a diagram or some sort of a description on what each object does and then translate the
+                    givens into code for each.</p>
                 <p class="small-font no-spacing">It allowed me to further learn how to debug code and find mistakes and
                     errors as well as developing a technique to intentionally make a program/test fail to be able to
                     prevent it from happening again in the future. The last thing I learned is code refactoring as
@@ -592,14 +601,22 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
             <details class="small-font">
                 <summary><b>Implementations</b></summary>
                 <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard library</p>
-                <p class="small-font no-spacing bottom-spacing">It uses a Finite State Machine to track the current Game State such as being in a certain menu, fight mode, win battle, lose battle, shop, inventory, and etc. to organize the current scene where the game is currently at.</p>
+                <p class="small-font no-spacing bottom-spacing">It uses a Finite State Machine to track the current Game
+                    State such as being in a certain menu, fight mode, win battle, lose battle, shop, inventory, and
+                    etc. to organize the current scene where the game is currently at.</p>
                 <p class="small-font no-spacing bottom-spacing"></p>
             </details>
             <details class="small-font">
                 <summary><b>Self-Reflections</b></summary>
-                <p class="small-font no-spacing">As a first program made in C++ and overall, I learned alot of C++ along the way. Although the program is in console, most of the practicing is used through console program as it is easier for me and beginners in general.</p>
-                <p class="small-font no-spacing bottom-spacing">Though I finished, I felt like my code at that time had alot of issues after I looked back. The code overall needs to be organized, there were magic numbers all over the code, and also storing data onto code.</p>
-                <p class="small-font no-spacing bottom-spacing">Eventually, many small projects later, I have developed code refactoring, avoiding magic numbers, as well as having game data stored somewhere else other than the code itself as code is used to execute instructions but not data.</p>
+                <p class="small-font no-spacing">As a first program made in C++ and overall, I learned alot of C++ along
+                    the way. Although the program is in console, most of the practicing is used through console program
+                    as it is easier for me and beginners in general.</p>
+                <p class="small-font no-spacing bottom-spacing">Though I finished, I felt like my code at that time had
+                    alot of issues after I looked back. The code overall needs to be organized, there were magic numbers
+                    all over the code, and also storing data onto code.</p>
+                <p class="small-font no-spacing bottom-spacing">Eventually, many small projects later, I have developed
+                    code refactoring, avoiding magic numbers, as well as having game data stored somewhere else other
+                    than the code itself as code is used to execute instructions but not data.</p>
             </details>
             <p class="small-font no-spacing">Here is the <a target="_blank"
                     href="https://github.com/stevenwang314/console-rpg">source code.</a>
@@ -607,7 +624,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         </div>
         <div id="project" class="fillColor">
             <h1 class="topBorder font no-spacing">Single Cycle Mips Processor</h1>
-            <p class="tools-used no-spacing">Language: Verilog</p>
+
             <p class="small-font no-spacing">A Single Cycle Mips Processor is used to execute assembly instructions
                 in one single clock cycle. There are many different instructions that affect registers and values in
                 the memory address in the processor.
@@ -615,15 +632,55 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                 Load Word Increment (LWINC), Exchange (Xch), Multiple (MULT), Divide(DIV), Jump Bit (JB), Jump
                 Carry( JC), and etc. By adding more instructions, we have to modify the structure of our processor
                 in order to incorporate the new instructions to ensure that these extension instructions can be
-                resolved with a single clock cycle.
+                resolved with a single clock cycle. There is a disadvantage of adding more instructions in hardware, it
+                cost more money to be able to contain additional hardware components but also it costs more power to be
+                able to operate additional components. The choice is made by the person.
             </p>
             <p class="small-font no-spacing">Here is the full project <a target="_blank"
                     href="https://drive.google.com/file/d/1cL1Xc-2DzqNwCe3OA9CfsYQvuT9TE43Q/view?usp=sharing">report</a>
             </p>
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
+                <p class="tools-used no-spacing">Language: Verilog</p>
+                <p class="small-font no-spacing bottom-spacing">Extended Instructions that are implemented to our MIPS
+                    processor.</p>
+                <p class="small-font no-spacing bottom-spacing"><b>Multiply (mult)</b> multiplies a register by another
+                    register. To implement this we have to follow this algorithm to incorporate in our verilog module.
+                </p>
+                <image
+                        src="https://cdn.discordapp.com/attachments/1010733257958113511/1019126222791389244/unknown.png"
+                        class="image" alt="Demonstration"></image>
+             
+                <p class="small-font no-spacing bottom-spacing"><b>Divide (div)</b> divides a register by another
+                    register. To implement this we have to follow this algorithm to incorporate in our verilog module.
+                </p>
+                <image
+                src="https://cdn.discordapp.com/attachments/1010733257958113511/1019126359680880650/unknown.png"
+                class="image" alt="Demonstration"></image>
+                <image
+                src="https://cdn.discordapp.com/attachments/1010733257958113511/1019126359886397510/unknown.png"
+                class="image" alt="Demonstration"></image>
+                <image
+                src="https://cdn.discordapp.com/attachments/1010733257958113511/1019126360117092412/unknown.png"
+                class="image" alt="Demonstration"></image>
+                <p class="small-font no-spacing bottom-spacing"><b>Jump Bit (jb)</b>- Jump to a specific address when a particular bit is set (1).
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Jump Carry (jc)</b>- Jump to a specific address when the carry flag is set (1).
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Load Byte Unsigned (lbu)</b>- Loads an immediate value into the register and then transform the value into unsigned modifying the most significant bit to always be 0.
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Store Word Increment (swi)</b>- Stores a immediate value from a register into memory, then the current address is incremented by 1.
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Store Word Decrement (swd)</b>- Stores a immediate value from a register into memory, then the current address is decremented by 1.
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Load Word Increment (lwi)</b>- Loads an immediate value into a register, then the current address is incremented by 1.
+                </p>
+                <p class="small-font no-spacing bottom-spacing"><b>Load Word Decrement (lwd)</b>- Loads an immediate value into the register, then the current address is decremented by 1.
+                </p>
+            </details>
         </div>
         <div id="project" class="fillColor">
             <h1 class="topBorder font no-spacing">Bluetooth Car with IR Transmitter</h1>
-            <p class="tools-used no-spacing">Language: C, Java (for android app), Libraries TM4C123 library </p>
             <p class="small-font no-spacing">In this project we used Bluetooth through HC-05 on our car to
                 communicate between phone and car while blasting IR signals to perform the communication.
                 We used a terminal to connect our bluetooth between our car and our mobile phone with UART. We used
@@ -636,6 +693,12 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                     href="https://drive.google.com/file/d/1YXyN2htkgRV2CW81DQr-QSCh8F2THIBj/view?usp=sharing">report</a>
                 and <a target="_blank" href="https://github.com/steveWin32/CECS-447-Project">Source Code</a>.
             </p>
+            <details class="small-font">
+                <summary><b>Implementations</b></summary>
+                <p class="tools-used no-spacing">Language: C, Java (for android app), Libraries TM4C123 library </p>
+                <p class="small-font no-spacing bottom-spacing">See the report as most of the implementations are explained in there. Most of the software code were plugging in ports to trigger the hardware.
+                </p>
+            </details>
         </div>
 
     </div>

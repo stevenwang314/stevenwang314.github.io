@@ -6,13 +6,23 @@
 }
 
 #nameFont {
-    font-family: "Hubballi", Arial, Helvetica, sans-serif;
+    font-family: "Milonga", Arial, Helvetica, sans-serif;
     font-style: oblique;
     font-size: 144px;
     text-align: center;
     margin-bottom: 0px;
     margin-top: 0px;
     color: rgb(205, 34, 34);
+    -webkit-text-fill-color: rgba(244, 10, 10, 0.767); /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: black;
+
+      text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 }
 #image {
     position: absolute;
@@ -21,7 +31,7 @@
     width: 100%;
     height: 100%;
     z-index: -3;
-    opacity: 0.75;
+    opacity: 0.69;
 }
 #personalPicture {
     border-color: black;
@@ -39,16 +49,15 @@
 
 }
 #intro-desc {
-    font-family: 'DynaPuff', sans-serif;
-    font-size: 28px;
+    font-family: 'Arbutus', sans-serif;
+    font-size: 22px;
     text-align: center;
 }
 #about-container {
     top: 100vh;
+    background-color: rgba(238, 32, 32, 0.451);
 }
-#background {
-    background-color: rgba(255,0,0,0.5);
-}
+
 #footer {
     font-size: 24px;
     font-family: "Arbutus", Arial, Helvetica, sans-serif;
@@ -92,9 +101,37 @@ text-decoration: none;
     .about-font {
         font-size: 12px;
     }
+    #intro-desc {
+        font-size: 13px;
+    }
+    #personalPicture {
+        width: 200px;
+        height: 200px;
+    }
+    #nameFont {
+        font-size: 96px;
+        -webkit-text-stroke-width: 1.5px;
+    }
 }
 @media screen and (max-width: 800px) {
     .about-font {
         font-size: 7px;
     }
+    #intro-desc {
+        font-size: 8px;
+    }
+    #personalPicture {
+        width: 100px;
+        height: 100px;
+      
+    }
+    #nameFont {
+        font-size: 64px;
+             -webkit-text-stroke-width: 1px;
+    }
+}
+
+.standout-color {
+    color: rgb(8, 115, 42);
+    font-weight: bolder;
 }
