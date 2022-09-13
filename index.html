@@ -27,9 +27,37 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
 </head>
 
 <body>
-    <div id="background">
-           <img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1019021546997686382/20190518_125315.jpg"
-                alt="A background of Steven Wang"></img>
+    <script>
+        let hasBg = false;
+        function toggleBg() {
+            hasBg = !hasBg;
+            if (hasBg) {
+                let element = document.getElementById('background');
+                element.remove();
+
+                element = document.createElement("img");
+           
+                element.setAttribute("src","https://cdn.discordapp.com/attachments/1010733257958113511/1019021546997686382/20190518_125315.jpg");
+                element.setAttribute("id","image");
+                element.setAttribute("alt","A background of Steven Wang");
+
+                let main_div = document.getElementById("main");
+                main_div.append(element);
+            } else {
+                let element = document.getElementById('image');
+                element.remove();
+
+                element = document.createElement("div");
+                element.setAttribute("id","background");
+                 let main_div = document.getElementById("main");
+                main_div.append(element);
+            }
+        }
+    </script>
+    <div id="main">
+        <div id="background"></div>
+        <!--img id="image" src="https://cdn.discordapp.com/attachments/1010733257958113511/1019021546997686382/20190518_125315.jpg"
+                alt="A background of Steven Wang"></img-->
         <nav id="navigational" class="skip">
             <a class="links" href="index.html">Me</a>
             <a class="links" href="steven_portfolio.html">Projects</a>
@@ -38,7 +66,7 @@ Head usually contains this <meta>, <title>, <style>, <link>, <base>, and <script
 
         <div id="intro-container">
             <div id="name-container">
-                <p id="nameFont">Steven Wang</p>
+                <p id="nameFont" onClick="toggleBg()">Steven Wang</p>
             </div>
             <img id="personalPicture" width="300" height="300"
                 src="https://cdn.discordapp.com/attachments/1010733257958113511/1019024694462120069/20220912_161504.jpg"
