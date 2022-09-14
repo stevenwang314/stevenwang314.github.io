@@ -63,21 +63,27 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             possible. Each red flag the player obtains will increase the difficulty but the player gains
                             more score. More information is located in the game.
                         </p>
-
+                        <p class="small-font no-spacing bottom-spacing">Each stage is randomly generated including the
+                            players start position and the flags position which makes the gameplay different every
+                            playthrough.
+                        </p>
                         <details class="small-font">
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Programming Languages: Javascript, HTML, CSS</p>
-                            <p class="small-font no-spacing bottom-spacing">It uses the Document Object Model (DOM) API
-                                to interact with elements in html. In this case, we want to access the &lt;canvas&gt;
-                                element from Javascript. Each stage contains completely random placements of enemies,
-                                objects, and obstacles in which no two stages are exactly the same.</p>
-                            <p class="small-font no-spacing bottom-spacing"> This is the first project made from pure
-                                Javascript that utilizes &lt;canvas&gt; element from HTML greatly to draw out images,
-                                shapes, and texts. The images were taken from <img> element while the fonts are from
-                                Google Fonts.</p>
-                            <p class="small-font no-spacing bottom-spacing"> It uses the random number generator to
-                                randomly setup the stage in a 25x25 grid resulting in dynamic gameplay. The player and
-                                the red flag is also randomly positioned too!</p>
+                            <p class="small-font no-spacing">This is my first project made with pure Javascript with
+                                HTML for the webpage and CSS to stylize the webpage. It utilizes &lt;canvas&gt; element
+                                from
+                                HTML greatly to draw out images, shapes, and texts. The images were taken from
+                                &lt;img&gt;
+                                element while the fonts used are from Google Fonts.</p>
+                            <p class="small-font no-spacing bottom-spacing">In the Javascript code, it uses the Document
+                                Object Model (DOM) API to interact with HTML element. The use of the DOM API is to fetch
+                                the &lt;canvas&gt; element and then we can utilize the canvas functions to draw
+                                textures,
+                                colored shapes, and text to build up the game. Another use of the DOM API is to be
+                                able to add listeners to the mouse, touch, and keyboard inputs to be able to control
+                                the player with arrow keys, mouse, and on a mobile device as well as using items
+                                whenever the player sends input.</p>
                         </details>
                         <p class="small-font no-spacing bottom-spacing">
                             <a target="_blank" href="steven_demo.html">Demo – You can also click on Game Demo
@@ -127,50 +133,59 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Language: Javascript, HTML, and CSS Libraries: React,
                                 Bootstrap, Jquery, Spotify API, RESTful API, and Browser’s local storage</p>
-                            <p class="small-font no-spacing bottom-spacing">In order to use Spotify API and their
-                                RESTful principles, an access token is required. To get an access token, first I must
-                                follow the Authorization Guide by first obtaining an access token through mainly Client
-                                Credentials Flow. Second, I also have to create a Spotify app on their dashboard to
-                                obtain several sensitive information such as Client Key and Client Secret. I also need a
-                                Spotify Account to gain authentication to finally get the Access Token.</p>
-                            <p class="small-font no-spacing bottom-spacing">To securely hide the sensitive Client ID and
-                                Client Secret, it is stored in a hidden environment variable behind the backend through
-                                Node.js. It uses Express to accept request from our front end where it calls GET/POST
-                                methods to our back-end we have and receive the messages. There we have two API
-                                functions which we have that can authorize the users Spotify account into the app and
-                                another one which is used to obtain an access token by using Axios library. Both of
-                                these function utilizes the Client ID and Client Secret to hook into Spotify API. Once
-                                we get the access token, we finally can use it to call our API calls from Spotify. </p>
-                            <p class="small-font no-spacing bottom-spacing">Getting the access token is automatically
-                                called once the user is able to click refresh permission but also an additional time
-                                once the access token expires, which is in 1 hour, as there is also a refresh token to
-                                get another access token which only happens once.</p>
+                            <p class="small-font no-spacing bottom-spacing">In order to use the Spotify API and their
+                                RESTful library, an access token is required. To get an access token, the program must
+                                follow the Authorization Guide by first obtaining an access token through (in this
+                                project) the Authorization Code. Second, I must create a Spotify app on their dashboard
+                                to obtain several sensitive information such as Client Key and Client Secret and
+                                finally, I need to use an existing Spotify Account to gain authentication to finally get
+                                the Access Token.</p>
+                            <p class="small-font no-spacing bottom-spacing">As the Client ID and Client Secret cannot be
+                                shown in source code, I need a way to hide it from sight. To securely hide the sensitive
+                                Client ID and Client Secret, it is stored in a hidden environment variable file behind
+                                the server-side part of the app through Node.js. It uses Express to accept request from
+                                our own client-side where it calls GET/POST methods to our server side. There the
+                                program has two API functions which we implemented that can authorize the users Spotify
+                                account into the app and to obtain an access token by using Axios library. Both utilizes
+                                the Client ID and Client Secret needed to authenticate the user and then get an
+                                authentication code which is needed to hook into Spotify API. Once we get the access
+                                token, we finally can use it to call our API calls from Spotify. </p>
+                            <p class="small-font no-spacing bottom-spacing">In this program, getting the access token is
+                                automatically called once the user is able to click the refresh permission button but
+                                also an additional time once the access token expires, which is in 1 hour, as there is
+                                also a refresh token to get another access token which only happens once per
+                                authentication.</p>
                             <p class="small-font no-spacing bottom-spacing">In the front-end part of our app, we use the
-                                fetch() function to call our Spotify API functions with our access token obtained to be
-                                able to search for songs, artists, albums, recommending songs, getting song audio
-                                features, and then adding songs to playlist. To be able to constantly update the dynamic
-                                list on the webpage, we need to use React whenever we modify the list to update the
-                                displayed dynamic list.</p>
+                                fetch() function to call our API request with our access token to Spotify API to be able
+                                to search for songs, artists, albums, recommending songs, getting song audio features,
+                                and then adding songs to playlist endpoints. To be able to constantly update the dynamic
+                                list on the webpage whenever the lists are changed from user, it uses React whenever we
+                                modify the list to update the displayed dynamic list.</p>
                             <p class="small-font no-spacing bottom-spacing">The input we feed it to the Spotify Song
                                 recommendation algorithm uses the average of all songs features that are on the favorite
-                                songs list from the user followed by the 5 “seeds” from the users’ songs/artists to
-                                generate recommended songs. Finally, once the song recommendation list is made, we use
-                                the save song to playlist using the Spotify API to directly add them to the playlist
+                                songs list from the user followed by the 5 “seeds” from the users’ songs/artists to the
+                                generate recommended songs endpoint. Finally, once the song recommendation list is made,
+                                we use the save song to playlist endpoints to directly add them to the playlist
                                 directly. </p>
                         </details>
                         <details class="small-font">
                             <summary><b>Bonus:</b></summary>
                             <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, WinHTTP</p>
-                            <p class="small-font no-spacing bottom-spacing">I have used C++ to interact through RESTful
-                                principals to accessing Spotify API requests. To be able to perform RESTful API calls, I
-                                used WinHTTP API to do HTTP requests. As C++ does not have an official way to parse
-                                JSON, I
-                                created my own JSON parser to be able to parse the output of JSON obtained from the
-                                results. To see a C++ way to interact with spotify API, it is located on
-                                <a target="_blank"
-                                    href="https://github.com/stevenwang314/spotify-api-cpp-test">Github</a>
+                            <p class="small-font no-spacing">For a personal challenge, instead of using the usual
+                                Javascript code that is demonstrated in Spotify documentation, I have used C++ language
+                                instead to interact through Spotify API endpoints. To get started, I used the built in
+                                library from Microsoft that performs HTTP requests called WinHTTP API to do HTTP(s)
+                                requests.
                             </p>
-
+                            <p class="small-font no-spacing bottom-spacing">As C++’s standard library does not have a
+                                way to parse JSON, I created my own JSON parser to be able to parse the output of JSON
+                                obtained from the endpoint results from Spotify. There I stored these results through
+                                std::map which stores a std::variant data type that which can contain any of the data
+                                types such as integer, double, float, string, Boolean, null, an array of std::variant
+                                and even itself to emulate Javascript objects.</p>
+                            <p class="small-font no-spacing bottom-spacing">The source code of this bonus project is <a
+                                    target="_blank" href="https://github.com/stevenwang314/spotify-api-cpp-test">on
+                                    Github</a></p>
                         </details>
                         <p class="small-font no-spacing bottom-spacing">
                             <a target="_blank" href="https://spotify-api-test.netlify.app/">Demo</a><br><br>
@@ -198,46 +213,27 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         <p class="small-font no-spacing bottom-spacing">All units are automatically controlled by the
                             computer AI. It controls the units’ movements that will move toward the opposing team,
                             automatically attacking the nearest enemy as well as casting their own abilities.</p>
-                        <p class="small-font no-spacing bottom-spacing">There are more than 30 different types of units
+                        <p class="small-font no-spacing bottom-spacing">There are 50 different types of units
                             to choose from, each unit containing a unique ability exclusive to that particular unit.
                         </p>
                         <p class="small-font no-spacing bottom-spacing">Depending on the unit, some units are able to
                             attack at a longer distance where as some of the units are able to hit up close. </p>
                         <p class="small-font no-spacing bottom-spacing">The winner is when one team is able to eliminate
                             all other units from the opposing team.</p>
-                        <p class="small-font no-spacing bottom-spacing">There are a variety of modes to choose from in
+                        <p class="small-font no-spacing bottom-spacing">There are a variety of modes to play in
                             which they all have specific purposes.</p>
                         <details class="small-font">
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
                                 Direct2D, XAudio2, MSXML APIs</p>
-                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
-                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
-                                XAudio2 to play audio. The unit data is stored as a XML file and is ready using
-                                Microsoft XML (MSXML) API in a Document Object Model(DOM) style.</p>
-                            <p class="small-font no-spacing bottom-spacing">The entire project uses the Object Oriented
-                                Programming (OOP) idea to store them as classes. For the unit class, it uses the
-                                Composition methodology where we can make multiple different kinds of units without
-                                adding more classes. Inside the Unit class, it contains a Skill class. The Skill
-                                contains several Effect classes which can be interchanged between units. For instance,
-                                an effect such as firing a projectile, creating a hitbox, apply buffs to itself or
-                                debuffs to enemies or even heal a unit. The unit class also contains a Buff class that
-                                stores all buffs/debuffs which affect their performance in the fight.</p>
-                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface used in the
-                                game are hand-made such as Button, Sliders, Checkbox, and Editboxes which are taken from
-                                previous projects.</p>
+                            <p class="small-font no-spacing">The libraries used to build this project were Microsoft’s Windows32 API to create a window program, Direct2D API to render images, shapes, DirectWrite API to render Text, and XAudio2 to play audio. It uses Microsoft XML (MSXML) API in a Document Object Model(DOM) style to store unit data and a save file in a .xml format.</p>
+                            <p class="small-font no-spacing bottom-spacing">The entire project uses the Object-Oriented Programming (OOP) methodology to store them as classes. For the base Unit class, it uses the Composition technique where it can massively produce different kinds of the same base units without adding more classes which increases our executable size. One of the classes in this composition is a Skill class. The Skill contains several Effect classes that does its own purpose. For instance, an effect such as firing a projectile, creating a hitbox in an area, apply buffs to itself or debuffs to enemies or even heal a unit. Through the Composition technique, we can make many different units without creating new Unit classes inheriting Unit class while reusing our base Unit classes.</p>
+                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface (GUI) used in the game are hand-made such as Button, Sliders, Checkbox, and Editbox which are taken from previous projects.</p>
                         </details>
                         <details class="small-font">
-                            <summary><b>Extra</b></summary>
+                            <summary><b>Bonus</b></summary>
                             <div class="leftSection">
-                                <p class="small-font no-spacing">This is a first iteration of this project where the
-                                    units are
-                                    shapes with different abilities. This demonstrates a never ending battle where new
-                                    units
-                                    constantly spawn to replace any that were slained. The current iteration of this
-                                    projects
-                                    contains differet kinds of modes to
-                                    play so it does not look monotone style of gameplay.</p>
+                                <p class="small-font no-spacing">This is a first iteration of the Auto Battle Simulator project where the units are shapes with different abilities. This demonstrates an endless battle where new units constantly spawn to replace any that were slain in the fight.</p>
                             </div>
                             <div class="rightSection">
                                 <iframe class="video" width="600" height="250"
@@ -270,31 +266,15 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             boost enemies speed and even force towers to attack a specific enemy. For towers, there are
                             some towers that requires manual casting to deal powerful attack as well as some towers that
                             boost other towers performance.</p>
-                        <p class="small-font no-spacing bottom-spacing">Other than that, normal tower defense rules
-                            still apply. Spend gold to build towers and do not let enemies reach the exit path. Each
-                            enemy that escapes to the end of the path costs 1 health and the game ends when all health
-                            is lost. There isn’t an end to the game but to get as far as possible.</p>
+                        <p class="small-font no-spacing bottom-spacing">Other than that, normal tower defense rules still apply. The player spends gold to build towers as well as upgrading towers to improve their stats. The goal is to prevent the enemies reach the exit path. Each enemy that escapes to the end of the path costs 1 health and the game ends when all health is lost. With each new wave features newer enemies as well have an ever increasing health. There isn’t an end to the game but to get as far as possible.</p>
                         <details class="small-font">
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
                                 Direct2D, XAudio2, MSXML APIs</p>
-                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
-                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
-                                XAudio2 to play audio.</p>
-                            <p class="small-font no-spacing bottom-spacing">Each Turret, enemies, and projectiles uses
-                                Object Oriented Programming (OOP) and are put in classes. To differentiate different
-                                turrets and enemies, each turret and enemy use class inheritance to override the base
-                                turret and enemy class. </p>
-                            <p class="small-font no-spacing bottom-spacing">For towers that shoot at an angle and to
-                                collide with enemies, it uses the Separate Axis Theorem to perform angled concave
-                                shapes.</p>
-                            <p class="small-font no-spacing bottom-spacing">For faster collision detection when checking
-                                through a larger enemy list, I have implemented a Spatial Hash data structure which is a
-                                hash table that divides portions of the world space into a list for that particular
-                                location. To access the list at a specified location, it needs a 2D vector key
-                                containing a x and y value. By implementing the Spatial Hash, the overall game
-                                performance is faster mainly because the amount of collision checks between projectile
-                                and enemies is significantly reduced.</p>
+                            <p class="small-font no-spacing">The libraries used to build this project were Microsoft’s Windows32 API to create a window program, Direct2D API to render images, shapes, DirectWrite API to render Text, and XAudio2 to play audio.</p>
+                            <p class="small-font no-spacing bottom-spacing">Each Towers, Enemies, and Projectiles uses Object Oriented Programming (OOP) technique and are assigned in classes. To differentiate different towers and enemies, each tower and enemy uses the inheritance technique that inherits the base turret/enemy class and override some of its properties for its own custom implementation. </p>
+                            <p class="small-font no-spacing bottom-spacing">Angled collision is common especially when turrets are facing at an angle. For the projectiles to be able to handle angled collision correctly, it uses the Separate Axis Theorem which allows concave shapes collisions by using each of its vertices on two objects to project an axis between each other.</p>
+                            <p class="small-font no-spacing bottom-spacing">Another issue is where when there are more towers and enemies on the screen as the game progress which results in more redundant Collison checks which leads to reduced performance of the program. To reduce the collision checks, I have implemented a Spatial Hash which is a hash table that divides parts of the world space into a list for that particular chunk. To be able to get objects at that particular rectangle, we access the Spatial Hash using positions from 4 corners and aggregate it into an object list. Instead of checking all enemies (regardless of position), we only check only enemies that are roughly near a particular rectangle which improves our game performance.</p>
                         </details>
                     </div>
                     <div class="rightSection">
@@ -311,54 +291,41 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                     <div class="leftSection">
                         <h1 class="font no-spacing">2d Platformer RPG</h1>
 
-                        <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves around in a
-                            2D environment similar to a normal 2d platformer would be. There are RPG elements such as
-                            Inventory system where the player can equip items and use potions. A shop NPC that allows
-                            the player to buy and sell items. A quest NPC that assigns the player to do a certain task
-                            and if they do receive a reward.</p>
-                        <p class="small-font no-spacing bottom-spacing">There are many different areas to explore with a
-                            variety of enemies and even 1 boss enemy. Some of them can apply status effect on the player
-                            making them weaker, move slower, stop the player’s movement, or slowly deplete the players
-                            health bar.
+                        <p class="small-font no-spacing">A 2D platformer with RPG elements. The player moves a character
+                            around in a 2D environment with platforming movements in real time. </p>
+                        <p class="small-font no-spacing bottom-spacing">There are several RPG elements implemented in
+                            this project. One of them is the traditional combat system related to Health, Attack, and
+                            Defense where the player can fight enemies with either their regular attack or 4 other
+                            skills. The player can explore through different areas while encountering a variety of
+                            different enemies and also 1 boss enemy. Some of the enemies can apply status effect on the
+                            player making them weaker, move slower, stop the player’s movement, or slowly deplete the
+                            players health bar. The player gains experiences and even levels for each enemy it slays to
+                            become stronger over time.
                         </p>
-                        <p class="small-font no-spacing bottom-spacing">Similar to what would a RPG would be, the player
-                            can fight the enemies to increase their experience and their levels while also collecting
-                            any loot the enemies drop whenever they are beaten. There are 4 different skills to tackle
-                            enemies.</p>
+                        <p class="small-font no-spacing bottom-spacing">Then, there is an Inventory system where the
+                            player can store a finite number of items that ranges from equips, consumables, and even
+                            junk. The player can improve their own stats from equips and consumables help assist the
+                            player while he/she is fighting against enemies. Second there are NPC (Non-player
+                            characters) that the player can talk to. For instance, A shop NPC provides items that the
+                            player to buy or items that can sell to it. Another is a quest NPC that assigns the player
+                            to do a certain task and if they do finish their tasks, the player receives a set of
+                            experience and gold.</p>
                         <p class="small-font no-spacing bottom-spacing">Additionally, there are breakable boxes that the
-                            player can destroy in the beginning to get some items that respawns after a certain period
-                            of time.</p>
+                            player can destroy in the beginning to get some items. The boxes do respawn after a certain
+                            period of time when the player breaks them.</p>
                         <p class="small-font no-spacing bottom-spacing">The game is saved when the game closes. The file
                             will be saved in an XML file.</p>
                         <details class="small-font">
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
                                 Direct2D, XAudio2, MSXML APIs</p>
-                            <p class="small-font no-spacing">The program uses Microsoft’s Windows32 API to create a
-                                window program, Direct2D to render images, shapes, DirectWrite to render Text, and
-                                XAudio2 to play audio.</p>
-                            <p class="small-font no-spacing bottom-spacing">The inventory system contains an array of
-                                Item classes. Each items is categorized as whether it is a miscellaneous item, hat,
-                                shirt, pants, shoes, weapon, or consumables. All of these items use Inheritance to
-                                inherit from base Item class so that they all can be stored through a base item class
-                                through downcasting.</p>
-                            <p class="small-font no-spacing bottom-spacing">The enemy class has multiple child enemy
-                                class which each child enemy class contain different abilities of their own as well as
-                                different stats. </p>
-                            <p class="small-font no-spacing bottom-spacing">The maps are stored in a XML file which is
-                                loaded using Microsoft XML API for use. Portals are design to switch between maps which
-                                will load a different XML file.</p>
-                            <p class="small-font no-spacing bottom-spacing">The NPC class uses a composition method to
-                                be able to load specific NPC dialog for different kinds of NPCs.</p>
-                            <p class="small-font no-spacing bottom-spacing">The Skill classes are independent classes
-                                which is mainly because at that time, I am learning C++ and learning how to use low
-                                level APIs at the same time. Eventually, the skill class has been refactored to become a
-                                composition class containing several effects classes which is mainly used in Auto
-                                Battles Project.</p>
-                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface used in the
-                                game are hand-made such as Button, Sliders, Checkbox, and Editboxes. This is mainly
-                                because back then I wanted this to be a yet another coding challenge and here we are it
-                                has been made into the game and other programs later on.</p>
+                            <p class="small-font no-spacing">The libraries used to build this project were Microsoft’s Windows32 API to create a window program, Direct2D API to render images, shapes, DirectWrite API to render Text, and XAudio2 to play audio.</p>
+                            <p class="small-font no-spacing bottom-spacing">The inventory system contains an array of Item classes. Each item is categorized as whether it is a miscellaneous item, hat, shirt, pants, shoes, weapon, or consumables. All of these items use Inheritance to inherit from base Item class so that they all can be stored through a base item class through downcasting.</p>
+                            <p class="small-font no-spacing bottom-spacing">The enemy class has multiple child enemy classes which each child enemy class has different sprites, different stats, and may also contain a special ability of their own.</p>
+                            <p class="small-font no-spacing bottom-spacing">The maps are stored in .xml file which is loaded using Microsoft XML API for use. Portals are design to switch between maps which will load a different .xml file.</p>
+                            <p class="small-font no-spacing bottom-spacing">The NPC class uses a Composition technique to be able to load specific NPC dialog for different kinds of NPCs.</p>
+                            <p class="small-font no-spacing bottom-spacing">The Skill classes are independent classes which at that time I couldn’t find a way to organize/implement a proper skill class. Eventually, the skill class has been refactored to use a composition technique which contains chunks of skill effect classes containing several effects classes which is mainly used in Auto Battles Project.</p>
+                            <p class="small-font no-spacing bottom-spacing">All the Graphical User Interface used in the game are hand-made such as Button, Sliders, Checkbox, and Editbox. This is mainly because back then I wanted this to be a yet another coding challenge and here we are it has been made into the game and other programs later on.</p>
                         </details>
                     </div>
                     <div class="rightSection">
@@ -398,23 +365,11 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                             <summary><b>Implementations</b></summary>
                             <p class="tools-used no-spacing">Language: C++, Libraries: C++ Standard Library, Windows32 ,
                                 Graphics Development Interface (GDI), MSXML APIs</p>
-                            <p class="small-font no-spacing">In order to solve sudoku puzzles (including the hardest
-                                sudoku puzzles out there). or generate new sudoku puzzles, I have used the modified
-                                Backtrack Algorithm. The modifications to the Backtrack Algorithm are that first it will
-                                eliminate candidate numbers that does not fit in either row, column, or region in that
-                                particular cell. Next it will identify Naked/Hidden Singles and Intersection Row/Column
-                                techniques that will further reduce candidates possible. This significantly improves the
-                                algorithm speed as there will be less possible cases possible in a particular possible.
+                            <p class="small-font no-spacing">The libraries used to build this project were Microsoft’s Windows32 API to create a window program and draw the user interface (UI), Graphics Development Interface (GDI) to render images, shapes, and text.
                             </p>
-                            <p class="small-font no-spacing bottom-spacing">To be able to solve sudoku puzzle using
-                                numbers logic, it is much harder to implement then modified Backtrack algorithm. To be
-                                able to get started, I had to create several arrays which are number of candidates, list
-                                of singles, pairs, triples, and quads, as well as candidates that remain in all row,
-                                column, and region. This allowed me to make Naked/hidden single, pairs, triples, and
-                                quads, intersections (pointing/claiming), X, XY, XYZ, W wings, Swordfish, and Simple
-                                Coloring. This has been extremely challenging for me as it is extremely hard to debug
-                                and find errors due to a 2d array of 9x9 making it hard to find which index were changed
-                                and so on.</p>
+                            <p class="small-font no-spacing bottom-spacing">In order to solve any sudoku puzzles (including the hardest sudoku puzzles out there), I have used the modified Backtrack Algorithm. The modifications to the Backtrack Algorithm are that first it will eliminate candidate numbers that does not fit in either row, column, or region in that particular cell. Next it will identify Naked/Hidden Singles and Intersection Row/Column techniques that will further reduce candidates possible. This significantly improves the algorithm speed as there will be less possible cases possible in a particular possible.</p>
+                            <p class="small-font no-spacing bottom-spacing">To generate a brand new sudoku puzzle, first the algorithm will remove all numbers from the sudoku puzzle and then shuffles the order of candidates in all 81 cells. Then, from top-left cell to the bottom-right cell. The algorithm will choose the first cell and fills it out normally while eliminating that particular number in its row, column, and region cell. This continues until the puzzle is finished or until there is no possible candidate cells at that location. If there aren’t any possible candidate cells, the algorithm will backtrack, going back to the previous cell and remove the select candidate cell from earlier and pick the next candidate cell in the list. Once the puzzle is fully filled, it will remove numbers at random cell location and attempts to solve the puzzle using the modified backtrack algorithm to solve it back but this time, the modified backtrack algorithm continues after getting a solution so that it can find more than 1 solution in that puzzle in which it will backtrack normally and continue on. If the removed number causes the puzzle to get 2 solutions or more, the number erased will be put back and will no longer be selected for removal anymore and the removal continues. This removal continues until all cells are considered or until it removes an specific amount of cells. </p>                       
+                            <p class="small-font no-spacing bottom-spacing">To be able to solve sudoku puzzle using numbers logic, it is much harder to implement then modified Backtrack algorithm. To be able to get started, I had to create several arrays which are number of candidates, list of singles, pairs, triples, and quads, as well as candidates that remain in all row, column, and region. This allowed me to make Naked/hidden single, pairs, triples, and quads, intersections (pointing/claiming), X, XY, XYZ, W wings, Swordfish, and Simple Coloring. This has been extremely challenging for me as it is extremely hard to debug and find errors due to a 2d array of 9x9 making it hard to find which index were changed and so on.</p>
                         </details>
                     </div>
                     <div class="rightSection">
@@ -441,7 +396,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <div id="project" class="fillColor">
             <h1 class="topBorder font no-spacing">Guitar Chord Detector</h1>
 
-            <p class="small-font no-spacing">The Guitar chord detector is used to detect the type of chord when the
+            <p class="small-font no-spacing">The Guitar Chord Detector is used to detect the type of chord when the
                 user plucks a chord from the guitar. The results appears on a Smartphone App through a Bluetooth from
                 the HC-05 Bluetooth Module inside our hardware
                 where it determines which type of chord has been struck.</p>
@@ -587,7 +542,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         </div>
         <div id="project" class="fillColor">
             <h1 class="topBorder font no-spacing">Console Turn-Based RPG Game</h1>
-            <p class="small-font no-spacing">The player finds enemies and battle them for experience and gold. These help improve the player
+            <p class="small-font no-spacing">The player finds enemies and battle them for experience and gold. These
+                help improve the player
                 by buying equips, items and leveling up in battle.
                 Once the player is strong enough and defeats enough monsters, they can fight a boss and if they did
                 defeat the boss, the player goes to the next area where they fight stronger monsters
@@ -607,7 +563,8 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
             <details class="small-font">
                 <summary><b>Self-Reflections</b></summary>
                 <p class="small-font no-spacing">As a first program made in C++ and overall, I learned alot of C++ along
-                    the way. Although at that time the only program I can made in console, most of the practicing is used through console program
+                    the way. Although at that time the only program I can made in console, most of the practicing is
+                    used through console program
                     as it is easier for me and beginners in general.</p>
                 <p class="small-font no-spacing bottom-spacing">Though I finished, I felt like my code at that time had
                     alot of issues after I looked back. The code overall needs to be organized, there were magic numbers
