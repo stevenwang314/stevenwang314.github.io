@@ -188,14 +188,14 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                                     Github</a></p>
                         </details>
                         <p class="small-font no-spacing bottom-spacing">
-                            <a target="_blank" href="https://spotify-api-test.netlify.app/">Demo</a><br><br>
+                            <a target="_blank" href="https://spotify-api-test.netlify.app/">The demonstration website used for this video.</a><br><br>
                             <a target="_blank"
                                 href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">Github
                                 – Source Code</a>
                         </p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/XloFR0rIsXM"
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/V3W3oOepOpw"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -423,51 +423,30 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <div id="project" class="fillColor">
             <h1 class="topBorder font no-spacing">Seizure Flash Blocker</h1>
 
-            <p class="small-font no-spacing">Made in Hackathon of fall 2018 in 48 hours, the goal of the project
-                is to replace
-                quick flashing strobe of lights in certain videos into a static color to protect the viewer from
-                collapsing from a seizure. In this program we used Google Chrome and a youtube video (as demonstration)
-                from a clip from
-                Pokemon (Dennō Senshi Porygon) that caused hundreds of people to be sent to hospitals due to seizures
-                caused in that episode.
+            <p class="small-font no-spacing">Made in Hackathon of Spring 2019 in 48 hours, the goal of the project is to replace quick flashing strobe of lights in certain videos into a static color to protect the viewer from collapsing from a seizure. In this program we used Google Chrome and a Youtube video (as demonstration) from a clip from Pokemon (Dennō Senshi Porygon) that caused hundreds of people to be sent to hospitals due to seizures caused in that episode.
             </p>
-            <p class="small-font no-spacing bottom-spacing">A seizure (or a photosensitive epilepsy) is made from
-                constantly flashing colors or regularly repeating patterns</p>
+            <p class="small-font no-spacing bottom-spacing">A seizure (or a photosensitive epilepsy) is made from constantly flashing colors or regularly repeating patterns</p>
             <details class="small-font">
                 <summary><b>Implementations</b></summary>
                 <p class="tools-used no-spacing">Language: C/C++, Libraries: C++ Standard Library, Windows32 , Graphics
                     Development Interface (GDI)</p>
-                <p class="small-font no-spacing bottom-spacing">The program is ran in background, there is no window
+                <p class="small-font no-spacing bottom-spacing">The program is run in the background, there is no window that shows up
                     that shows up</p>
-                <p class="small-font no-spacing bottom-spacing">It uses an algorithm which determines the aggregate
-                    color difference
-                    which compares the difference of color between the current frame and the last frame. The color has
-                    three channels of Red, Green, and Blue dimension which is then pointed in space.
-                    We can compute the distance between two colors through the distance formula. If the distance is
-                    bigger, it is shown that the color is changed extremely. This is for one pixel. To be able to cover
-                    the entire screen, we have to sum the color distances over the entire region to compute an aggregate
-                    between two frame.</p>
+                <p class="small-font no-spacing bottom-spacing">It uses an algorithm which determines the aggregate color difference which compares the difference of color between the current frame and the last frame. The color has three channels of red, green, and blue dimension which is then pointed in space. We can compute the distance between two colors through the distance formula. If the distance is bigger, it is shown that the color is changed extremely. This is for one pixel. To be able to cover the entire screen, we have to sum the color distances over the entire region to compute an aggregate between two frames.</p>
 
-                <p class="small-font no-spacing bottom-spacing">It records
-                    number of times within 200ms period that color difference reaches a specific threshold. If this
-                    threshold activates 3 times, it is marked as flashing. We used GDI (Graphics Development Interface)
-                    to draw a red rectangle over the region</p>
+                <p class="small-font no-spacing bottom-spacing">It records number of times within 200ms period that color difference reaches a specific threshold. If this threshold activates 3 times, it is marked as flashing. We used GDI (Graphics Development Interface) to draw a red rectangle over the region.</p>
 
             </details>
             <details class="small-font">
                 <summary><b>Self-Reflections</b></summary>
-                <p class="small-font no-spacing">The successful finish of the project in under a 48 hour timeframe as
-                    well as the experience and
-                    knowledge obtained while in Hackathon have told
-                    me many things. First, it told me to deal with agile coding. Second, we worked together as a group
-                    of 3 communicating with each other on what our part of roles we do. And finally, it inspired me to
-                    start using Windows API instead of SFML/SDL libraries as a
-                    stepping stone to build desktop apps to improve my programming skills. The use of low level
-                    libraries taught me to use C-style coding techniques and the low-level libraries allows more freedom
-                    to customize the windows such as not showing the window and instead run in the background. In
-                    addition, we had the most originality of other projects in the Hackathon because it does not rely on
-                    any external libraries of any kind.</p>
-
+                <p class="small-font no-spacing">I had lots of fun participating in the Cal-Tech Hackathon that happened on March 2019. The project we have done has finished and demo successfully within a 48-hour timeframe and is made with 4 people including myself.</p>
+                <p class="small-font no-spacing bottom-spacing">I have developed some skills while I was at Hackathon. With only 48 hours to come up and make a project, we learned how to be agile developers as 48 hours is not a lot.  We had to manage time wisely as we had to spend time researching the libraries functions and algorithms, implementing the code, then test the results and fix things when necessary. It gets very nervous for us near the end especially in the final moments when the solid color to block epilepsy won’t show up when needed. </p>
+                <p class="small-font no-spacing bottom-spacing">The second mindset is that I am open to learning new things. When we decided to build a seizure flash blocker project as a group, all of us are familiar with C/C++ though we decided to expand our horizons and pick up libraries and algorithms that are out of our comfort zone such as using Windows API and GDI (Graphics Development Interface) API and then innovating the project around those API to be able to produce creative projects from our own minds.</p>
+                <p class="small-font no-spacing bottom-spacing">The third skill is using our debugger to test whether the output of our values was correct. Especially when we are using the Aggregate color distance algorithm, we learned how use Watches to watch the difference of RGB pixels while we are playing the Pokemon Clip. Another is using the Call stack which is vital as we can see where the function is being called from and also why it is being called so that we can easily go back to the function being called and fix an issue. Without our newly found debugging skills, we would never know what went wrong and that could prevent us from finishing our project within the last few hours.</p>
+                <p class="small-font no-spacing bottom-spacing">The fourth skill is code documentation, code documentation is very vital as not only we understand the code, other people will read our source code to see what is going on. We described each piece of code on what it does as well as writing a brief description of the source code file. Not just code documentation but also writing a report on what we did to explain to the average person what our project has done.</p>
+                <p class="small-font no-spacing bottom-spacing">And finally, it shows us that we are willing to be motivated. Even attending a Hackathon has describe me that I am willing to take a new challenge and ready to tackle that challenge. With our sheer motivation, no matter the situation caused during our time at the Hackathon, we never gave up as a group and continue to push forward until the project is complete. Lots of times that the project never worked out even though we fully implemented the skeleton of the project. Instead, we spend our time from day to night to analyze and inspect pieces of code that wasn’t working and eventually, we were able to fix the issue.  </p>
+                <p class="small-font no-spacing bottom-spacing">After the Hackathon, it inspired me to start using Windows API and GDI instead of SFML/SDL libraries as a stepping stone to build my own personal desktop apps to improve my programming skills. The usage of these low-level APIs were memorable and they have used into my projects as of today. These low-level libraries taught me to use C-style coding techniques and allowing more freedom to customize the windows such as not showing the window and instead run in the background and grabbing current processes that are currently running on the computer. All the skills I learned in Hackathon made me improved me in every way.</p>
+                <p class="small-font no-spacing bottom-spacing">We had the most originality score compared to other projects in Hackathon because of not relying on any external libraries and using what is built in on Windows Operating System.</p>
             </details>
             <span class="small-font no-spacing">Links: <a target="_blank"
                     href="https://devpost.com/software/seizure-flash-blocker#updates">Devpost</a></span>
