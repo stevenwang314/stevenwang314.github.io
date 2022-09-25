@@ -36,6 +36,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
         <a class="links" href="index.html">Me</a>
         <a class="links" href="steven_portfolio.html">Projects</a>
         <a class="links" href="steven_demo.html">Game Demo</a>
+        <a class="links" href="typing/html/typing.html">Typing Demo</a>
     </nav>
     <div class="skip"></div>
 
@@ -48,60 +49,39 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
             <div id="project" class="fillColor">
                 <div class="topBorder">
                     <div class="leftSection">
-                        <h1 class="font no-spacing">Grid Adventurer</h1>
+                        <h1 class="font no-spacing">Typing</h1>
 
-                        <p class="small-font no-spacing">The player controls a character that adventures through a 25x25
-                            grid in hopes of finding the red flag. However, it is much easier said than done. Along the
-                            way, the player encounter enemies, obstacles, and even dangerous hazards. Fortunately, the
-                            player is able to also get their hands on usable items helpful arrows, and other spoils that
-                            come along the way that assist the player..</p>
-                        <p class="small-font no-spacing bottom-spacing">Each action the player makes will cost their own
-                            resources, for instance moving, breaking obstacles, or fighting enemies will deplete the
-                            players energy. Fighting enemies will additionally deplete the players health.
+                        <p class="small-font no-spacing bottom-spacing">Typing is an essential skill needed to be able to do various tasks productively ranging from between work, school, or home. With technology becoming higher in demand and more popular due to making tedious tasks much simpler, it is a must have to have faster typing speed to get more things done. 
                         </p>
-                        <p class="small-font no-spacing bottom-spacing">The goal of the game is to get as far as
-                            possible. Each red flag the player obtains will increase the difficulty but the player gains
-                            more score. More information is located in the game.
-                        </p>
-                        <p class="small-font no-spacing bottom-spacing">Each stage is randomly generated including the
-                            players start position and the flags position which makes the gameplay different every
-                            playthrough.
-                        </p>
-                        <details class="small-font">
+                        <p class="small-font no-spacing bottom-spacing">Typing is a game where the player types a variety of topics in which they receive feedback in a form of WPM (Words per Minute) and Accuracy (in %) which determines how well they have performed. All words must have correct punctuation and capitalization to count.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are two different modes of typing</p>
+                        <p class="small-font no-spacing bottom-spacing">- <b>Topic Mode</b>: The goal is to type everything about the topic. The results are shown after the user types the last character. In this mode, it measures the amount of time it took to type the entire topic. </p>
+                        <p class="small-font no-spacing bottom-spacing">- <b>Timed Mode</b>: The goal is to measure how many characters a user can type accurately within a specific time period. The user can adjust the timed test between 1 to 10 minutes. The results are shown after the timer goes off.</p>
+                        <p class="small-font no-spacing bottom-spacing">The user can check Enable Accuracy to consider Accuracy in their results. When the user types the entire row with errors, it will go on to the next line regardless. However, this will impact True WPM which decreases when the Accuracy decreases. Backspace on an empty line will go back to the previous line in hopes of fixing mistakes.</p>
+                        <p class="small-font no-spacing bottom-spacing">There are 22 different topics the user can take part of typing. The user can click on each of the 22 topics to begin typing in Topic Mode.</p>
+                         <p class="small-font no-spacing bottom-spacing">The user can see their history of various typing sessions varying of Recent, Topic/Timed Mode, and best scores from Topic/Timed Mode. Up to 100 entries of recent typing session will be recorded and for each mode. For high scores, up to 10 entries of the best typing sessions for each mode. It contains crucial information such as WPM, Accuracy, time played, and etc. </p>
+                         <details class="small-font">
                             <summary><b>Implementations</b></summary>
-                            <p class="tools-used no-spacing">Programming Languages: Javascript, HTML, CSS</p>
-                            <p class="small-font no-spacing">This is my first project made with pure Javascript with
-                                HTML for the webpage and CSS to stylize the webpage. It utilizes &lt;canvas&gt; element
-                                from
-                                HTML greatly to draw out images, shapes, and texts. The images were taken from
-                                &lt;img&gt;
-                                element while the fonts used are from Google Fonts.</p>
-                            <p class="small-font no-spacing bottom-spacing">In the Javascript code, it uses the Document
-                                Object Model (DOM) API to interact with HTML element. The use of the DOM API is to fetch
-                                the &lt;canvas&gt; element and then we can utilize the canvas functions to draw
-                                textures,
-                                colored shapes, and text to build up the game. Another use of the DOM API is to be
-                                able to add listeners to the mouse, touch, and keyboard inputs to be able to control
-                                the player with arrow keys, mouse, and on a mobile device as well as using items
-                                whenever the player sends input.</p>
+                            <p class="tools-used no-spacing">Language: Javascript, HTML, and CSS Libraries: React, Redux, React-Redux, Bootstrap, jQuery, and Browser’s local storage</p>
+                            <p class="small-font no-spacing bottom-spacing">To render the ever-changing display for the typing component followed by the history of user’s typing session, it uses React library to handle dynamic changes. It uses Redux library to reliably store data and also track changes on changes to the store data. It then combines both to use Redux and React library to be able to use Redux store data much easier in all React Component within our project.</p>
+                            <p class="small-font no-spacing bottom-spacing">It uses Google Fonts API to use nicer fonts and Bootstrap to utilize more aesthetic user interface. </p>
+                            <p class="small-font no-spacing bottom-spacing">To measure Words Per Minute (WPM), it uses WPM = (number of characters typed/5) / (elapsed time (in minutes) or elapsed time (in seconds)/60) to determine the WPM. For accuracy, it uses Accuracy = (number of characters correctly typed/total characters typed) * 100 to measure it in percentages (%). To find true WPM it is essentially TRUE WPM = WPM * Accuracy (%). </p>
+                            <p class="small-font no-spacing bottom-spacing">In-game, each character typed is colored. A green character means that it is typed correctly, a red character means that it is typed incorrectly and this can be either it is a wrong character or not properly upper/lower cased.</p>
+                            <p class="small-font no-spacing bottom-spacing">To prevent cheating, the textbox element has several features disabled such as copy/paste/cut, dragging text to the textbox, and using autocorrect feature from right-click.</p>
+                            <p class="small-font no-spacing bottom-spacing">The typing history utilizes local storage API that stores the history after each typing session. It contains a comparison between what the user typed and the correct way to type it. It utilized the color-coded character used in-game to compare a correct or incorrect character typed. There is a checkbox that switches between user input and expected input.</p>
                         </details>
+                       
                         <p class="small-font no-spacing bottom-spacing">
-                            <a target="_blank" href="steven_demo.html">Demo – You can also click on Game Demo
-                                above!</a><br /><br />
+                            <a target="_blank" href="typing/html/typing.html">Game Demo – You can also click on Typing Demo above!</a><br><br>
                             <a target="_blank"
-                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">Github –
-                                Source Code</a>
+                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/typing">Github
+                                – Source Code</a>
                         </p>
                     </div>
                     <div class="rightSection">
-                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/MofQ8Fk_mWw"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/5u4i88Vw6NM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    </ul>
                 </div>
-
             </div>
             <div id="project" class="fillColor">
                 <div class="topBorder">
@@ -190,7 +170,7 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                         <p class="small-font no-spacing bottom-spacing">
                             <a target="_blank" href="https://spotify-api-test.netlify.app/">The demonstration website used for this video.</a><br><br>
                             <a target="_blank"
-                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/spotify">Github
+                                href="https://github.com/stevenwang314/spotify-api-test">Github
                                 – Source Code</a>
                         </p>
                     </div>
@@ -202,6 +182,65 @@ All the HTML elements like <header>, <nav>, <section>, <article>, <h1>, <p>, <im
                     </div>
                 </div>
             </div>
+            <div id="project" class="fillColor">
+                <div class="topBorder">
+                    <div class="leftSection">
+                        <h1 class="font no-spacing">Grid Adventurer</h1>
+
+                        <p class="small-font no-spacing">The player controls a character that adventures through a 25x25
+                            grid in hopes of finding the red flag. However, it is much easier said than done. Along the
+                            way, the player encounter enemies, obstacles, and even dangerous hazards. Fortunately, the
+                            player is able to also get their hands on usable items helpful arrows, and other spoils that
+                            come along the way that assist the player..</p>
+                        <p class="small-font no-spacing bottom-spacing">Each action the player makes will cost their own
+                            resources, for instance moving, breaking obstacles, or fighting enemies will deplete the
+                            players energy. Fighting enemies will additionally deplete the players health.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">The goal of the game is to get as far as
+                            possible. Each red flag the player obtains will increase the difficulty but the player gains
+                            more score. More information is located in the game.
+                        </p>
+                        <p class="small-font no-spacing bottom-spacing">Each stage is randomly generated including the
+                            players start position and the flags position which makes the gameplay different every
+                            playthrough.
+                        </p>
+                        <details class="small-font">
+                            <summary><b>Implementations</b></summary>
+                            <p class="tools-used no-spacing">Programming Languages: Javascript, HTML, CSS</p>
+                            <p class="small-font no-spacing">This is my first project made with pure Javascript with
+                                HTML for the webpage and CSS to stylize the webpage. It utilizes &lt;canvas&gt; element
+                                from
+                                HTML greatly to draw out images, shapes, and texts. The images were taken from
+                                &lt;img&gt;
+                                element while the fonts used are from Google Fonts.</p>
+                            <p class="small-font no-spacing bottom-spacing">In the Javascript code, it uses the Document
+                                Object Model (DOM) API to interact with HTML element. The use of the DOM API is to fetch
+                                the &lt;canvas&gt; element and then we can utilize the canvas functions to draw
+                                textures,
+                                colored shapes, and text to build up the game. Another use of the DOM API is to be
+                                able to add listeners to the mouse, touch, and keyboard inputs to be able to control
+                                the player with arrow keys, mouse, and on a mobile device as well as using items
+                                whenever the player sends input.</p>
+                        </details>
+                        <p class="small-font no-spacing bottom-spacing">
+                            <a target="_blank" href="steven_demo.html">Demo – You can also click on Game Demo
+                                above!</a><br /><br />
+                            <a target="_blank"
+                                href="https://github.com/stevenwang314/stevenwang314.github.io/tree/main/Game1">Github –
+                                Source Code</a>
+                        </p>
+                    </div>
+                    <div class="rightSection">
+                        <iframe class="video" width="600" height="400" src="https://www.youtube.com/embed/MofQ8Fk_mWw"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    </ul>
+                </div>
+
+            </div>
+          
             <div id="project" class="fillColor">
                 <div class="topBorder">
                     <div class="leftSection">

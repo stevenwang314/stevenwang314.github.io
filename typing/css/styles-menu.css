@@ -1,0 +1,161 @@
+:root {
+    --button1-color: rgba(0, 0, 0, 0.5);
+    --button2-color: rgba(29, 195, 87, 0.5);
+    --button3-color: rgba(147, 104, 23, 0.5);
+    --button4-color: rgba(179, 220, 122, 0.5);
+    --button5-color: rgba(227, 167, 17, 0.5);
+    --button6-color: rgba(88, 11, 28, 0.5);
+    --button7-color: rgba(78, 59, 184, 0.5);
+    --button8-color: rgba(47, 5, 35, 0.5);
+    --button9-color: rgba(41, 198, 212, 0.5);
+    --button10-color: rgba(171, 16, 227,0.5);
+    --button11-color: rgba(41, 131, 131,0.5);
+    --button12-color: rgba(220, 187, 124, 0.5);
+    --button13-color: rgba(29, 200, 63, 0.5);
+    --button14-color: rgba(161, 190, 188,0.5);
+    --button15-color: rgba(16, 100, 67, 0.5);
+    --button16-color: rgba(229, 207, 216, 0.5);
+    --button17-color: rgba(225, 49, 122, 0.5);
+    --button18-color: rgba(149, 36, 36, 0.5);
+    --button19-color: rgba(175, 186, 60, 0.5);
+    --button20-color: rgba(9, 13, 68, 0.5);
+    --button21-color: rgba(92, 177, 32, 0.5);
+}
+:root {
+    --button1-text:  red;
+    --button2-text: rgb(97, 43, 9);
+    --button3-text: rgb(49, 154, 93);
+    --button4-text: rgb(30, 144, 197);
+    --button5-text: rgb(149, 17, 189);
+    --button6-text: rgb(38, 49, 131);
+    --button7-text: rgb(57, 54, 47);
+    --button8-text: rgb(212, 116, 42);
+    --button9-text: rgb(117, 122, 23);
+    --button10-text: rgb(56, 68, 67);
+    --button11-text: rgb(72, 85, 21);
+    --button12-text: rgb(9, 7, 59);
+    --button13-text: rgb(218, 29, 57);
+    --button14-text: rgb(55, 51, 169);
+    --button15-text: rgb(33, 197, 82);
+    --button16-text: rgb(36, 37, 50);
+    --button17-text: rgb(14, 28, 225);
+    --button18-text: rgb(14, 50, 16);
+    --button19-text: rgb(49, 66, 132);
+    --button20-text: rgb(97, 229, 45);
+    --button21-text: rgb(76, 16, 113);
+}
+.menu {
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+.btn {
+    user-select: none;
+    border: 2px solid black;
+}
+#button-1 {
+    color: var(--button1-text);
+    background-color: var(--button1-color);
+}
+#button-2 {
+    color: var(--button2-text);
+    background-color: var(--button2-color);
+}
+
+#button-3 {
+    color:var(--button3-text);
+    background-color: var(--button3-color);
+}
+#button-4 {
+    color: var(--button4-text);
+    background-color: var(--button4-color);
+}
+#button-5 {
+    color: var(--button5-text);
+    background-color: var(--button5-color);
+}
+#button-6 {
+    color: var(--button6-text);
+    background-color: var(--button6-color);
+}
+#button-7 {
+    color: var(--button7-text);
+    background-color: var(--button7-color);
+}
+#button-8 {
+    color: var(--button8-text);
+    background-color: var(--button8-color);
+}
+#button-9 {
+    color: var(--button9-text);
+    background-color: var(--button9-color);
+}
+#button-10 {
+    color: var(--button10-text);
+    background-color: var(--button10-color);
+}
+#button-11 {
+    color: var(--button11-text);
+    background-color: var(--button11-color);
+}
+#button-12 {
+    color: var(--button12-text);
+    background-color: var(--button12-color);
+}
+#button-13 {
+    color: var(--button13-text);
+    background-color: var(--button13-color);
+}
+#button-14 {
+    color: var(--button14-text);
+    background-color: var(--button14-color);
+}
+#button-15 {
+    color: var(--button15-text);
+    background-color: var(--button15-color);
+}
+#button-16 {
+    color:var(--button16-text);
+    background-color: var(--button16-color);
+}
+#button-17 {
+    color: var(--button17-text);
+    background-color: var(--button17-color);
+}
+#button-18 {
+    color: var(--button18-text);
+    background-color: var(--button18-color);
+}
+#button-19 {
+    color: var(--button19-text);
+    background-color: var(--button19-color);
+}
+#button-20 {
+    color: var(--button20-text);
+    background-color: var(--button20-color);
+}
+#button-21 {
+    color: var(--button21-text);
+    background-color: var(--button21-color);
+}
+#howToPlay {
+    border: 3.5px solid black;
+    margin-top: 30px;
+}
+.full-bg {
+  background-color: rgba(128, 128, 128, 0.504);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/*!important - the property is higher than all others*/
+.menu:hover  {
+    color: white !important;
+    background-color: rgb(22, 66, 105) !important;
+ }

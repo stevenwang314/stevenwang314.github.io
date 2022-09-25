@@ -1,0 +1,88 @@
+#border-elapsed {
+    border: 3px solid rgb(11, 160, 59);
+    background-color: rgba(42, 194, 44, 0.5);
+    border-radius: 5px; 
+    width: 400px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+   
+}
+#border-wpm {
+    border: 3px solid rgb(23, 173, 214);
+    background-color: rgba(0, 255, 255, 0.5);
+    border-radius: 5px; 
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center; 
+}
+#border-owpm {
+    border: 3px solid rgb(38, 138, 16);
+    background-color: rgba(96, 143, 163, 0.5);
+    border-radius: 5px; 
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center; 
+}
+#border-acc {
+    border: 3px solid rgb(172, 43, 11);
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 5px; 
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center; 
+}
+#background-typing {
+    background-color: rgba(150, 189, 68, 0.5);
+    
+}
+.highlighted {
+    background-color: rgba(255, 255, 0, 0.504);
+}
+.text-type {
+    font-family: "Trispace", Arial, Helvetica, sans-serif;  
+    font-size: 26px;
+    font-weight: bold;
+    /*No copying pasting allowed*/
+    user-select: none;
+}
+.newLine {
+    /*Do not do new line. Some elements like <div> and <p> and <hX> are block display which will show new line*/
+    display:inline-block;
+}
+
+.font {
+    font-family: "Nova Round", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+}
+
+#text-congratulations {
+    font-family: "Nova Round", Arial, Helvetica, sans-serif;
+    font-size: 36px;
+}
+
+#typeInput {
+
+    width: 1000px;
+}
+
+.configureInput {
+    user-select: none;
+  -webkit-user-select: none; /*Safari*/
+  -moz-user-select: none; /*Firefox*/
+}
+.center-text {
+    text-align: center;
+}
+#typeProgress{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 50%;
+    border: 3.5px dashed black;
+}
+#highscore-margin {
+    margin-bottom: 20px;
+}
