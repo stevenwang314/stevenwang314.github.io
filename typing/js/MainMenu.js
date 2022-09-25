@@ -240,9 +240,9 @@ class MainMenu extends React.Component {
                     <div className="font-Kavivanar fontSize-24px">7&#41; The Enable Accuracy will incorporate accuracy into the results. It also allows to be able to go to next line even there are mistakes. This does impact your results.</div>
                     <div className="font-Kavivanar fontSize-24px">8&#41; Right Clicking, Copying, Pasting, Cutting, as well as dragging text are disabled.</div>
                 </div>
-                {/*Coming Soon */}
+  
                 <div id="howToPlay">
-                    <div className="font-Kavivanar fontSize-24px">Typing History (Coming Soon!)</div>
+                    <div className="font-Kavivanar fontSize-24px">Typing History</div>
                     <div className="btn-group dropup">
                         <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span className="sr-only">Choose history</span>
